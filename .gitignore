@@ -43,6 +43,11 @@ staticfiles/
 static/
 !static/admin/css/
 
+# Allow custom site static files
+!source/home/
+!source/home/static/
+!source/home/static/**
+
 # Logs
 *.log
 logs/

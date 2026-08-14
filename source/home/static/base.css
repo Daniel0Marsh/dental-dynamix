@@ -1,0 +1,567 @@
+:root {
+    /* Colors */
+    --primary: #C2A267;
+    --secondary: #222222;
+    --primary-text: var(--primary);
+    --mute: #6B6B6B;
+    --accent: #F2F2F2;
+    --border: var(--primary);
+    --body: #FFFFFF;
+    --border-radius: 8px;
+}
+
+/* ===============================
+   BOOTSTRAP THEME OVERRIDES
+   =============================== */
+
+:root {
+    --bs-primary: var(--primary);
+    --bs-secondary: var(--secondary);
+    --bs-body-bg: var(--body);
+    --bs-body-color: var(--mute);
+    --bs-border-color: var(--border);
+    --bs-border-radius: var(--border-radius);
+}
+
+/* ===============================
+   TEXT UTILITIES
+   =============================== */
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-secondary {
+    color: var(--secondary) !important;
+}
+
+.text-muted {
+    color: var(--mute) !important;
+}
+
+.text-dark {
+    color: var(--secondary) !important;
+}
+
+.text-light {
+    color: var(--body) !important;
+}
+
+.bg-dark {
+    background-color: var(--secondary) !important;
+}
+
+.bg-light {
+    background-color: var(--body) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--secondary);
+    font-weight: 600;
+    border-radius: var(--border-radius) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--body);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--body);
+    font-weight: 600;
+    border-radius: var(--border-radius);
+}
+.btn-secondary:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--secondary);
+}
+
+.btn-outline-primary {
+    color: var(--primary);
+    border-color: var(--primary);
+    font-weight: 600;
+    
+}
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-color: var(--primary);
+}
+
+.btn-outline-secondary {
+    color: var(--secondary);
+    border-color: var(--secondary);
+    font-weight: 600;
+    border-radius: var(--border-radius) !important;
+}
+.btn-outline-secondary:hover {
+    background-color: var(--secondary);
+    color: var(--body);
+    border-color: var(--secondary);
+}
+
+.card {
+    border-radius: var(--border-radius) !important;
+    border: 1px solid var(--border) !important;
+}
+
+
+
+/* ===============================
+   BODY
+   =============================== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    background-color: var(--body);
+    color: var(--mute);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* ===============================
+   TOP BAR
+=============================== */
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+
+    background-color: var(--secondary);
+    color: var(--mute);
+
+    z-index: 1050;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+.top-bar:hover {
+    color: var(--secondary);
+    background-color: var(--primary);
+}
+
+/* Hide top bar when scrolling */
+.top-bar.hidden {
+    transform: translateY(-100%);
+}
+
+
+/* ===============================
+   TOP BAR
+=============================== */
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+
+    background-color: var(--secondary);
+    color: var(--primary);
+
+    z-index: 1050;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.top-bar:hover {
+    color: var(--secondary);
+    background-color: var(--primary);
+}
+
+/* Hide top bar when scrolling */
+.top-bar.hidden {
+    transform: translateY(-100%);
+}
+
+
+/* ===============================
+   NAVBAR
+=============================== */
+
+.navbar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1040;
+
+    background-color: var(--body);
+
+    transition:
+        top 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Normal navbar */
+.navbar .container {
+    height: 100px;
+    transition: height 0.3s ease;
+}
+
+/* Logo */
+.navbar .container .navbar-brand img {
+    max-height: 60px;
+    transition: max-height 0.3s ease;
+}
+
+
+/* ===============================
+   SCROLLED NAVBAR
+=============================== */
+
+/*
+   When the top bar disappears,
+   the navbar moves to the very top.
+*/
+
+.navbar.scrolled {
+    top: 0;
+    background-color: var(--body);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+}
+
+/* Shrink navbar on scroll */
+.navbar.scrolled .container {
+    height: 80px;
+}
+
+.navbar.scrolled .container .navbar-brand img {
+    max-height: 50px;
+}
+
+
+/* ===============================
+   NAVIGATION LINKS
+=============================== */
+
+.navbar .nav-link {
+    color: var(--secondary);
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary);
+}
+
+
+/* ===============================
+   DROPDOWN
+=============================== */
+
+.navbar .dropdown-menu {
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+}
+
+.navbar .dropdown-menu .dropdown-item {
+    color: var(--secondary);
+    transition: all 0.3s ease;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+    color: var(--primary);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+/* ===============================
+   CTA
+=============================== */
+
+.navbar .btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--secondary);
+}
+
+.navbar .btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--body);
+}
+
+/* ===============================
+   MOBILE NAVBAR & TOPBAR - FULL SCREEN
+   =============================== */
+@media (max-width: 991.98px) {
+
+    /* Hide top bar completely */
+    .top-bar {
+        display: none !important;
+    }
+
+    /* Navbar fixed, white, smaller, always visible */
+    .navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0;
+        width: 100%;
+        height: 60px !important;
+        background-color: var(--body) !important; /* solid white */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        z-index: 1050;
+        padding: 0 1rem;
+        transition: all 0.3s ease;
+    }
+
+    /* Navbar container smaller */
+    .navbar .container {
+        height: 60px !important;
+        padding: 0 1rem;
+    }
+
+    /* Brand image smaller */
+    .navbar .navbar-brand img {
+        max-height: 40px !important;
+    }
+
+    /* Ensure page content is not hidden behind navbar */
+    body {
+        padding-top: 60px; /* same as navbar height */
+    }
+
+    /* Fullscreen mobile menu */
+    .navbar .collapse.show {
+        position: fixed;
+        top: 60px; /* below navbar */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background-color: var(--body);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px 0;
+        overflow-y: auto;
+        z-index: 1050;
+        transition: all 0.3s ease;
+    }
+
+    /* Remove overlay pseudo-element if any */
+    .navbar .collapse.show::before {
+        display: none;
+    }
+
+    /* Logo at top of menu */
+    .navbar .collapse.show .navbar-brand {
+        margin-bottom: 20px;
+    }
+
+    /* Close button styling */
+    .navbar .collapse.show .mobile-menu-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 1060;
+    }
+    .navbar .collapse.show .mobile-menu-close .btn-close {
+        width: 28px;
+        height: 28px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        opacity: 1;
+    }
+
+    /* Mobile nav links container */
+    .navbar-nav.d-lg-none {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        gap: 12px;
+        padding: 0 1rem;
+    }
+
+    /* Mobile nav links styling */
+    .navbar-nav.d-lg-none .nav-link {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--mute);
+        padding: 12px 0;
+        width: 100%;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+    }
+    .navbar-nav.d-lg-none .nav-link:hover {
+        color: var(--primary);
+        transform: scale(1.03);
+    }
+
+    /* Nested mobile submenus */
+    .navbar-nav.d-lg-none ul {
+        padding-left: 15px;
+        margin-top: 8px;
+        width: 100%;
+    }
+    .navbar-nav.d-lg-none ul li .nav-link {
+        font-size: 18px;
+        padding: 6px 0;
+        color: var(--mute);
+    }
+    .navbar-nav.d-lg-none ul li .nav-link:hover {
+        color: var(--primary);
+        transform: scale(1.02);
+    }
+
+    /* Add dropdown indicators */
+    .navbar-nav.d-lg-none .dropdown-toggle::after {
+        content: "▼";
+        color: var(--mute);
+        display: inline-block;
+        margin-left: 6px;
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+    .navbar-nav.d-lg-none .dropdown.show > .nav-link.dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
+
+    /* Mobile CTA button at bottom */
+    .navbar-nav.d-lg-none .btn {
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        width: 80%;
+        text-align: center;
+    }
+
+    /* Optional: add subtle dividers between top-level links */
+    .navbar-nav.d-lg-none .nav-item + .nav-item {
+        border-top: 1px solid rgba(0,0,0,0.1);
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+/* ===============================
+   MOBILE MENU OPEN - FORCE WHITE
+   =============================== */
+@media (max-width: 991.98px) {
+
+    /* Force the collapsed menu to always have white background on mobile */
+    .navbar .collapse {
+        background-color: var(--body) !important;
+        transition: none !important;
+    }
+
+    /* When menu is open */
+    .navbar .collapse.show {
+        background-color: var(--body) !important;
+    }
+
+    /* Ensure menu links are visible immediately */
+    .navbar .collapse.show .nav-link {
+        color: var(--mute) !important;
+    }
+
+    /* Optional: remove box-shadow on opening if you want smooth open */
+    .navbar .collapse.show {
+        box-shadow: none;
+    }
+}
+
+
+/* ===============================
+   MOBILE LOGO FIX
+   =============================== */
+@media (max-width: 991.98px) {
+    /* Hide desktop logo */
+    .navbar .navbar-brand img[src="{{ branding.logo.url }}"] {
+        display: none !important;
+    }
+
+    /* Ensure mobile logo is always visible */
+    .navbar-nav.d-lg-none .navbar-brand img {
+        display: block !important;
+        max-height: 40px; /* match navbar height */
+    }
+}
+
+
+/* ===============================
+   FOOTER
+   =============================== */
+.footer {
+  background-color: var(--accent);
+  color: var(--body);
+}
+
+.footer-link {
+    color: var(--secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 600;
+
+    /* Prevent long emails/addresses from overflowing */
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.footer-link:hover {
+  color: var(--mute);
+  text-decoration: none;
+}
+
+.footer h5 {
+  color: var(--primary);
+}
+
+@media (max-width: 767.98px) {
+  .footer .col-md-3 {
+    text-align: center;
+  }
+}
+
+
+
+/* ===============================
+HERO OVERLAY
+=============================== */
+.hero-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(34, 34, 34, 0.7);
+    z-index: 2;
+}
