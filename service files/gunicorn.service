@@ -1,0 +1,15 @@
+[Unit]
+Description=Dental Dynamix Django Application
+After=network.target postgresql.service
+
+[Service]
+User=dentaldynamix-admin
+Group=dentaldynamix-admin
+WorkingDirectory=/home/dentaldynamix-admin/dental-dynamix/source
+EnvironmentFile=/home/dentaldynamix-admin/dental-dynamix/source/core/.env
+ExecStart=/home/dentaldynamix-admin/dental-dynamix/.venv/bin/gunicorn core.wsgi:application --bind 127.0.0.1:8000 --workers 3
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
