@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+{# Page-specific CSS or JS ONLY if required #}
+{% endblock %}
+
+{% block content %}
+
+<!-- hero section -->
+<section
+  id="hero-section"
+  class="hero-overlay d-flex align-items-center text-light position-relative"
+  style="min-height: 85vh; position: relative;"
+>
+  <img 
+    src="{{ home.hero_image.url }}" 
+    alt="{{ home.hero_image_alt_text }}"
+    class="w-100 h-100 position-absolute top-0 start-0" 
+    style="object-fit: cover; z-index: 1;"
+  >
+
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="row">
+      <div class="col-lg-7">
+
+        <h1 class="fw-bold display-5 mb-4">
+          <span>Advanced Dental Imaging.</span><br>
+          <span>Clearer Data. Better Decisions.</span>
+        </h1>
+
+        <p class="fw-bold lead mb-4">
+          {{ home.hero_subtitle }}
+        </p>
+
+        <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-4">
+            <a href="{% url 'about' %}" class="btn btn-secondary">
+                Explore 3D Imaging
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn btn-outline-primary">
+                Get in Touch
+            </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service Cards Section -->
+<section class="py-5" id="service-cards">
+    <div class="container py-5">
+
+        <div class="row g-4 justify-content-center">
+
+            {% for card in service_cards %}
+
+                <div class="col-12 col-lg-4">
+
+                    <div class="h-100">
+
+                        <!-- Image -->
+                        <img src="{{ card.image.url }}"
+                             class="img-fluid w-100 rounded-4"
+                             alt="{{ card.title }}"
+                             style="height: 250px; object-fit: cover;">
+
+                        <!-- Text -->
+                        <div class="pt-4 text-start">
+
+                            <h5 class="text-secondary fw-bold fs-4 mb-3">
+                                {{ card.title }}
+                            </h5>
+
+                            <p class="text-muted fs-5 mb-0">
+                                {{ card.description }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section mb-5 py-5">
+    <div class="container">
+        <div class="row g-0 align-items-start">
+
+            <!-- Image -->
+            <div class="col-lg-6 position-relative pe-lg-5 mb-4 mb-lg-0">
+                <img src="{{ home.about_image.url }}"
+                     class="w-100 rounded-end"
+                     style="object-fit: cover; min-height: 280px;"
+                     alt="{{ home.about_image_alt_text }}">
+            </div>
+
+
+            <!-- Text -->
+            <div class="col-lg-6">
+                <div class="px-4 px-lg-0 pe-lg-5 me-lg-5">
+
+                    <h2 class="fw-bold display-6 display-lg-5 text-secondary mb-3 mb-lg-4">
+                        {{ home.about_title }}
+                    </h2>
+
+                    <p class="fs-4 fs-lg-4 text-muted mb-4">
+                        {{ home.about_copy }}
+                    </p>
+
+                    <a href="{{ home.about_url }}" class="btn btn-primary m-1">
+                        Learn More
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class=" mb-5 py-5 bg-accent">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-7 text-md-start text-center mb-3 mb-md-0">
+                <h2 class="fw-bold display-5 text-primary mb-4">Partner with Experts in Dental Imaging & IT</h2>
+                <p class="fs-4 text-muted mb-4">
+                    Dental Dynamix is the UK’s trusted partner for reliable dental IT and advanced digital imaging support — helping practices operate with confidence.
+                </p>
+            </div>
+
+            <div class="col-md-4 text-md-end text-center">
+                <a href="{% url 'contact' %}" class="btn btn-primary m-1">
+                    Contact Our Team
+                </a>
+                <a href="{% url 'about' %}" class="btn btn-outline-secondary m-1">
+                    Explore Our Solutions
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Support Section -->
+<section class="support-section mb-5 py-5">
+    <div class="container">
+        <div class="row g-0 align-items-start">
+
+            <!-- Text -->
+            <div class="col-lg-6 order-2 order-lg-1">
+                <div class="px-4 px-lg-0 pe-lg-5 me-lg-5">
+
+                    <h2 class="fw-bold display-6 display-lg-5 text-secondary mb-3 mb-lg-4">
+                        {{ home.support_title }}
+                    </h2>
+
+                    <p class="fs-4 fs-lg-4 text-muted mb-4">
+                        {{ home.support_copy }}
+                    </p>
+
+                    <a href="{{ home.support_url }}"
+                       class="btn btn-primary m-1">
+                        Get Support
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- Image -->
+            <div class="col-lg-6 position-relative ps-lg-5 mb-4 mb-lg-0 order-1 order-lg-2">
+                <img src="{{ home.support_image.url }}"
+                     class="w-100 rounded-start"
+                     style="object-fit: cover; min-height: 280px;"
+                     alt="{{ home.support_image_alt_text }}">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="position-relative mb-5">
+
+    <div class="hero-overlay d-flex align-items-center position-relative"
+         style="min-height: 500px;">
+
+        <!-- Background Image -->
+        <img
+            src="{{ home.testimonial_image.url }}"
+            alt="{{ home.testimonial_image_alt_text }}"
+            class="position-absolute top-0 start-0 w-100 h-100"
+            style="object-fit: cover; z-index: 0;"
+        >
+
+        <!-- Testimonial Content -->
+        <div class="container position-relative" style="z-index: 2;">
+
+            <div id="testimonialCarousel" class="carousel slide">
+
+                <div class="carousel-inner">
+
+                    {% for testimonial in testimonials %}
+
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                            <div class="row justify-content-center justify-content-lg-end">
+
+                                <div class="col-12 col-md-9 col-lg-6">
+
+                                    <div class="position-relative text-center text-lg-start px-4 py-5">
+
+                                        <!-- Opening Quote -->
+                                        <i class="bi bi-quote position-absolute top-0 start-0
+                                                  display-4 text-primary"></i>
+
+                                        <!-- Testimonial -->
+                                        <p class="fs-3 text-white mb-4">
+                                            {{ testimonial.quote }}
+                                        </p>
+
+                                        <!-- Author -->
+                                        <h5 class="fs-4 text-primary fw-bold mb-1">
+                                            {{ testimonial.author_name }}
+                                        </h5>
+
+                                        {% if testimonial.author_company %}
+                                            <p class="text-white">
+                                                {{ testimonial.author_company }}
+                                           </p>
+                                        {% endif %}
+                                        <!-- Closing Quote -->
+                                        <i class="bi bi-quote position-absolute bottom-0 end-0
+                                                  display-4 text-primary"
+                                          style="transform: rotate(180deg);"></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- Previous -->
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="prev">
+
+                    <span class="carousel-control-prev-icon"></span>
+
+                    <span class="visually-hidden">
+                        Previous
+                    </span>
+
+                </button>
+
+
+                <!-- Next -->
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="next">
+
+                    <span class="carousel-control-next-icon"></span>
+
+                    <span class="visually-hidden">
+                        Next
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

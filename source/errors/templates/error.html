@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Error {{ status_code }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}?v=1.1">
+<style>
+    body {
+        background: linear-gradient(135deg, #1f1f1f, #121212);
+        color: #f5f5f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .error-card {
+        background-color: #1a1a1a;
+        border-radius: 12px;
+        padding: 48px 32px;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        max-width: 600px;
+        width: 90%;
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .error-code {
+        font-size: 96px;
+        font-weight: 900;
+        color: #ff4c4c;
+        text-shadow: 2px 2px 10px rgba(255, 76, 76, 0.5);
+    }
+
+    .error-message {
+        font-size: 24px;
+        margin: 16px 0 32px 0;
+        color: #f5f5f5;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    }
+
+    .btn-home {
+        padding: 12px 32px;
+        font-size: 20px;
+        border-radius: 8px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="error-card">
+        <div class="error-code">{{ status_code }}</div>
+        <div class="error-message">
+            Oops! Something went wrong.
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-home">
+            Return to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

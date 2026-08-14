@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+{# Page-specific CSS or JS ONLY if required #}
+{% endblock %}
+
+{% block content %}
+
+<!-- hero section -->
+<section
+  id="hero-section"
+  class="hero-overlay d-flex align-items-center text-light position-relative"
+  style="min-height: 60vh; position: relative;"
+>
+  <img 
+    src="{{ home.hero_image.url }}" 
+    alt="{{ home.hero_image_alt_text }}"
+    class="w-100 h-100 position-absolute top-0 start-0" 
+    style="object-fit: cover; z-index: 1;"
+  >
+
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+
+        <h1 class="fw-bold display-3 mb-4">
+          privacy policy
+        </h1>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- blog details -->
+<section class="blog-details bg-light text-primary">
+  <div class="container p-5 rounded-top-5 bg-light text-primary d-flex flex-column">
+
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="service-list w-100 px-3 px-md-5">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-4 my-5">
+                <p class="fs-5 mb-2">{{ privacy_policy.content | safe }}</p>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+/* Ensure proper text color for all form fields */
+#id_description,
+#id_content,
+#id_title,
+#id_keywords,
+#id_author {
+    color: #333 !important;
+    background-color: #fff !important;
+}
+
+/* Fix CKEditor text color */
+.django-ckeditor-5 .django-ckeditor-5-editor {
+    color: #333 !important;
+    background-color: #fff !important;
+}
+
+/* Fix any CKEditor specific elements */
+.ck-editor__editable {
+    color: #333 !important;
+    background-color: #fff !important;
+}
+
+/* Ensure all form inputs have proper text color */
+.form-row input,
+.form-row textarea,
+.form-row select {
+    color: #333 !important;
+    background-color: #fff !important;
+}
+
+/* Fix any admin-specific styling issues */
+.field-description textarea,
+.field-content textarea {
+    color: #333 !important;
+    background-color: #fff !important;
+}
+
+/* Ensure alignment classes work properly */
+.ck-content .text-left {
+    text-align: left !important;
+}
+
+.ck-content .text-center {
+    text-align: center !important;
+}
+
+.ck-content .text-right {
+    text-align: right !important;
+}
+
+.ck-content .text-justify {
+    text-align: justify !important;
+}
+
+/* Ensure alignment works in the editor */
+.ck-editor__editable .text-left {
+    text-align: left !important;
+}
+
+.ck-editor__editable .text-center {
+    text-align: center !important;
+}
+
+.ck-editor__editable .text-right {
+    text-align: right !important;
+}
+
+.ck-editor__editable .text-justify {
+    text-align: justify !important;
+}
+</style>
+{% endblock %} 
