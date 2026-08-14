@@ -1,4 +1,4 @@
-# CodeBlock.io Website
+# Dental Dynamix Website
 
 This is the main company website for dentaldynamix.co.uk, built with Django and featuring a modern, responsive design.
 
