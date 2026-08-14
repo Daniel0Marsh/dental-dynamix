@@ -193,3 +193,5 @@ Once these are all ready, the domain nameservers can be changed to Cloudflare.
 
   * `http://192.168.1.95`
 * [ ] After the domain is live, test both the root domain and `www` domain.
+
+* Once site is complete remove under construction in admin and update the nginx to allow other pages: sudo nano /etc/nginx/sites-enabled/dental-dynamix
