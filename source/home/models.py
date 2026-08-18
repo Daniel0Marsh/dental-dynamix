@@ -13,15 +13,27 @@ class HomePage(models.Model):
         help_text="Upload the hero section image.",
         default="default/hero_image.webp"
     )
+
     hero_image_alt_text = models.CharField(
-        max_length=255, 
-        default="Award-winning web design agency in Kent, UK delivering custom websites for local businesses", 
-        help_text="Provide alternative text for the image for SEO and accessibility purposes."
+        max_length=255,
+        default=(
+            "Advanced dental imaging technology and digital solutions "
+            "from Dental Dynamix"
+        ),
+        help_text=(
+            "Provide alternative text for the hero image for SEO "
+            "and accessibility purposes."
+        )
     )
+
     hero_subtitle = models.CharField(
         max_length=255,
         help_text="Subtitle text for the hero section.",
-        default="Industry-leading 2D and 3D imaging solutions designed to improve diagnostic accuracy, workflow efficiency, and patient outcomes."
+        default=(
+            "Industry-leading 2D and 3D dental imaging solutions "
+            "designed to improve diagnostic accuracy, workflow "
+            "efficiency, and patient outcomes."
+        )
     )
 
     #-----------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-lg-7">
 
-        <h1 class="fw-bold display-5 mb-4">
+        <h1 class="fw-bold display-4 mb-4">
           <span>Advanced Dental Imaging.</span><br>
           <span>Clearer Data. Better Decisions.</span>
         </h1>
@@ -142,7 +142,7 @@
                 <a href="{% url 'contact' %}" class="btn btn-primary m-1">
                     Contact Our Team
                 </a>
-                <a href="{% url 'about' %}" class="btn btn-outline-secondary m-1">
+                <a href="{% url 'oursolutions' %}" class="btn btn-outline-secondary m-1">
                     Explore Our Solutions
                 </a>
             </div>
@@ -167,7 +167,7 @@
                         {{ home.support_copy }}
                     </p>
 
-                    <a href="{{ home.support_url }}"
+                    <a href="{% url 'contact' %}"
                        class="btn btn-primary m-1">
                         Get Support
                     </a>
@@ -188,6 +188,7 @@
     </div>
 </section>
 
+{% if testimonials %}
 <!-- Testimonial Section -->
 <section class="position-relative mb-5">
 
@@ -294,5 +295,7 @@
     </div>
 
 </section>
+
+{% endif %}
 
 {% endblock %}

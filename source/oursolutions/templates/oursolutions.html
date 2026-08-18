@@ -1,0 +1,1068 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+{# Page-specific CSS or JS ONLY if required #}
+{% endblock %}
+
+{% block content %}
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section
+    id="solutions-hero"
+    class="hero-overlay d-flex align-items-center text-light position-relative"
+    style="min-height: 85vh;"
+>
+
+    <img
+        src="{{ solutions.hero_image.url }}"
+        alt="{{ solutions.hero_image_alt_text }}"
+        class="w-100 h-100 position-absolute top-0 start-0"
+        style="object-fit: cover; z-index: 1;"
+    >
+
+    <div class="container position-relative" style="z-index: 2;">
+
+        <div class="row">
+
+            <div class="col-lg-8">
+
+
+                <h1 class="fw-bold display-4 mb-4">
+                    {{ solutions.hero_title }}
+                </h1>
+
+                <p class="fw-bold lead mb-4" style="max-width: 750px;">
+                    {{ solutions.hero_subtitle }}
+                </p>
+
+                <div
+                    class="d-flex flex-column flex-sm-row
+                           align-items-stretch align-items-sm-center
+                           gap-2 mt-4"
+                >
+
+            <a href="{% url 'about' %}" class="btn btn-secondary">
+                Explore 3D Imaging
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn btn-outline-primary">
+                Get in Touch
+            </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOLUTION INTRO / THREE PILLARS
+========================================================= -->
+<section class="py-5 my-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-uppercase fw-bold text-primary small">
+                What We Do
+            </span>
+
+            <h2 class="fw-bold display-4 text-secondary mt-2 mb-3">
+                Complete Technology Solutions
+            </h2>
+
+            <p
+                class="fs-5 text-muted mx-auto"
+                style="max-width: 850px;"
+            >
+                Dental Dynamix provides the technology, equipment,
+                installation and ongoing support that modern dental
+                practices need — from the IT infrastructure behind
+                the practice to the imaging systems used in the surgery.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- IT -->
+            <div class="col-md-4">
+
+                <div
+                    class="card border-0 shadow-sm h-100
+                           text-center p-4 p-lg-5"
+                >
+
+                    <div class="mb-4">
+                        <i class="bi bi-pc-display fs-1 text-primary"></i>
+                    </div>
+
+                    <h3 class="h3 fw-bold text-secondary mb-3">
+                        IT & Infrastructure
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        PCs, servers, networks, structured cabling,
+                        Wi-Fi, software and ongoing IT support designed
+                        around the needs of dental practices.
+                    </p>
+
+                    <a
+                        href="#it-section"
+                        class="text-secondary fw-bold
+                               text-decoration-none mt-auto"
+                    >
+                        Explore IT Solutions
+                        <i class="bi bi-arrow-down ms-2"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Imaging -->
+            <div class="col-md-4">
+
+                <div
+                    class="card border-0 shadow-sm h-100
+                           text-center p-4 p-lg-5"
+                >
+
+                    <div class="mb-4">
+                        <i class="bi bi-camera fs-1 text-primary"></i>
+                    </div>
+
+                    <h3 class="h3 fw-bold text-secondary mb-3">
+                        Imaging & Digital Dentistry
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        From digital X-ray and 2D imaging to CBCT,
+                        intraoral scanning and advanced digital
+                        workflows.
+                    </p>
+
+                    <a
+                        href="#imaging-section"
+                        class="text-secondary fw-bold
+                               text-decoration-none mt-auto"
+                    >
+                        Explore Imaging
+                        <i class="bi bi-arrow-down ms-2"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Installation -->
+            <div class="col-md-4">
+
+                <div
+                    class="card border-0 shadow-sm h-100
+                           text-center p-4 p-lg-5"
+                >
+
+                    <div class="mb-4">
+                        <i class="bi bi-tools fs-1 text-primary"></i>
+                    </div>
+
+                    <h3 class="h3 fw-bold text-secondary mb-3">
+                        Installation & Support
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        Equipment installation, system integration,
+                        configuration and ongoing technical support
+                        from one experienced team.
+                    </p>
+
+                    <a
+                        href="#support-section"
+                        class="text-secondary fw-bold
+                               text-decoration-none mt-auto"
+                    >
+                        See Our Support
+                        <i class="bi bi-arrow-down ms-2"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IT & INFRASTRUCTURE
+========================================================= -->
+<section
+    id="it-section"
+    class="py-5 my-5"
+>
+
+    <div class="container">
+
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="position-relative">
+
+                    <img
+                        src="{{ solutions.it_image.url }}"
+                        alt="{{ solutions.it_image_alt_text }}"
+                        class="w-100 rounded shadow"
+                        style="object-fit: cover; min-height: 400px;"
+                    >
+
+                    <div
+                        class="position-absolute bottom-0 start-0
+                               bg-primary text-white p-3 p-lg-4
+                               rounded-end"
+                    >
+                        <strong>
+                            IT built around your practice
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <span class="text-uppercase fw-bold text-primary small">
+                    IT & Infrastructure
+                </span>
+
+                <h2 class="fw-bold display-4 text-secondary mt-2 mb-4">
+                    {{ solutions.it_title }}
+                </h2>
+
+                <div class="fs-5 text-muted mb-4">
+                    {{ solutions.it_text|safe }}
+                </div>
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="btn btn-primary"
+                >
+                    Discuss Your IT Requirements
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IT CAPABILITIES
+========================================================= -->
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-uppercase fw-bold text-primary small">
+                IT Services
+            </span>
+
+            <h2 class="fw-bold display-5 text-secondary mt-2 mb-3">
+                Everything Behind the Practice
+            </h2>
+
+            <p
+                class="fs-5 text-muted mx-auto"
+                style="max-width: 800px;"
+            >
+                We can supply, install, configure and support the
+                infrastructure your dental practice relies on every day.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-pc-display-horizontal fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        PCs & Workstations
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Practice-ready computers and workstations
+                        configured for your requirements.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-hdd-rack fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        Servers
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Server hardware, configuration and
+                        ongoing management.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-diagram-3 fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        Networking
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Wired and wireless networks designed
+                        for reliable practice connectivity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-ethernet fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        Structured Cabling
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Professional network cabling and
+                        infrastructure installation.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-shield-check fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        Security
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Infrastructure and systems designed
+                        with security in mind.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-wifi fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        Wi-Fi
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Reliable wireless connectivity throughout
+                        your practice.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-cloud-check fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        Software & Systems
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Installation, configuration and support
+                        for practice software and connected systems.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="text-center p-3">
+
+                    <i class="bi bi-headset fs-1 text-primary"></i>
+
+                    <h3 class="h5 fw-bold text-secondary mt-3">
+                        Ongoing Support
+                    </h3>
+
+                    <p class="small text-muted mb-0">
+                        Technical support when your practice
+                        needs it.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IMAGING & DIGITAL DENTISTRY
+========================================================= -->
+<section
+    id="imaging-section"
+    class="py-5 my-5"
+>
+
+    <div class="container">
+
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6 order-lg-2">
+
+                <img
+                    src="{{ solutions.installation_image.url }}"
+                    alt="{{ solutions.installation_image_alt_text }}"
+                    class="w-100 rounded shadow"
+                    style="object-fit: cover; min-height: 420px;"
+                >
+
+            </div>
+
+
+            <div class="col-lg-6 order-lg-1">
+
+                <span class="text-uppercase fw-bold text-primary small">
+                    Imaging & Digital Dentistry
+                </span>
+
+                <h2 class="fw-bold display-4 text-secondary mt-2 mb-4">
+                    {{ solutions.installation_title }}
+                </h2>
+
+                <div class="fs-5 text-muted mb-4">
+                    {{ solutions.installation_text|safe }}
+                </div>
+
+                <a
+                    href="{% url 'partners:products' %}"
+                    class="btn btn-primary"
+                >
+                    Explore Imaging Products
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IMAGING CAPABILITIES
+========================================================= -->
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-uppercase fw-bold text-primary small">
+                Digital Imaging
+            </span>
+
+            <h2 class="fw-bold display-5 text-secondary mt-2 mb-3">
+                From 2D X-Ray to Advanced 3D Imaging
+            </h2>
+
+            <p
+                class="fs-5 text-muted mx-auto"
+                style="max-width: 800px;"
+            >
+                We work with leading dental technology manufacturers
+                to supply and support imaging systems that integrate
+                into modern clinical workflows.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow-sm h-100 p-4">
+
+                    <i class="bi bi-camera2 fs-1 text-primary mb-3"></i>
+
+                    <h3 class="h4 fw-bold text-secondary">
+                        Digital X-Ray
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Digital intraoral and X-ray solutions designed
+                        to integrate into the modern dental practice.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow-sm h-100 p-4">
+
+                    <i class="bi bi-image fs-1 text-primary mb-3"></i>
+
+                    <h3 class="h4 fw-bold text-secondary">
+                        2D Imaging
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Advanced 2D imaging solutions for everyday
+                        diagnosis and clinical workflows.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow-sm h-100 p-4">
+
+                    <i class="bi bi-boxes fs-1 text-primary mb-3"></i>
+
+                    <h3 class="h4 fw-bold text-secondary">
+                        CBCT & 3D Imaging
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Advanced 3D imaging technology providing
+                        detailed digital information for clinical use.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow-sm h-100 p-4">
+
+                    <i class="bi bi-bounding-box-circles fs-1 text-primary mb-3"></i>
+
+                    <h3 class="h4 fw-bold text-secondary">
+                        Intraoral Scanning
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Digital scanning solutions to support
+                        modern digital dentistry workflows.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow-sm h-100 p-4">
+
+                    <i class="bi bi-cpu fs-1 text-primary mb-3"></i>
+
+                    <h3 class="h4 fw-bold text-secondary">
+                        Imaging Software
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Imaging and workflow software configured
+                        around your practice and equipment.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow-sm h-100 p-4">
+
+                    <i class="bi bi-arrow-repeat fs-1 text-primary mb-3"></i>
+
+                    <h3 class="h4 fw-bold text-secondary">
+                        System Integration
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Connecting imaging equipment, computers,
+                        networks and software into one workflow.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INSTALLATION & SUPPORT
+========================================================= -->
+<section
+    id="support-section"
+    class="py-5 my-5"
+>
+
+    <div class="container">
+
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6">
+
+                <img
+                    src="{{ solutions.software_image.url }}"
+                    alt="{{ solutions.software_image_alt_text }}"
+                    class="w-100 rounded shadow"
+                    style="object-fit: cover; min-height: 420px;"
+                >
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <span class="text-uppercase fw-bold text-primary small">
+                    Installation & Support
+                </span>
+
+                <h2 class="fw-bold display-4 text-secondary mt-2 mb-4">
+                    {{ solutions.software_title }}
+                </h2>
+
+                <div class="fs-5 text-muted mb-4">
+                    {{ solutions.software_text|safe }}
+                </div>
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="btn btn-primary"
+                >
+                    Speak To Our Team
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     COMPLETE SOLUTION
+========================================================= -->
+<section class="py-5 bg-dark text-white">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7">
+
+                <span class="text-uppercase fw-bold text-primary small">
+                    One Technology Partner
+                </span>
+
+                <h2 class="display-4 fw-bold mt-2 mb-4">
+                    From the Network Socket to the X-Ray Image
+                </h2>
+
+                <p class="fs-5 mb-0">
+                    Dental Dynamix can support the complete technology
+                    journey of your practice. From supplying the PC
+                    on the reception desk, running the network cables
+                    and configuring the server, through to installing
+                    imaging equipment and supporting the software
+                    your clinicians use every day.
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="row g-3">
+
+                    <div class="col-6">
+                        <div class="border rounded p-3 text-center">
+                            <i class="bi bi-pc-display fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                Hardware
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="border rounded p-3 text-center">
+                            <i class="bi bi-diagram-3 fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                Networks
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="border rounded p-3 text-center">
+                            <i class="bi bi-camera fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                Imaging
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="border rounded p-3 text-center">
+                            <i class="bi bi-headset fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                Support
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     Technology Partners
+========================================================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <h2 class="fw-bold display-5 text-secondary mb-3">
+        Our Technology Partners
+      </h2>
+
+      <p class="fs-5 text-muted mx-auto" style="max-width: 750px;">
+        We work with leading dental technology manufacturers to provide
+        practices with proven products, imaging solutions and technology.
+      </p>
+
+    </div>
+
+
+    {% if partners %}
+
+      <div class="row justify-content-center align-items-stretch g-4">
+
+        {% for partner in partners %}
+
+          <div class="col-6 col-md-4 col-lg-3">
+
+            <a
+              href="{{ partner.get_absolute_url }}"
+              class="text-decoration-none"
+              aria-label="View {{ partner.name }} products and solutions"
+            >
+
+              <div
+                class="bg-white rounded shadow-sm p-4 h-100 d-flex align-items-center justify-content-center"
+                style="min-height: 140px;"
+              >
+
+                <img
+                  src="{{ partner.logo.url }}"
+                  alt="{{ partner.name }} logo"
+                  class="img-fluid"
+                  style="
+                    max-height: 80px;
+                    max-width: 180px;
+                    object-fit: contain;
+                  "
+                >
+
+              </div>
+
+            </a>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <div class="text-center text-muted">
+        <p class="mb-0">
+          Our technology partners will be displayed here.
+        </p>
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
+{% if testimonials %}
+
+<section class="position-relative mb-5">
+
+    <div
+        class="hero-overlay d-flex align-items-center position-relative"
+        style="min-height: 500px;"
+    >
+
+        <img
+            src="{{ home.testimonial_image.url }}"
+            alt="{{ home.testimonial_image_alt_text }}"
+            class="position-absolute top-0 start-0 w-100 h-100"
+            style="object-fit: cover; z-index: 0;"
+        >
+
+
+        <div
+            class="container position-relative"
+            style="z-index: 2;"
+        >
+
+            <div id="testimonialCarousel" class="carousel slide">
+
+                <div class="carousel-inner">
+
+                    {% for testimonial in testimonials %}
+
+                        <div
+                            class="carousel-item
+                            {% if forloop.first %}active{% endif %}"
+                        >
+
+                            <div class="row justify-content-center">
+
+                                <div class="col-12 col-md-9 col-lg-7">
+
+                                    <div
+                                        class="text-center px-4 py-5"
+                                    >
+
+                                        <i
+                                            class="bi bi-quote
+                                                   display-3 text-primary"
+                                        ></i>
+
+                                        <p class="fs-3 text-white mb-4">
+                                            {{ testimonial.quote }}
+                                        </p>
+
+                                        <h5
+                                            class="fs-4 text-primary
+                                                   fw-bold mb-1"
+                                        >
+                                            {{ testimonial.author_name }}
+                                        </h5>
+
+                                        {% if testimonial.author_company %}
+
+                                            <p class="text-white mb-0">
+                                                {{ testimonial.author_company }}
+                                            </p>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="prev"
+                >
+
+                    <span class="carousel-control-prev-icon"></span>
+
+                    <span class="visually-hidden">
+                        Previous
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="next"
+                >
+
+                    <span class="carousel-control-next-icon"></span>
+
+                    <span class="visually-hidden">
+                        Next
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     Final CTA
+========================================================= -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-md-7 text-md-start text-center mb-4 mb-md-0">
+
+        <h2 class="fw-bold display-5 text-secondary mb-3">
+          Let's Talk About Your Practice
+        </h2>
+
+        <p class="fs-5 text-muted mb-0">
+          Whether you're upgrading your imaging, reviewing your
+          IT setup or looking for new dental technology, our team
+          can help you find the right solution.
+        </p>
+
+      </div>
+
+
+      <div class="col-md-5 text-md-end text-center">
+
+            <a href="{% url 'partners:products' %}" class="btn btn-secondary">
+                Explore our Partners
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn btn-primary">
+                Get in Touch
+            </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+{% endblock %}

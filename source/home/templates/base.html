@@ -120,39 +120,83 @@
             <ul class="navbar-nav gap-4 d-none d-lg-flex align-items-center ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">IT Solutions</a></li>
-
+                <li class="nav-item"><a class="nav-link" href="{% url 'oursolutions' %}">Our Solutions</a></li>
+                <!-- Our Partners -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Our Work</a>
+
+                    <a class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                        Our Partners
+                    </a>
+
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'service' 'web-design' %}">Web Design</a></li>
-                        <li><a class="dropdown-item" href="{% url 'service' 'wordpress-django' %}">WordPress / Django</a></li>
-                        <li><a class="dropdown-item" href="{% url 'service' 'seo-marketing' %}">SEO & Marketing</a></li>
-                        <li><a class="dropdown-item" href="{% url 'service' 'hosting-maintenance' %}">Hosting & Maintenance</a></li>
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'partners:products' %}">
+                                All partners Products
+                            </a>
+                        </li>
+
+                        {% if nav_partners %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            {% for partner in nav_partners %}
+                                <li>
+                                    <a class="dropdown-item"
+                                    href="{{ partner.get_absolute_url }}">
+                                        {{ partner.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+
                     </ul>
+
                 </li>
             </ul>
 
             <!-- Mobile Navigation -->
             <ul class="navbar-nav d-lg-none gap-3 w-100 position-relative">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><span class="nav-link fw-semibold">About</span>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'oursolutions' %}">Our Solutions</a></li>
+                <!-- Our Partners -->
+                <li class="nav-item">
+
+                    <span class="nav-link fw-semibold">
+                        Our Partners
+                    </span>
+
                     <ul class="list-unstyled ps-3">
-                        <li><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}">
+                                All Partners
+                            </a>
+                        </li>
+
+                        {% for partner in nav_partners %}
+
+                            <li>
+                                <a class="nav-link"
+                                href="{{ partner.get_absolute_url }}">
+                                    {{ partner.name }}
+                                </a>
+                            </li>
+
+                        {% endfor %}
+
                     </ul>
+
                 </li>
-                <li class="nav-item"><span class="nav-link fw-semibold">Services</span>
-                    <ul class="list-unstyled ps-3">
-                        <li><a class="nav-link" href="{% url 'service' 'web-design' %}">Web Design</a></li>
-                        <li><a class="nav-link" href="{% url 'service' 'wordpress-django' %}">WordPress / Django</a></li>
-                        <li><a class="nav-link" href="{% url 'service' 'seo' %}">SEO & Marketing</a></li>
-                        <li><a class="nav-link" href="{% url 'service' 'hosting-maintenance' %}">Hosting & Maintenance</a></li>
-                    </ul>
-                </li>
+
                 <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-                <li class="nav-item mt-3">
-                    <a href="{% url 'contact' %}" class="btn btn-primary w-100">Explore 3D Imaging</a>
-                </li>
             </ul>
 
             <!-- CTA Button -->
@@ -258,14 +302,14 @@
                             </li>
 
                             <li>
-                                <a href="{% url 'about' %}" class="footer-link">
+                                <a href="{% url 'oursolutions' %}" class="footer-link">
                                     IT Support
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{% url 'about' %}" class="footer-link">
-                                    Our Work
+                                <a href="{% url 'partners:products' %}" class="footer-link">
+                                    Our partners
                                 </a>
                             </li>
                         </ul>

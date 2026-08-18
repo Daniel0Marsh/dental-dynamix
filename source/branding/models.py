@@ -30,7 +30,7 @@ class Branding(models.Model):
     company_address = models.CharField(
         max_length=255,
         help_text="Full address, including city and ZIP",
-        default="Kent, UK"
+        default="0 Sturdee Avenue, Gillingham, Kent, ME7 2HN, United Kingdom"
     )
     working_hours = models.CharField(
         max_length=255,
@@ -40,12 +40,12 @@ class Branding(models.Model):
     top_bar = models.CharField(
         max_length=255,
         help_text="Top bar text",
-        default="Call Us Today: 01622 585675"
+        default="Call Us Today: 01622 584675"
     )
 
     # Logos
     logo = models.ImageField(upload_to="branding/", default="default/logo.svg")
-    logo_alt_text = models.CharField(max_length=255, default="Dental Dynamix logo – Web Development Agency")
+    logo_alt_text = models.CharField(max_length=255, default="Dental Dynamix logo")
     logo_geo_tag = models.CharField(max_length=255, blank=True, default="51.2787,1.0810")
     favicon = models.ImageField(upload_to="branding/", default="default/favicon.ico")
 

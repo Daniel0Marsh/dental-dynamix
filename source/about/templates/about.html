@@ -7,214 +7,510 @@
 
 {% block content %}
 
-<!-- Hero Section -->
- <section
+<!-- =========================================================
+     Hero Section
+========================================================= -->
+<section
   id="hero-section"
   class="hero-overlay d-flex align-items-center text-light position-relative"
-  style="min-height: 85vh; position: relative;"
+  style="min-height: 85vh;"
 >
-  <img 
-    src="{{ about.hero_image.url }}" 
+  <img
+    src="{{ about.hero_image.url }}"
     alt="{{ about.hero_image_alt_text }}"
-    class="w-100 h-100 position-absolute top-0 start-0" 
+    class="w-100 h-100 position-absolute top-0 start-0"
     style="object-fit: cover; z-index: 1;"
   >
 
   <div class="container position-relative" style="z-index: 2;">
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-lg-8">
 
-        <h1 class="fw-bold display-3 mb-4">
+        <h1 class="fw-bold display-4 mb-4">
           {{ about.hero_title }}
         </h1>
 
         <p class="fw-bold lead mb-4">
           {{ about.hero_subtitle }}
         </p>
+
+        <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-4">
+            <a href="{% url 'contact' %}" class="btn btn-secondary">
+                Talk To Our Team
+            </a>
+
+            <a href="{% url 'partners:products' %}" class="btn btn-outline-primary">
+                Explore Our Solutions
+            </a>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- Mission Section -->
+
+<!-- =========================================================
+     Mission Section
+========================================================= -->
 <section class="py-5 my-5">
   <div class="container">
-    <div class="row g-4 align-items-start">
+    <div class="row g-5 align-items-center">
 
       <div class="col-lg-6 order-lg-2">
         <img
           src="{{ about.mission_image.url }}"
           class="w-100 rounded shadow-sm"
-          style="object-fit: cover; min-height: 300px;"
+          style="object-fit: cover; min-height: 350px;"
           alt="{{ about.mission_image_alt_text }}"
         >
       </div>
 
       <div class="col-lg-6 order-lg-1">
-        <h2 class="fw-bold display-4 text-secondary mb-3">
-          {{ about.mission_title | safe }}
+
+        <h2 class="fw-bold display-4 text-secondary mb-4">
+          {{ about.mission_title }}
         </h2>
-        <div class="fs-4 fs-lg-4 text-muted mb-4">
-          {{ about.mission_text | safe }}
+
+        <div class="fs-5 text-muted mb-4">
+          {{ about.mission_text|safe }}
         </div>
-        <a href="{% url 'contact' %}"
-           class="text-secondary fw-bold d-inline-flex align-items-center text-decoration-none">
-          Get in Touch Today!
+
+        <a
+          href="{% url 'contact' %}"
+          class="text-secondary fw-bold d-inline-flex align-items-center text-decoration-none"
+        >
+          Talk to Dental Dynamix
           <i class="bi bi-arrow-right ms-2"></i>
         </a>
+
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- Values Section -->
-<section class="about-section mb-5 py-5">
-  <div class="row g-0 align-items-start">
 
-    <div class="col-lg-6 position-relative pe-lg-5 mb-4 mb-lg-0">
-      <img src="{{ about.values_image.url }}"
-           class="w-100 rounded-end rounded-lg-end"
-           style="object-fit: cover; min-height: 280px;"
-           alt="{{ about.values_image_alt_text }}">
-    </div>
+<!-- =========================================================
+     Technology & Support Section
+========================================================= -->
+<section
+  id="technology-section"
+  class="about-section mb-5 py-5"
+>
+  <div class="container">
 
-    <div class="col-lg-6">
-      <div class="px-4 px-lg-0 pe-lg-5 me-lg-5">
-        <h2 class="fw-bold display-4 display-lg-4 text-secondary mb-3 mb-lg-4">
-          {{ about.values_title | safe }}
+    <div class="row g-5 align-items-center">
+
+      <div class="col-lg-6">
+
+        <img
+          src="{{ about.values_image.url }}"
+          class="w-100 rounded shadow-sm"
+          style="object-fit: cover; min-height: 350px;"
+          alt="{{ about.values_image_alt_text }}"
+        >
+
+      </div>
+
+      <div class="col-lg-6">
+
+        <h2 class="fw-bold display-4 text-secondary mb-4">
+          {{ about.values_title }}
         </h2>
 
-        <div class="fs-4 fs-lg-4 text-muted mb-4">
-          {{ about.values_text | safe }}
+        <div class="fs-5 text-muted mb-4">
+          {{ about.values_text|safe }}
         </div>
+
       </div>
+
     </div>
 
   </div>
 </section>
 
 
-<!-- Our Team Section -->
+<!-- =========================================================
+     Capabilities Section
+========================================================= -->
 <section class="py-5 my-5">
   <div class="container">
-    <div class="row g-4 align-items-start">
+
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-4 text-secondary mb-3">
+        Technology for the Modern Dental Practice
+      </h2>
+
+      <p class="fs-5 text-muted mx-auto" style="max-width: 800px;">
+        From everyday IT support to advanced digital imaging,
+        Dental Dynamix provides technology solutions designed
+        around the needs of modern dental practices.
+      </p>
+    </div>
+
+
+    <div class="row g-4">
+
+      <!-- IT Support -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+          <div class="mb-3">
+            <i class="bi bi-pc-display fs-1 text-primary"></i>
+          </div>
+
+          <h3 class="h4 fw-bold text-secondary">
+            IT Support
+          </h3>
+
+          <p class="text-muted mb-0">
+            Reliable IT support and infrastructure solutions
+            to keep your practice connected, secure and
+            running smoothly.
+          </p>
+
+        </div>
+      </div>
+
+
+      <!-- 2D Imaging -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+          <div class="mb-3">
+            <i class="bi bi-camera fs-1 text-primary"></i>
+          </div>
+
+          <h3 class="h4 fw-bold text-secondary">
+            2D Imaging
+          </h3>
+
+          <p class="text-muted mb-0">
+            Digital 2D imaging technology designed to support
+            accurate diagnosis and efficient clinical workflows.
+          </p>
+
+        </div>
+      </div>
+
+
+      <!-- 3D Imaging -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+          <div class="mb-3">
+            <i class="bi bi-boxes fs-1 text-primary"></i>
+          </div>
+
+          <h3 class="h4 fw-bold text-secondary">
+            3D Imaging
+          </h3>
+
+          <p class="text-muted mb-0">
+            Advanced 3D imaging solutions for practices
+            requiring detailed digital diagnostic information.
+          </p>
+
+        </div>
+      </div>
+
+
+      <!-- Dental Technology -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+          <div class="mb-3">
+            <i class="bi bi-cpu fs-1 text-primary"></i>
+          </div>
+
+          <h3 class="h4 fw-bold text-secondary">
+            Dental Technology
+          </h3>
+
+          <p class="text-muted mb-0">
+            Specialist dental technology from established
+            manufacturers and trusted industry partners.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================================================
+     Why Dental Dynamix Section
+========================================================= -->
+<section class="py-5 my-5">
+  <div class="container">
+
+    <div class="row g-5 align-items-center">
 
       <div class="col-lg-6 order-lg-2">
+
         <img
           src="{{ about.team_image.url }}"
           class="w-100 rounded shadow-sm"
-          style="object-fit: cover; min-height: 300px;"
+          style="object-fit: cover; min-height: 350px;"
           alt="{{ about.team_image_alt_text }}"
         >
+
       </div>
+
 
       <div class="col-lg-6 order-lg-1">
-        <h2 class="fw-bold display-4 text-secondary mb-3">
-          {{ about.team_title | safe }}
+
+        <h2 class="fw-bold display-4 text-secondary mb-4">
+          {{ about.team_title }}
         </h2>
-        <div class="fs-4 fs-lg-4 text-muted mb-4">
-          {{ about.team_text | safe }}
+
+        <div class="fs-5 text-muted mb-4">
+          {{ about.team_text|safe }}
         </div>
-        <a href="{% url 'contact' %}"
-           class="text-secondary fw-bold d-inline-flex align-items-center text-decoration-none">
-          Join Our Team
+
+        <a
+          href="{% url 'contact' %}"
+          class="text-secondary fw-bold d-inline-flex align-items-center text-decoration-none"
+        >
+          Talk to Our Team
           <i class="bi bi-arrow-right ms-2"></i>
         </a>
+
       </div>
 
     </div>
+
   </div>
 </section>
 
-
-<!-- Testimonial Section -->
-<section class="position-relative mb-5">
-  <div class="hero-overlay d-flex align-items-center justify-content-center position-relative" style="height: 700px;">
-
-    <img
-      src="{{ home.testimonial_image.url }}"
-      alt="{{ home.testimonial_image_alt_text }}"
-      class="position-absolute top-0 start-0 w-100 h-100"
-      style="object-fit: cover; z-index: 0;"
-    />
-
-    <div style="z-index: 2; width: 100%;">
-
-      <div id="testimonialCarousel" class="carousel slide">
-
-        <div class="carousel-inner">
-
-          {% for testimonial in testimonials %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <div class="d-flex justify-content-center">
-                <div class="card text-center shadow bg-light" style="max-width: 500px;">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-start">
-                      <i class="bi bi-chat-quote fs-1 text-primary"></i>
-                    </div>
-                    <p class="fs-4 text-muted px-3">
-                      {{ testimonial.quote }}
-                    </p>
-                    <h5 class="fs-4 text-secondary fw-bold my-3 mb-0">
-                      {{ testimonial.author_name }}
-                    </h5>
-                    {% if testimonial.author_title %}
-                      <small class="text-muted">{{ testimonial.author_title }}</small>
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-
-        </div>
-
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#testimonialCarousel"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#testimonialCarousel"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-5">
+<!-- =========================================================
+     Technology Partners
+========================================================= -->
+<section class="py-5 bg-light">
   <div class="container">
-    <div class="row align-items-center">
 
-      <div class="col-md-7 text-md-start text-center mb-4 mb-md-0">
-        <h2 class="fw-bold display-5 text-secondary mb-3">
-          Let's Build Something Amazing Together
-        </h2>
-        <p class="fs-5 text-muted">
-          Web design, development, hosting, and ongoing support handled by our team.
+    <div class="text-center mb-5">
+
+      <h2 class="fw-bold display-5 text-secondary mb-3">
+        Our Technology Partners
+      </h2>
+
+      <p class="fs-5 text-muted mx-auto" style="max-width: 750px;">
+        We work with leading dental technology manufacturers to provide
+        practices with proven products, imaging solutions and technology.
+      </p>
+
+    </div>
+
+
+    {% if partners %}
+
+      <div class="row justify-content-center align-items-stretch g-4">
+
+        {% for partner in partners %}
+
+          <div class="col-6 col-md-4 col-lg-3">
+
+            <a
+              href="{{ partner.get_absolute_url }}"
+              class="text-decoration-none"
+              aria-label="View {{ partner.name }} products and solutions"
+            >
+
+              <div
+                class="bg-white rounded shadow-sm p-4 h-100 d-flex align-items-center justify-content-center"
+                style="min-height: 140px;"
+              >
+
+                <img
+                  src="{{ partner.logo.url }}"
+                  alt="{{ partner.name }} logo"
+                  class="img-fluid"
+                  style="
+                    max-height: 80px;
+                    max-width: 180px;
+                    object-fit: contain;
+                  "
+                >
+
+              </div>
+
+            </a>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <div class="text-center text-muted">
+        <p class="mb-0">
+          Our technology partners will be displayed here.
         </p>
       </div>
 
+    {% endif %}
+
+  </div>
+</section>
+
+
+<!-- =========================================================
+     Testimonials
+========================================================= -->
+{% if testimonials %}
+<section class="position-relative mb-5">
+
+    <div class="hero-overlay d-flex align-items-center position-relative"
+         style="min-height: 500px;">
+
+        <!-- Background Image -->
+        <img
+            src="{{ home.testimonial_image.url }}"
+            alt="{{ home.testimonial_image_alt_text }}"
+            class="position-absolute top-0 start-0 w-100 h-100"
+            style="object-fit: cover; z-index: 0;"
+        >
+
+        <!-- Testimonial Content -->
+        <div class="container position-relative" style="z-index: 2;">
+
+            <div id="testimonialCarousel" class="carousel slide">
+
+                <div class="carousel-inner">
+
+                    {% for testimonial in testimonials %}
+
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                            <div class="row justify-content-center justify-content-lg-end">
+
+                                <div class="col-12 col-md-9 col-lg-6">
+
+                                    <div class="position-relative text-center text-lg-start px-4 py-5">
+
+                                        <!-- Opening Quote -->
+                                        <i class="bi bi-quote position-absolute top-0 start-0
+                                                  display-4 text-primary"></i>
+
+                                        <!-- Testimonial -->
+                                        <p class="fs-3 text-white mb-4">
+                                            {{ testimonial.quote }}
+                                        </p>
+
+                                        <!-- Author -->
+                                        <h5 class="fs-4 text-primary fw-bold mb-1">
+                                            {{ testimonial.author_name }}
+                                        </h5>
+
+                                        {% if testimonial.author_company %}
+                                            <p class="text-white">
+                                                {{ testimonial.author_company }}
+                                           </p>
+                                        {% endif %}
+                                        <!-- Closing Quote -->
+                                        <i class="bi bi-quote position-absolute bottom-0 end-0
+                                                  display-4 text-primary"
+                                          style="transform: rotate(180deg);"></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- Previous -->
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="prev">
+
+                    <span class="carousel-control-prev-icon"></span>
+
+                    <span class="visually-hidden">
+                        Previous
+                    </span>
+
+                </button>
+
+
+                <!-- Next -->
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="next">
+
+                    <span class="carousel-control-next-icon"></span>
+
+                    <span class="visually-hidden">
+                        Next
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     Final CTA
+========================================================= -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-md-7 text-md-start text-center mb-4 mb-md-0">
+
+        <h2 class="fw-bold display-5 text-secondary mb-3">
+          Let's Talk About Your Practice
+        </h2>
+
+        <p class="fs-5 text-muted mb-0">
+          Whether you're upgrading your imaging, reviewing your
+          IT setup or looking for new dental technology, our team
+          can help you find the right solution.
+        </p>
+
+      </div>
+
+
       <div class="col-md-5 text-md-end text-center">
-        <a href="{% url 'contact' %}" class="btn btn-primary m-1">
-          Start a Project
-        </a>
-        <a href="{% url 'contact' %}" class="btn btn-outline-secondary m-1">
-          Book a Consultation
-        </a>
+
+            <a href="{% url 'partners:products' %}" class="btn btn-secondary">
+                Explore our Partners
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn btn-primary">
+                Get in Touch
+            </a>
+
       </div>
 
     </div>
+
   </div>
 </section>
 
