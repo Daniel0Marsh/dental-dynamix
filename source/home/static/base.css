@@ -479,44 +479,67 @@ body {
    =============================== */
 @media (max-width: 991.98px) {
 
-    /* Force the collapsed menu to always have white background on mobile */
-    .navbar .collapse {
+    .navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0;
+        width: 100%;
+        height: 60px !important;
+        padding: 0 1rem;
         background-color: var(--body) !important;
-        transition: none !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1050;
     }
 
-    /* When menu is open */
-    .navbar .collapse.show {
-        background-color: var(--body) !important;
+    /* Keep logo and toggler on the same row */
+    .navbar > .container {
+        height: 60px !important;
+        width: 100%;
+        padding: 0 1rem;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    /* Ensure menu links are visible immediately */
-    .navbar .collapse.show .nav-link {
-        color: var(--mute) !important;
+    /* Logo */
+    .navbar .navbar-brand {
+        display: flex;
+        align-items: center;
+        flex-shrink: 1;
+        min-width: 0;
+        margin-right: auto;
+        padding: 0;
     }
 
-    /* Optional: remove box-shadow on opening if you want smooth open */
-    .navbar .collapse.show {
-        box-shadow: none;
-    }
-}
-
-
-/* ===============================
-   MOBILE LOGO FIX
-   =============================== */
-@media (max-width: 991.98px) {
-    /* Hide desktop logo */
-    .navbar .navbar-brand img[src="{{ branding.logo.url }}"] {
-        display: none !important;
-    }
-
-    /* Ensure mobile logo is always visible */
-    .navbar-nav.d-lg-none .navbar-brand img {
+    .navbar .navbar-brand img {
         display: block !important;
-        max-height: 40px; /* match navbar height */
+        max-height: 40px !important;
+        width: auto;
+        max-width: 75vw;
+        object-fit: contain;
+    }
+
+    /* Hamburger button */
+    .navbar .navbar-toggler {
+        flex-shrink: 0;
+        margin-left: auto;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid var(--border);
+        z-index: 1060;
+    }
+
+    /* Don't allow the collapsed menu to affect the navbar row */
+    .navbar .navbar-collapse {
+        flex-basis: 100%;
+    }
+
+    body {
+        padding-top: 60px;
     }
 }
+
+
 
 
 /* ===============================
