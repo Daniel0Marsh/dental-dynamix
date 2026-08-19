@@ -50,7 +50,7 @@ class HomePage(models.Model):
     )
     service_card_1_image = models.ImageField(
         upload_to="service_cards/",
-        default="default/service_card_1_image.webp",
+        default="default/our_it_image.webp",
         help_text="Background image for Service Card 1"
     )
 
@@ -65,7 +65,7 @@ class HomePage(models.Model):
     )
     service_card_2_image = models.ImageField(
         upload_to="service_cards/",
-        default="default/service_card_2_image.webp",
+        default="default/2d-imageing.webp",
         help_text="Background image for Service Card 2"
     )
 
@@ -80,7 +80,7 @@ class HomePage(models.Model):
     )
     service_card_3_image = models.ImageField(
         upload_to="service_cards/",
-        default="default/service_card_3_image.webp",
+        default="default/support_image.webp",
         help_text="Background image for Service Card 3"
     )
 
