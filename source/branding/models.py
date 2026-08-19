@@ -25,7 +25,7 @@ class Branding(models.Model):
     company_phone = models.CharField(
         max_length=20,
         help_text="Company contact number",
-        default="01622 585675"
+        default="01622 584675"
     )
     company_address = models.CharField(
         max_length=255,
