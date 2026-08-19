@@ -514,7 +514,7 @@ body {
 
     .navbar .navbar-brand img {
         display: block !important;
-        max-height: 40px !important;
+        max-height: 30px !important;
         width: auto;
         max-width: 75vw;
         object-fit: contain;
