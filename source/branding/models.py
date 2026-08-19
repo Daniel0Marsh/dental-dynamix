@@ -30,7 +30,7 @@ class Branding(models.Model):
     company_address = models.CharField(
         max_length=255,
         help_text="Full address, including city and ZIP",
-        default="0 Sturdee Avenue, Gillingham, Kent, ME7 2HN, United Kingdom"
+        default="90 Sturdee Avenue, Gillingham, Kent, ME7 2HN, United Kingdom"
     )
     working_hours = models.CharField(
         max_length=255,

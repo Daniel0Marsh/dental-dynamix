@@ -121,6 +121,27 @@
 
           </div>
 
+          <!-- Phone -->
+          <div class="d-flex align-items-start gap-3 mb-4">
+
+            <div>
+              <i class="bi bi-telephone-fill fs-2 text-primary"></i>
+            </div>
+
+            <div>
+
+              <h3 class="h5 fw-bold text-secondary mb-1">
+                Phone
+              </h3>
+
+              <p class="text-muted fs-5 mb-0">
+                {{ branding.company_phone }}
+              </p>
+
+            </div>
+
+          </div>
+
 
           <!-- Working Hours -->
           <div class="d-flex align-items-start gap-3 mb-4">
@@ -136,7 +157,7 @@
               </h3>
 
               <p class="text-muted fs-5 mb-0">
-                Mon - Fri: 9:00 AM - 6:00 PM
+                {{ branding.working_hours }}
               </p>
 
             </div>

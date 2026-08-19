@@ -12,4 +12,7 @@ def partners(request):
 
     return {
         "nav_partners": nav_partners,
+        "partners": Partner.objects.filter(
+            active=True
+        ),
     }

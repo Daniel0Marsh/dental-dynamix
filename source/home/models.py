@@ -100,11 +100,12 @@ class HomePage(models.Model):
     )
     about_title = models.CharField(
         max_length=255,
-        default="Discover the 100th Planmeca ProMax CBCT installed by Dental Dynamix",
+        default="About Dental Dynamix",
         help_text="Title text for the About section."
     )
+
     about_copy = models.TextField(
-        default="We are thrilled to announce a significant milestone in our commitment to delivering cutting-edge dental imaging technology.",
+        default="At Dental Dynamix, we are committed to providing dental practices with innovative technology, expert support, and reliable solutions that help improve patient care and practice efficiency.",
         help_text="Copy text for the About section."
     )
     about_url = models.URLField(
@@ -163,7 +164,7 @@ class HomePage(models.Model):
 
     class Meta:
         verbose_name = "Home Page"
-        verbose_name_plural = "Home Pages"
+        verbose_name_plural = "Home Page"
 
 
 class PrivacyPolicyPage(models.Model):
@@ -177,4 +178,5 @@ class PrivacyPolicyPage(models.Model):
 
     class Meta:
         verbose_name = "Privacy Policy Page"
-        verbose_name_plural = "Privacy Policy Pages"
+        verbose_name_plural = "Privacy Policy Page"
+        

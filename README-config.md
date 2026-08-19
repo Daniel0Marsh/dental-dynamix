@@ -182,16 +182,11 @@ Once these are all ready, the domain nameservers can be changed to Cloudflare.
 
 ## Dental Dynamix – Final TODO
 
-* [ ] Log in to **Easyspace** and update the domain nameservers:
-
-  * **Nameserver 1:** `harmony.ns.cloudflare.com`
-  * **Nameserver 2:** `tadeo.ns.cloudflare.com`
-* [ ] Wait for the nameserver/DNS change to propagate.
-* [ ] Once propagated, `https://dentaldynamix.co.uk` should become live through the Cloudflare Tunnel.
-* [ ] `https://www.dentaldynamix.co.uk` should also become live through the tunnel.
-* [ ] Local access is currently available at:
-
-  * `http://192.168.1.95`
-* [ ] After the domain is live, test both the root domain and `www` domain.
-
+* complete all pages and test them
+* update contact form emailing service and test
+* pick and change images to match stying
+* test all buttons and links
+* update SEO app to match new pages
+* get partners logos ready for the site
+* git DJ access to cloudflare admin portal for the website
 * Once site is complete remove under construction in admin and update the nginx to allow other pages: sudo nano /etc/nginx/sites-enabled/dental-dynamix

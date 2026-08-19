@@ -16,18 +16,14 @@ def default_json_ld():
 
 
 class PageSEO(models.Model):
+
     STATIC_PAGE_CHOICES = [
-        ('/', 'Home'),
-        ('/about/', 'About'),
-        ('/blog/', 'Blog'),
-        ('/testimonials/', 'Testimonials' ),
-        ('/portfolio/', 'Portfolio'),
-        ('/contact/', 'Contact'),
-        ('/privacy-policy/', 'Privacy Policy'),
-        ("/web-design/", "Web Design"),
-        ("/wordpress-django/", "WordPress / Django"),
-        ("/hosting-maintenance/", "Hosting & Maintenance"),
-        ("/seo-marketing/", "SEO & Marketing"),  
+        ("/", "Home"),
+        ("/about/", "About"),
+        ("/oursolutions/", "Our Solutions"),
+        ("/partners/", "Partners"),
+        ("/partners/products/", "Partner Products"),
+        ("/contact/", "Contact"),
     ]
 
     url_path = models.CharField(

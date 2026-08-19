@@ -34,8 +34,8 @@
         </p>
 
         <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-4">
-            <a href="{% url 'about' %}" class="btn btn-secondary">
-                Explore 3D Imaging
+            <a href="{% url 'oursolutions' %}" class="btn btn-secondary">
+                Explore Our Solutions
             </a>
 
             <a href="{% url 'contact' %}" class="btn btn-outline-primary">
@@ -116,8 +116,8 @@
                         {{ home.about_copy }}
                     </p>
 
-                    <a href="{{ home.about_url }}" class="btn btn-primary m-1">
-                        Learn More
+                    <a href="{% url 'about' %}" class="btn btn-primary m-1">
+                        Learn More About Us
                     </a>
 
                 </div>
