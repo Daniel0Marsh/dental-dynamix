@@ -1,0 +1,22 @@
+/* Fix CKEditor 5 text colour when Django Admin is using dark mode */
+
+.ck.ck-editor {
+    color: #212529 !important;
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+    color: #212529 !important;
+    background: #ffffff !important;
+}
+
+.ck.ck-editor__editable p,
+.ck.ck-editor__editable h1,
+.ck.ck-editor__editable h2,
+.ck.ck-editor__editable h3,
+.ck.ck-editor__editable h4,
+.ck.ck-editor__editable h5,
+.ck.ck-editor__editable h6,
+.ck.ck-editor__editable li,
+.ck.ck-editor__editable blockquote {
+    color: #212529 !important;
+}
