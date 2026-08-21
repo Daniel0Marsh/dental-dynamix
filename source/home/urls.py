@@ -1,12 +1,12 @@
 from django.urls import path
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
-from . views import HomePageView, PrivacyPolicyPageView
+from . views import HomePageView, TermsAndConditionsView
 
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="home"),
-    path('privacy-policy/', PrivacyPolicyPageView.as_view(), name='privacy_policy'),
+    path('terms-and-conditions/', TermsAndConditionsView.as_view(), name='terms_and_conditions'),
 ]
 
 urlpatterns += [

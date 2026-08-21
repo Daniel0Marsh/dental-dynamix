@@ -4,7 +4,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpRequest
 from django.template import Context
 from typing import Dict, Any
-from .models import HomePage, PrivacyPolicyPage
+from .models import HomePage, TermsAndConditionsPage
 from about.models import Testimonial
 from branding.models import Branding
 
@@ -56,11 +56,12 @@ class HomePageView(TemplateView):
         }
         return context
 
-class PrivacyPolicyPageView(TemplateView):
+
+class TermsAndConditionsView(TemplateView):
     """
-    View for displaying privacy policy.
+    View for displaying terms and conditions.
     """
-    template_name = 'privacy_policy.html'
+    template_name = 'terms_and_conditions.html'
 
     def get_context_data(self, **kwargs):
         """
@@ -68,8 +69,7 @@ class PrivacyPolicyPageView(TemplateView):
         """
 
         context = {
-            "branding": Branding.objects.first(),
             "home": HomePage.objects.first(),
-            'privacy_policy': PrivacyPolicyPage.objects.first(),
+            'terms_and_conditions': TermsAndConditionsPage.objects.first(),
         }
         return context

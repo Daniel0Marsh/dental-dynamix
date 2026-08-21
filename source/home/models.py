@@ -167,16 +167,25 @@ class HomePage(models.Model):
         verbose_name_plural = "Home Page"
 
 
-class PrivacyPolicyPage(models.Model):
+class TermsAndConditionsPage(models.Model):
     """
-    Model representing the privacy policy.
+    Model representing the terms and conditions.
     """
-    content = CKEditor5Field(config_name='default', null=True, blank=True)
+    content = CKEditor5Field(
+        config_name='default',
+        null=True,
+        blank=True
+    )
+
+    pdf = models.FileField(
+        upload_to='terms-and-conditions/',
+        null=True,
+        blank=True
+    )
 
     def __str__(self) -> str:
-        return "Privacy Policy"
+        return "Terms and Conditions"
 
     class Meta:
-        verbose_name = "Privacy Policy Page"
-        verbose_name_plural = "Privacy Policy Page"
-        
+        verbose_name = "Terms and Conditions Page"
+        verbose_name_plural = "Terms and Conditions Page"     

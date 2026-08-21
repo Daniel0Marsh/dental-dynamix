@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import HomePage, PrivacyPolicyPage
+from .models import HomePage, TermsAndConditionsPage
 
 
 class SingletonAdmin(admin.ModelAdmin):
@@ -57,6 +57,6 @@ class HomePageAdmin(SingletonAdmin):
     )
 
 
-@admin.register(PrivacyPolicyPage)
-class PrivacyPolicyAdmin(SingletonAdmin):
+@admin.register(TermsAndConditionsPage)
+class TermsAndConditionsAdmin(SingletonAdmin):
     pass
