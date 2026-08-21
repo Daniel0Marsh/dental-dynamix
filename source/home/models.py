@@ -169,22 +169,32 @@ class HomePage(models.Model):
 
 class TermsAndConditionsPage(models.Model):
     """
-    Model representing the terms and conditions.
+    Model representing the terms and conditions page.
     """
+
+    title = models.CharField(
+        max_length=200,
+        default="Terms and Conditions",
+    )
+
     content = CKEditor5Field(
         config_name='default',
-        null=True,
-        blank=True
+        default=(
+            "Please view or download our Terms and Conditions below. "
+            "This document contains the terms and conditions that apply "
+            "to our services."
+        ),
+        blank=True,
     )
 
     pdf = models.FileField(
         upload_to='terms-and-conditions/',
-        null=True,
-        blank=True
+        help_text="Upload the PDF file for the terms and conditions.",
+        default="default/Dental_Dynamix_Terms_and_Conditions.pdf",
     )
 
     def __str__(self) -> str:
-        return "Terms and Conditions"
+        return self.title
 
     class Meta:
         verbose_name = "Terms and Conditions Page"

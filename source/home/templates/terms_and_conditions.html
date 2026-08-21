@@ -2,68 +2,138 @@
 {% load static %}
 
 {% block extra_head %}
-{# Page-specific CSS or JS ONLY if required #}
+<style>
+    .terms-page {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .terms-page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.28);
+        z-index: 1;
+    }
+
+    .terms-page-background {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .terms-page-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .terms-card {
+        max-width: 800px;
+        background: rgba(255, 255, 255, 0.97);
+    }
+</style>
 {% endblock %}
+
 
 {% block content %}
 
-<!-- hero section -->
-<section
-  id="hero-section"
-  class="hero-overlay d-flex align-items-center text-light position-relative"
-  style="min-height: 60vh; position: relative;"
->
-  <img 
-    src="{{ home.hero_image.url }}" 
-    alt="{{ home.hero_image_alt_text }}"
-    class="w-100 h-100 position-absolute top-0 start-0" 
-    style="object-fit: cover; z-index: 1;"
-  >
+<section class="terms-page d-flex align-items-center justify-content-center py-5">
 
-  <div class="container position-relative" style="z-index: 2;">
-    <div class="row">
-      <div class="col-lg-12 text-center">
+    <!-- Background image -->
+    <img
+        src="{{ home.hero_image.url }}"
+        alt="{{ home.hero_image_alt_text }}"
+        class="position-absolute top-0 start-0 w-100 h-100 terms-page-background"
+    >
 
-        <h1 class="fw-bold display-3 mb-4">
-          Terms and Conditions
-        </h1>
 
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- terms and conditions details -->
-<section class="blog-details bg-light text-primary">
-    <div class="container p-5 rounded-top-5 bg-light text-primary">
+    <!-- Content -->
+    <div class="container terms-page-content mt-5">
 
         <div class="row justify-content-center">
-            <div class="col-12">
 
-                <div class="service-list w-100 px-3 px-md-5">
+            <div class="col-12 col-lg-9">
 
-                    <div class="d-flex justify-content-end mb-4">
-                        {% if terms_and_conditions.pdf %}
-                            <a
-                                href="{{ terms_and_conditions.pdf.url }}"
-                                class="btn btn-primary"
-                                download
-                            >
-                                Download T&Cs as PDF
-                            </a>
-                        {% endif %}
+                <!-- Main card -->
+                <div class="terms-card rounded-5 shadow-lg p-4 p-md-5 mx-auto text-center">
+
+                    <!-- Icon -->
+                    <div
+                        class="bg-primary bg-opacity-10 text-light rounded-4
+                               d-inline-flex align-items-center justify-content-center
+                               p-1 mb-4"
+                    >
+                        <i class="bi bi-file-earmark-pdf display-1"></i>
                     </div>
 
-                    <div class="fs-5">
+
+                    <!-- Title -->
+                    <h1 class="fw-bold text-primary mb-3">
+                        {{ terms_and_conditions.title }}
+                    </h1>
+
+
+                    <!-- Divider -->
+                    <hr class="w-25 mx-auto mb-4 border-dark opacity-50">
+
+
+                    <!-- Introduction -->
+                    <div class="text-secondary fs-5 lh-lg">
                         {{ terms_and_conditions.content|safe }}
                     </div>
+
+
+                    {% if terms_and_conditions.pdf %}
+
+                        <!-- Buttons -->
+                        <div class="d-flex flex-column flex-sm-row
+                                    justify-content-center gap-3 mt-4">
+
+                            <a
+                                href="{{ terms_and_conditions.pdf.url }}"
+                                class="btn btn-primary btn-lg px-4"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <i class="bi bi-eye me-2"></i>
+                                View Terms &amp; Conditions
+                            </a>
+
+
+                            <a
+                                href="{{ terms_and_conditions.pdf.url }}"
+                                class="btn btn-outline-primary btn-lg px-4"
+                                download
+                            >
+                                <i class="bi bi-download me-2"></i>
+                                Download PDF
+                            </a>
+
+                        </div>
+
+
+                        <!-- Supporting text -->
+                        <p class="text-secondary small mt-4 mb-0">
+                            View the full document online or download a copy
+                            for your records.
+                        </p>
+
+                    {% else %}
+
+                        <div class="alert alert-light border mt-4 mb-0">
+                            The Terms &amp; Conditions document is currently unavailable.
+                        </div>
+
+                    {% endif %}
 
                 </div>
 
             </div>
+
         </div>
 
     </div>
+
 </section>
 
 {% endblock %}
