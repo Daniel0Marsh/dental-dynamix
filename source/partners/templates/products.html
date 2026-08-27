@@ -180,20 +180,19 @@
 
     <div class="container">
 
-
         <!-- =====================================================
-             HEADING
+             PAGE HEADING
         ====================================================== -->
 
-        <div class="text-center mb-5">
+        <div class="mb-5">
 
             {% if partner %}
 
-                <h2 class="fw-bold display-4 text-secondary">
+                <h2 class="fw-bold display-5 text-secondary mb-2">
                     {{ partner.name }} Products
                 </h2>
 
-                <p class="fs-4 text-muted">
+                <p class="fs-5 text-muted mb-0">
                     Explore our range of
                     {{ partner.name }}
                     products and solutions.
@@ -201,11 +200,11 @@
 
             {% else %}
 
-                <h2 class="fw-bold display-4 text-secondary">
+                <h2 class="fw-bold display-5 text-secondary mb-2">
                     Our Products
                 </h2>
 
-                <p class="fs-4 text-muted">
+                <p class="fs-5 text-muted mb-0">
                     Explore products and solutions from
                     our trusted dental technology partners.
                 </p>
@@ -215,308 +214,610 @@
         </div>
 
 
-
-        <!-- =====================================================
-             PARTNER SELECTOR
-        ====================================================== -->
-
-        <div class="text-center mb-5">
-
-            <p class="fw-bold text-secondary mb-3">
-                Browse by Partner
-            </p>
+        <div class="row g-5">
 
 
-            <div class="d-flex flex-wrap justify-content-center gap-2">
+            <!-- =================================================
+                 FILTER SIDEBAR
+            ================================================== -->
 
-                <!-- ALL PRODUCTS -->
+            <aside class="col-lg-3">
 
-                <a
-                    href="{% url 'partners:products' %}"
-                    class="
-                        btn
-                        {% if not partner %}
-                            btn-primary
-                        {% else %}
-                            btn-outline-primary
-                        {% endif %}
-                    "
-                >
-                    All Products
-                </a>
+                <!-- MOBILE FILTER TOGGLE -->
 
+                <div class="d-lg-none mb-4">
 
-                <!-- PARTNERS -->
-
-                {% for item in partners %}
-
-                    <a
-                        href="{{ item.get_absolute_url }}"
-                        class="
-                            btn
-                            {% if partner and partner.pk == item.pk %}
-                                btn-primary
-                            {% else %}
-                                btn-outline-primary
-                            {% endif %}
-                        "
+                    <button
+                        class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#productFilters"
+                        aria-expanded="false"
+                        aria-controls="productFilters"
                     >
-                        {{ item.name }}
-                    </a>
-
-                {% endfor %}
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =====================================================
-             SEARCH / FILTERS
-        ====================================================== -->
-
-        <form
-            method="get"
-            action="
-                {% if partner %}
-                    {{ partner.get_absolute_url }}
-                {% else %}
-                    {% url 'partners:products' %}
-                {% endif %}
-            "
-            class="mb-5"
-        >
-
-            <div class="row g-3 justify-content-center">
-
-
-                <!-- SEARCH -->
-
-                <div class="col-lg-6">
-
-                    <label
-                        for="productSearch"
-                        class="form-label fw-bold"
-                    >
-                        Search Products
-                    </label>
-
-                    <div class="input-group input-group-lg">
-
-                        <span class="input-group-text">
-                            <i class="bi bi-search"></i>
+                        <span>
+                            <i class="bi bi-funnel me-2"></i>
+                            Filter Products
                         </span>
 
-                        <input
-                            type="search"
-                            id="productSearch"
-                            name="q"
-                            value="{{ query }}"
-                            class="form-control"
-                            placeholder="Search products..."
-                            autocomplete="off"
-                        >
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- FILTER PANEL -->
+
+                <div
+                    id="productFilters"
+                    class="collapse d-lg-block"
+                >
+
+                    <div class="card border-0 shadow-sm">
+
+                        <div class="card-body p-4">
+
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                <h3 class="h4 fw-bold text-secondary mb-0">
+                                    Filter Products
+                                </h3>
+
+                                {% if query or selected_category or partner %}
+
+                                    {% if partner %}
+
+                                        <a
+                                            href="{% url 'partners:products' %}"
+                                            class="small text-decoration-none text-muted"
+                                        >
+                                            Clear
+                                        </a>
+
+                                    {% else %}
+
+                                        <a
+                                            href="{% url 'partners:products' %}"
+                                            class="small text-decoration-none"
+                                        >
+                                            Clear
+                                        </a>
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- =================================
+                                 SEARCH
+                            ================================== -->
+
+                            <form
+                                method="get"
+                                action="
+                                    {% if partner %}
+                                        {{ partner.get_absolute_url }}
+                                    {% else %}
+                                        {% url 'partners:products' %}
+                                    {% endif %}
+                            "
+                            >
+
+                                <div class="mb-4">
+
+                                    <label
+                                        for="productSearch"
+                                        class="form-label fw-bold"
+                                    >
+                                        Search
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text bg-white">
+                                            <i class="bi bi-search"></i>
+                                        </span>
+
+                                        <input
+                                            type="search"
+                                            id="productSearch"
+                                            name="q"
+                                            value="{{ query }}"
+                                            class="form-control"
+                                            placeholder="Search products..."
+                                            autocomplete="off"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- =================================
+                                     PARTNERS
+                                ================================== -->
+
+                                <div class="mb-4">
+
+                                    <h4 class="h6 fw-bold text-secondary mb-3">
+                                        Partner
+                                    </h4>
+
+
+                                    <div class="list-group list-group-flush">
+
+                                        <!-- ALL PARTNERS -->
+
+                                        <a
+                                            href="{% url 'partners:products' %}{% if query %}?q={{ query|urlencode }}{% endif %}"
+                                            class="
+                                                list-group-item
+                                                list-group-item-action
+                                                border-0
+                                                px-0
+                                                py-2
+                                                {% if not partner %}
+                                                    fw-bold
+                                                    text-primary
+                                                {% endif %}
+                                            "
+                                        >
+
+                                            <i
+                                                class="
+                                                    bi
+                                                    {% if not partner %}
+                                                        bi-check-circle-fill
+                                                    {% else %}
+                                                        bi-circle
+                                                    {% endif %}
+                                                    me-2
+                                                "
+                                            ></i>
+
+                                            All Partners
+
+                                        </a>
+
+
+                                        {% for item in partners %}
+
+                                            <a
+                                                href="{{ item.get_absolute_url }}"
+                                                class="
+                                                    list-group-item
+                                                    list-group-item-action
+                                                    border-0
+                                                    px-0
+                                                    py-2
+                                                    {% if partner and partner.pk == item.pk %}
+                                                        fw-bold
+                                                        text-primary
+                                                    {% endif %}
+                                                "
+                                            >
+
+                                                <i
+                                                    class="
+                                                        bi
+                                                        {% if partner and partner.pk == item.pk %}
+                                                            bi-check-circle-fill
+                                                        {% else %}
+                                                            bi-circle
+                                                        {% endif %}
+                                                        me-2
+                                                    "
+                                                ></i>
+
+                                                {{ item.name }}
+
+                                            </a>
+
+                                        {% endfor %}
+
+                                    </div>
+
+                                </div>
+
+
+                                <hr class="my-4">
+
+
+                                <!-- =================================
+                                     CATEGORIES
+                                ================================== -->
+
+                                <div class="mb-4">
+
+                                    <h4 class="h6 fw-bold text-secondary mb-3">
+                                        Category
+                                    </h4>
+
+
+                                    <div class="list-group list-group-flush">
+
+
+                                        <!-- ALL CATEGORIES -->
+
+                                        <button
+                                            type="submit"
+                                            name="category"
+                                            value=""
+                                            class="
+                                                list-group-item
+                                                list-group-item-action
+                                                border-0
+                                                px-0
+                                                py-2
+                                                text-start
+                                                {% if not selected_category %}
+                                                    fw-bold
+                                                    text-primary
+                                                {% endif %}
+                                            "
+                                        >
+
+                                            <i
+                                                class="
+                                                    bi
+                                                    {% if not selected_category %}
+                                                        bi-check-circle-fill
+                                                    {% else %}
+                                                        bi-circle
+                                                    {% endif %}
+                                                    me-2
+                                                "
+                                            ></i>
+
+                                            All Categories
+
+                                        </button>
+
+
+                                        {% for category in categories %}
+
+                                            <button
+                                                type="submit"
+                                                name="category"
+                                                value="{{ category.slug }}"
+                                                class="
+                                                    list-group-item
+                                                    list-group-item-action
+                                                    border-0
+                                                    px-0
+                                                    py-2
+                                                    text-start
+                                                    {% if selected_category == category.slug %}
+                                                        fw-bold
+                                                        text-primary
+                                                    {% endif %}
+                                                "
+                                            >
+
+                                                <i
+                                                    class="
+                                                        bi
+                                                        {% if selected_category == category.slug %}
+                                                            bi-check-circle-fill
+                                                        {% else %}
+                                                            bi-circle
+                                                        {% endif %}
+                                                        me-2
+                                                    "
+                                                ></i>
+
+                                                {{ category.name }}
+
+                                            </button>
+
+                                        {% endfor %}
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- =================================
+                                     APPLY
+                                ================================== -->
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary w-100"
+                                >
+                                    Apply Filters
+                                    <i class="bi bi-search ms-2"></i>
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- =================================================
+                 PRODUCT RESULTS
+            ================================================== -->
+
+            <div class="col-lg-9">
+
+
+                <!-- =============================================
+                     RESULTS HEADER
+                ============================================== -->
+
+                <div
+                    class="
+                        d-flex
+                        flex-column
+                        flex-md-row
+                        justify-content-between
+                        align-items-md-center
+                        gap-3
+                        mb-4
+                    "
+                >
+
+                    <div>
+
+                        <h3 class="h4 fw-bold text-secondary mb-1">
+                            Products
+                        </h3>
+
+
+                        {% if query or selected_category %}
+
+                            <p class="text-muted mb-0">
+
+                                {% if query %}
+                                    Search:
+                                    <strong>"{{ query }}"</strong>
+                                {% endif %}
+
+                                {% if query and selected_category %}
+                                    &middot;
+                                {% endif %}
+
+                                {% if selected_category %}
+                                    Category:
+                                    <strong>{{ selected_category }}</strong>
+                                {% endif %}
+
+                            </p>
+
+                        {% else %}
+
+                            <p class="text-muted mb-0">
+                                Browse our complete range of products.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="text-muted small">
+
+                        {% if products %}
+                            {{ products|length }} product{{ products|length|pluralize }}
+                        {% endif %}
 
                     </div>
 
                 </div>
 
 
-                <!-- CATEGORY -->
 
-                <div class="col-lg-4">
+                <!-- =============================================
+                     PRODUCT GRID
+                ============================================== -->
 
-                    <label
-                        for="productCategory"
-                        class="form-label fw-bold"
-                    >
-                        Category
-                    </label>
+                <div class="row g-4">
 
-                    <select
-                        id="productCategory"
-                        name="category"
-                        class="form-select form-select-lg"
-                    >
+                    {% for product in products %}
 
-                        <option value="">
-                            All Categories
-                        </option>
+                        <div class="col-md-6 col-xl-4">
 
-                        {% for category in categories %}
-
-                            <option
-                                value="{{ category.slug }}"
-                                {% if selected_category == category.slug %}
-                                    selected
-                                {% endif %}
-                            >
-                                {{ category.name }}
-                            </option>
-
-                        {% endfor %}
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <!-- BUTTONS -->
-
-            <div class="text-center mt-4">
-
-                <button
-                    type="submit"
-                    class="btn btn-primary px-5"
-                >
-                    Search Products
-                    <i class="bi bi-search ms-2 mt-2 mt-sm-0 "></i>
-                </button>
-
-
-                {% if partner %}
-
-                    <a
-                        href="{{ partner.get_absolute_url }}"
-                        class="btn btn-outline-secondary ms-2 mt-2 mt-sm-0"
-                    >
-                        Clear Filters
-                    </a>
-
-                {% else %}
-
-                    <a
-                        href="{% url 'partners:products' %}"
-                        class="btn btn-outline-secondary ms-2 mt-2 mt-sm-0"
-                    >
-                        Clear Filters
-                    </a>
-
-                {% endif %}
-
-            </div>
-
-        </form>
-
-
-
-        <!-- =====================================================
-             RESULTS SUMMARY
-        ====================================================== -->
-
-        <div class="mb-4">
-
-            {% if query or selected_category %}
-
-                <p class="text-muted mb-0">
-
-                    Showing filtered results
-
-                    {% if query %}
-                        for
-                        <strong>"{{ query }}"</strong>
-                    {% endif %}
-
-                    {% if selected_category %}
-                        in
-                        <strong>
-                            {{ selected_category }}
-                        </strong>
-                    {% endif %}
-
-                </p>
-
-            {% endif %}
-
-        </div>
-
-
-
-        <!-- =====================================================
-             PRODUCT GRID
-        ====================================================== -->
-
-        <div class="row g-4">
-
-            {% for product in products %}
-
-                <div class="col-md-6 col-lg-4">
-
-                    <article
-                        class="card h-100 border-0 shadow-sm"
-                    >
-
-                        {% if product.image %}
-
-                            <img
-                                src="{{ product.image.url }}"
-                                class="card-img-top"
-                                alt="{{ product.name }}"
-                                style="
-                                    height: 300px;
-                                    object-fit: fill;
+                            <article
+                                class="
+                                    card
+                                    h-100
+                                    border-0
+                                    shadow-sm
+                                    product-card
                                 "
                             >
 
-                        {% endif %}
+                                <!-- PRODUCT IMAGE -->
 
-
-                        <div class="card-body d-flex flex-column">
-
-
-                            <!-- PARTNER -->
-
-                            {% if not partner %}
-
-                                <p class="small text-primary fw-bold mb-2">
-                                    {{ product.partner.name }}
-                                </p>
-
-                            {% endif %}
-
-
-                            <!-- CATEGORY -->
-
-                            <p class="small text-muted mb-2">
-                                {{ product.category.name }}
-                            </p>
-
-
-                            <!-- PRODUCT NAME -->
-
-                            <h3 class="h4 fw-bold text-secondary">
-                                {{ product.name }}
-                            </h3>
-
-
-                            <!-- DESCRIPTION -->
-
-                            {% if product.description %}
-
-                                <div class="text-muted mb-4">
-                                    {{ product.description|safe }}
-                                </div>
-
-                            {% endif %}
-
-
-                            <!-- PRODUCT LINK -->
-
-                            <div class="mt-auto">
-
-                                {% if product.product_url %}
+                                {% if product.image %}
 
                                     <a
-                                        href="{{ product.product_url }}"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href="{{ product.get_absolute_url }}"
+                                        class="d-block bg-light"
+                                    >
+
+                                        <img
+                                            src="{{ product.image.url }}"
+                                            class="card-img-top"
+                                            alt="{{ product.name }}"
+                                            style="
+                                                height: 240px;
+                                                object-fit: fill;
+                                            "
+                                        >
+
+                                    </a>
+
+                                {% else %}
+
+                                    <div
+                                        class="
+                                            bg-light
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                        "
+                                        style="height: 240px;"
+                                    >
+
+                                        <i
+                                            class="
+                                                bi
+                                                bi-image
+                                                display-4
+                                                text-muted
+                                            "
+                                        ></i>
+
+                                    </div>
+
+                                {% endif %}
+
+
+                                <!-- PRODUCT CONTENT -->
+
+                                <div class="card-body d-flex flex-column p-4">
+
+
+                                    <!-- PARTNER -->
+
+                                    {% if not partner %}
+
+                                        <p class="small text-primary fw-bold mb-2">
+
+                                            {{ product.partner.name }}
+
+                                        </p>
+
+                                    {% endif %}
+
+
+                                    <!-- CATEGORY -->
+
+                                    <p class="small text-muted mb-2">
+
+                                        {{ product.get_category_display }}
+
+                                    </p>
+
+
+                                    <!-- PRODUCT NAME -->
+
+                                    <h4 class="fw-bold text-secondary mb-3">
+
+                                        <a
+                                            href="{{ product.get_absolute_url }}"
+                                            class="text-decoration-none text-secondary"
+                                        >
+                                            {{ product.name }}
+                                        </a>
+
+                                    </h4>
+
+
+                                    <!-- DESCRIPTION -->
+
+                                    {% if product.description %}
+
+                                        <div
+                                            class="
+                                                text-muted
+                                                small
+                                                mb-4
+                                            "
+                                        >
+                                            {{ product.description|safe }}
+                                        </div>
+
+                                    {% endif %}
+
+
+                                    <!-- PRODUCT LINK -->
+
+                                    <div class="mt-auto">
+
+                                        <a
+                                            href="{{ product.get_absolute_url }}"
+                                            class="btn btn-primary w-100"
+                                        >
+                                            Discover Product
+                                            <i class="bi bi-arrow-right ms-2"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+
+
+                    {% empty %}
+
+
+                        <!-- =====================================
+                             NO RESULTS
+                        ====================================== -->
+
+                        <div class="col-12">
+
+                            <div
+                                class="
+                                    text-center
+                                    py-5
+                                    px-4
+                                    bg-light
+                                    rounded
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        bi
+                                        bi-search
+                                        display-1
+                                        text-muted
+                                    "
+                                ></i>
+
+                                <h3 class="mt-4 fw-bold">
+                                    No Products Found
+                                </h3>
+
+                                <p class="text-muted mb-4">
+                                    Try changing your search or
+                                    category filter.
+                                </p>
+
+
+                                {% if partner %}
+
+                                    <a
+                                        href="{{ partner.get_absolute_url }}"
                                         class="btn btn-primary"
                                     >
-                                        View Product
-                                        <i class="bi bi-arrow-right ms-2"></i>
+                                        View All {{ partner.name }} Products
+                                    </a>
+
+                                {% else %}
+
+                                    <a
+                                        href="{% url 'partners:products' %}"
+                                        class="btn btn-primary"
+                                    >
+                                        View All Products
                                     </a>
 
                                 {% endif %}
@@ -525,59 +826,12 @@
 
                         </div>
 
-                    </article>
+
+                    {% endfor %}
 
                 </div>
 
-
-            {% empty %}
-
-                <!-- =================================================
-                     NO RESULTS
-                ================================================== -->
-
-                <div class="col-12">
-
-                    <div class="text-center py-5">
-
-                        <i
-                            class="bi bi-box-seam display-1 text-muted"
-                        ></i>
-
-                        <h3 class="mt-4">
-                            No Products Found
-                        </h3>
-
-                        <p class="text-muted">
-                            Try changing your search or category filter.
-                        </p>
-
-
-                        {% if partner %}
-
-                            <a
-                                href="{{ partner.get_absolute_url }}"
-                                class="btn btn-primary"
-                            >
-                                View All {{ partner.name }} Products
-                            </a>
-
-                        {% else %}
-
-                            <a
-                                href="{% url 'partners:products' %}"
-                                class="btn btn-primary"
-                            >
-                                View All Products
-                            </a>
-
-                        {% endif %}
-
-                    </div>
-
-                </div>
-
-            {% endfor %}
+            </div>
 
         </div>
 

@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.remote-support-page {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding-top: 180px !important;
+    padding-bottom: 60px !important;
+}
+
+    .remote-support-page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.28);
+        z-index: 1;
+    }
+
+    .remote-support-page-background {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .remote-support-page-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .remote-support-card {
+        max-width: 850px;
+        background: rgba(255, 255, 255, 0.97);
+    }
+
+    .remote-support-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .remote-support-step {
+        background: rgba(var(--bs-primary-rgb), 0.05);
+        border: 1px solid rgba(var(--bs-primary-rgb), 0.1);
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="remote-support-page d-flex align-items-center justify-content-center py-5">
+
+    <!-- Background image -->
+    <img
+        src="{{ home.hero_image.url }}"
+        alt="{{ home.hero_image_alt_text }}"
+        class="position-absolute top-0 start-0 w-100 h-100 remote-support-page-background"
+    >
+
+
+    <!-- Content -->
+    <div class="container remote-support-page-content">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-lg-10">
+
+                <!-- Main card -->
+                <div class="remote-support-card rounded-5 shadow-lg p-4 p-md-5 mx-auto text-center">
+
+                    <!-- Icon -->
+                    <div
+                        class="remote-support-icon
+                               bg-primary bg-opacity-10
+                               text-light rounded-4
+                               d-inline-flex align-items-center justify-content-center
+                               mb-4"
+                    >
+                        <i class="bi bi-headset display-5"></i>
+                    </div>
+
+
+                    <!-- Title -->
+                    <h1 class="fw-bold text-primary mb-3">
+                        Remote Support
+                    </h1>
+
+
+                    <!-- Divider -->
+                    <hr class="w-25 mx-auto mb-4 border-dark opacity-50">
+
+
+                    <!-- Download message -->
+                    {% if branding.remote_support_installer %}
+
+                        <h2 class="h4 fw-bold mb-3">
+                            Your Dental Dynamix TeamViewer installer is downloading
+                        </h2>
+
+                        <p class="text-secondary fs-5 lh-lg mb-4">
+                            Your download should start automatically.
+                            Please check your browser's Downloads folder
+                            if you don't see it appear.
+                        </p>
+
+
+                        <!-- Manual download -->
+                        <a
+                            href="{{ branding.remote_support_installer.url }}"
+                            class="btn btn-primary btn-lg px-4"
+                            download
+                        >
+                            <i class="bi bi-download me-2"></i>
+                            Download TeamViewer Installer
+                        </a>
+
+
+                        <p class="text-secondary small mt-3 mb-0">
+                            If the download does not start automatically,
+                            click the button above.
+                        </p>
+
+
+                        <!-- Installation instructions -->
+                        <div class="text-start mt-5">
+
+                            <h2 class="h4 fw-bold text-primary text-center mb-4">
+                                How to install TeamViewer
+                            </h2>
+
+
+                            <!-- Step 1 -->
+                            <div class="remote-support-step rounded-4 p-4 mb-3">
+
+                                <div class="d-flex align-items-start">
+
+                                    <div class="me-3">
+                                        <span
+                                            class="bg-primary text-white rounded-circle
+                                                   d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px;"
+                                        >
+                                            1
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="h6 fw-bold mb-2">
+                                            Find the downloaded installer
+                                        </h3>
+
+                                        <p class="text-secondary mb-0">
+                                            Open your browser's Downloads folder
+                                            and locate the TeamViewer installer.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Step 2 -->
+                            <div class="remote-support-step rounded-4 p-4 mb-3">
+
+                                <div class="d-flex align-items-start">
+
+                                    <div class="me-3">
+                                        <span
+                                            class="bg-primary text-white rounded-circle
+                                                   d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px;"
+                                        >
+                                            2
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="h6 fw-bold mb-2">
+                                            Run the installer
+                                        </h3>
+
+                                        <p class="text-secondary mb-0">
+                                            Double-click the downloaded file and
+                                            follow the instructions displayed by
+                                            TeamViewer.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Step 3 -->
+                            <div class="remote-support-step rounded-4 p-4 mb-3">
+
+                                <div class="d-flex align-items-start">
+
+                                    <div class="me-3">
+                                        <span
+                                            class="bg-primary text-white rounded-circle
+                                                   d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px;"
+                                        >
+                                            3
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="h6 fw-bold mb-2">
+                                            Open TeamViewer
+                                        </h3>
+
+                                        <p class="text-secondary mb-0">
+                                            Once installed, open TeamViewer.
+                                            You should see your TeamViewer ID
+                                            and password.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Step 4 -->
+                            <div class="remote-support-step rounded-4 p-4">
+
+                                <div class="d-flex align-items-start">
+
+                                    <div class="me-3">
+                                        <span
+                                            class="bg-primary text-white rounded-circle
+                                                   d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px;"
+                                        >
+                                            4
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="h6 fw-bold mb-2">
+                                            Contact Dental Dynamix Support
+                                        </h3>
+
+                                        <p class="text-secondary mb-0">
+                                            Contact our support team and provide
+                                            your TeamViewer ID and password when
+                                            requested. This will allow our support
+                                            technician to connect to your computer.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Security notice -->
+                        <div class="alert alert-light border text-start mt-4 mb-0 rounded-4">
+
+                            <div class="d-flex align-items-start">
+
+                                <i class="bi bi-shield-check text-primary fs-4 me-3"></i>
+
+                                <div>
+                                    <strong>Remote support security</strong>
+
+                                    <p class="small text-secondary mb-0 mt-1">
+                                        Only provide your TeamViewer ID and password
+                                        to a Dental Dynamix support technician.
+                                        Never share these details with anyone else.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    {% else %}
+
+                        <!-- Installer unavailable -->
+                        <div class="alert alert-light border rounded-4 mt-4 mb-0">
+
+                            <i class="bi bi-exclamation-circle text-primary fs-4"></i>
+
+                            <p class="fw-bold mb-1 mt-2">
+                                Remote support installer unavailable
+                            </p>
+
+                            <p class="text-secondary small mb-0">
+                                The TeamViewer installer is currently unavailable.
+                                Please contact Dental Dynamix support for assistance.
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- Contact button -->
+                    <div class="mt-5">
+
+                        <a
+                            href="{% url 'contact' %}"
+                            class="btn btn-outline-primary px-4"
+                        >
+                            <i class="bi bi-envelope me-2"></i>
+                            Contact Support
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% if branding.remote_support_installer %}
+
+<script>
+    window.addEventListener("load", function () {
+
+        const downloadLink = document.createElement("a");
+
+        downloadLink.href = "{{ branding.remote_support_installer.url }}";
+        downloadLink.download = "";
+        downloadLink.style.display = "none";
+
+        document.body.appendChild(downloadLink);
+
+        downloadLink.click();
+
+        downloadLink.remove();
+
+    });
+</script>
+
+{% endif %}
+
+{% endblock %}

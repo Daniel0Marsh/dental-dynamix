@@ -5,55 +5,44 @@ from django.http import HttpRequest
 from django.template import Context
 from typing import Dict, Any
 from .models import HomePage, TermsAndConditionsPage
-from about.models import Testimonial
+from partners.models import PartnerProduct
 from branding.models import Branding
 
 
-@method_decorator(never_cache, name='dispatch')
+@method_decorator(never_cache, name="dispatch")
 class HomePageView(TemplateView):
     """
     View for rendering the home page.
-
-    Attributes:
-        template_name (str): Name of the template file to be used.
     """
-    template_name = 'home.html'
+
+    template_name = "home-v2.html"
 
     def get_context_data(self, **kwargs) -> Dict[str, Any]:
-        """
-        Get the context data for rendering the template.
-
-        Returns:
-            Dict[str, Any]: Context data for the template.
-        """
+        context = super().get_context_data(**kwargs)
 
         home_page = HomePage.objects.first()
 
-        # Build a list of 3 service cards
-        service_cards = [
-            {
-                "title": home_page.service_card_1_title,
-                "description": home_page.service_card_1_description,
-                "image": home_page.service_card_1_image,
-            },
-            {
-                "title": home_page.service_card_2_title,
-                "description": home_page.service_card_2_description,
-                "image": home_page.service_card_2_image,
-            },
-            {
-                "title": home_page.service_card_3_title,
-                "description": home_page.service_card_3_description,
-                "image": home_page.service_card_3_image,
-            },
-        ]
+        # Products selected for the homepage
+        featured_products = (
+            PartnerProduct.objects
+            .filter(
+                active=True,
+                show_on_homepage=True,
+                partner__active=True,
+            )
+            .select_related("partner")
+            .order_by(
+                "homepage_order",
+                "name",
+            )
+        )
 
-        context = {
+        context.update({
             "branding": Branding.objects.first(),
-            "home": HomePage.objects.first(),
-            "testimonials":  Testimonial.objects.filter(is_active=True),
-            "service_cards": service_cards,
-        }
+            "home": home_page,
+            "featured_products": featured_products,
+        })
+
         return context
 
 

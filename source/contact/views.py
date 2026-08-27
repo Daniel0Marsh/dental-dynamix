@@ -5,7 +5,6 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.contrib.auth.models import User
 
 from branding.models import Branding
 from home.models import HomePage
@@ -19,11 +18,15 @@ class ContactPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         context.update({
             "branding": Branding.objects.first(),
             "home": HomePage.objects.first(),
-            "CLOUDFLARE_TURNSTILE_SITE_KEY": settings.CLOUDFLARE_TURNSTILE_SITE_KEY,
+            "CLOUDFLARE_TURNSTILE_SITE_KEY": (
+                settings.CLOUDFLARE_TURNSTILE_SITE_KEY
+            ),
         })
+
         return context
 
     def verify_turnstile(self, token, remote_ip=None):
@@ -45,53 +48,199 @@ class ContactPageView(TemplateView):
         )
 
         result = response.json()
+
         return result.get("success", False)
 
     def post(self, request):
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
+        name = request.POST.get("name", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        email = request.POST.get("email", "").strip()
+        message = request.POST.get("message", "").strip()
 
-        if not all([name, phone, email, message]):
-            messages.error(request, "Please fill in all the fields.")
-            return render(request, self.template_name, self.get_context_data())
+        enquiry_department = request.POST.get(
+            "enquiry_department",
+            ""
+        ).strip()
 
-        # Cloudflare Turnstile token
-        turnstile_token = request.POST.get("cf-turnstile-response")
+        enquiry_type = request.POST.get(
+            "enquiry_type",
+            ""
+        ).strip()
 
-        if not turnstile_token:
-            messages.error(request, "Captcha verification failed. Please try again.")
-            return render(request, self.template_name, self.get_context_data())
+        # =========================================================
+        # VALIDATE FORM
+        # =========================================================
 
-        if not self.verify_turnstile(turnstile_token, request.META.get("REMOTE_ADDR")):
-            messages.error(request, "Captcha verification failed. Please try again.")
-            return render(request, self.template_name, self.get_context_data())
-
-        # CAPTCHA passed — send emails
-        subject = f"CodeBlock Contact Message from {name}"
-        message_content = (
-            f"Sender's Name: {name}\n"
-            f"Sender's Phone: {phone}\n"
-            f"Sender's Email: {email}\n\n"
-            f"Message:\n{message}"
-        )
-
-        def send_email(recipient_email):
-            send_mail(
-                subject=subject,
-                message=message_content,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[recipient_email],
-                fail_silently=False,
+        if not all([
+            name,
+            phone,
+            email,
+            message,
+            enquiry_department,
+            enquiry_type,
+        ]):
+            messages.error(
+                request,
+                "Please fill in all the fields."
             )
 
-        # Send to main contact address
-        send_email(settings.DEFAULT_FROM_EMAIL)
+            return render(
+                request,
+                self.template_name,
+                self.get_context_data()
+            )
 
-        # Send to all users with email addresses
-        for user in User.objects.exclude(email="").only("email"):
-            send_email(user.email)
+        # =========================================================
+        # VALIDATE ENQUIRY DEPARTMENT
+        # =========================================================
 
-        messages.success(request, "Your message has been sent successfully!")
-        return render(request, self.template_name, self.get_context_data())
+        valid_departments = {
+            "sales": "Sales",
+            "support": "Support",
+        }
+
+        if enquiry_department not in valid_departments:
+            messages.error(
+                request,
+                "Please select a valid enquiry type."
+            )
+
+            return render(
+                request,
+                self.template_name,
+                self.get_context_data()
+            )
+
+        # =========================================================
+        # VALIDATE ENQUIRY TYPE
+        # =========================================================
+
+        valid_enquiry_types = {
+            "sales": {
+                "imaging": "Dental Imaging & CBCT",
+                "scanning": "Intraoral Scanning & Digital Dentistry",
+                "equipment": "Equipment Supply & Installation",
+                "software": "Software & Digital Workflows",
+                "new_practice": "New Practice / Practice Refurbishment",
+            },
+            "support": {
+                "it": "IT & Practice Infrastructure",
+                "technical": "Technical Support",
+                "software_support": "Software Support",
+                "other": "Something Else",
+            },
+        }
+
+        if enquiry_type not in valid_enquiry_types[enquiry_department]:
+            messages.error(
+                request,
+                "Please select a valid enquiry option."
+            )
+
+            return render(
+                request,
+                self.template_name,
+                self.get_context_data()
+            )
+
+        # =========================================================
+        # DETERMINE RECIPIENT
+        # =========================================================
+
+        if enquiry_department == "sales":
+            recipient_email = settings.SALES_EMAIL
+        else:
+            recipient_email = settings.SUPPORT_EMAIL
+
+        # =========================================================
+        # CLOUDflare TURNSTILE
+        # =========================================================
+
+        turnstile_token = request.POST.get(
+            "cf-turnstile-response"
+        )
+
+        if not turnstile_token:
+            messages.error(
+                request,
+                "Captcha verification failed. Please try again."
+            )
+
+            return render(
+                request,
+                self.template_name,
+                self.get_context_data()
+            )
+
+        if not self.verify_turnstile(
+            turnstile_token,
+            request.META.get("REMOTE_ADDR"),
+        ):
+            messages.error(
+                request,
+                "Captcha verification failed. Please try again."
+            )
+
+            return render(
+                request,
+                self.template_name,
+                self.get_context_data()
+            )
+
+        # =========================================================
+        # HUMAN-READABLE VALUES
+        # =========================================================
+
+        department_display = valid_departments[
+            enquiry_department
+        ]
+
+        enquiry_type_display = valid_enquiry_types[
+            enquiry_department
+        ][enquiry_type]
+
+        # =========================================================
+        # EMAIL
+        # =========================================================
+
+        subject = (
+            f"{department_display} Enquiry - "
+            f"{enquiry_type_display} - "
+            f"{name}"
+        )
+
+        message_content = (
+            f"New {department_display.lower()} enquiry\n"
+            f"\n"
+            f"Enquiry Type: {enquiry_type_display}\n"
+            f"\n"
+            f"Sender's Name: {name}\n"
+            f"Sender's Phone: {phone}\n"
+            f"Sender's Email: {email}\n"
+            f"\n"
+            f"Message:\n"
+            f"{message}"
+        )
+
+        send_mail(
+            subject=subject,
+            message=message_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[recipient_email],
+            fail_silently=False,
+        )
+
+        # =========================================================
+        # SUCCESS
+        # =========================================================
+
+        messages.success(
+            request,
+            "Your message has been sent successfully!"
+        )
+
+        return render(
+            request,
+            self.template_name,
+            self.get_context_data()
+        )

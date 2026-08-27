@@ -27,10 +27,16 @@ class Branding(models.Model):
         help_text="Company contact number",
         default="01622 584675"
     )
+    company_whatsapp = models.CharField(
+        max_length=20,
+        help_text="Company whatsapp",
+        blank=True,
+        null=True
+    )
     company_address = models.CharField(
         max_length=255,
         help_text="Full address, including city and ZIP",
-        default="90 Sturdee Avenue, Gillingham, Kent, ME7 2HN, United Kingdom"
+        default="90a Sturdee Avenue, Gillingham, Kent, ME7 2HN, United Kingdom"
     )
     working_hours = models.CharField(
         max_length=255,
@@ -48,6 +54,13 @@ class Branding(models.Model):
     logo_alt_text = models.CharField(max_length=255, default="Dental Dynamix logo")
     logo_geo_tag = models.CharField(max_length=255, blank=True, default="51.2787,1.0810")
     favicon = models.ImageField(upload_to="branding/", default="default/favicon.ico")
+
+    # Support
+    remote_support_installer = models.FileField(
+        upload_to="branding/support/",
+        default="default/TeamViewer.exe",
+        help_text="TeamViewer remote support installer downloaded by visitors."
+    )
 
     # SEO
     site_map_description = models.TextField(

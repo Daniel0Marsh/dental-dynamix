@@ -300,60 +300,90 @@
             </div>
 
 
-            <!-- Enquiry Type -->
+            <!-- Sales or Support -->
             <div class="mb-3">
+              <label
+                for="enquiry_department"
+                class="form-label fw-bold"
+              >
+                How Can We Help?
+              </label>
 
+              <select
+                class="form-select form-select-lg"
+                id="enquiry_department"
+                name="enquiry_department"
+                required
+              >
+                <option value="" selected>
+                  Select an option
+                </option>
+
+                <option value="sales">
+                  Sales
+                </option>
+
+                <option value="support">
+                  Support
+                </option>
+              </select>
+            </div>
+
+
+            <!-- Enquiry Type -->
+            <div class="mb-3" id="enquiry-type-wrapper" style="display: none;">
               <label
                 for="enquiry_type"
                 class="form-label fw-bold"
               >
-                What Can We Help With?
+                What Do You Need Help With?
               </label>
 
               <select
                 class="form-select form-select-lg"
                 id="enquiry_type"
                 name="enquiry_type"
+                disabled
+                required
               >
-
                 <option value="" selected>
                   Select an option
                 </option>
 
-                <option value="it">
-                  IT & Practice Infrastructure
-                </option>
-
-                <option value="imaging">
+                <!-- Sales options -->
+                <option value="imaging" data-department="sales">
                   Dental Imaging & CBCT
                 </option>
 
-                <option value="scanning">
+                <option value="scanning" data-department="sales">
                   Intraoral Scanning & Digital Dentistry
                 </option>
 
-                <option value="equipment">
+                <option value="equipment" data-department="sales">
                   Equipment Supply & Installation
                 </option>
 
-                <option value="software">
+                <option value="software" data-department="sales">
                   Software & Digital Workflows
                 </option>
 
-                <option value="support">
+                <!-- Support options -->
+                <option value="it" data-department="support">
+                  IT & Practice Infrastructure
+                </option>
+
+                <option value="technical" data-department="support">
                   Technical Support
                 </option>
 
-                <option value="new_practice">
-                  New Practice / Practice Refurbishment
+                <option value="software_support" data-department="support">
+                  Software Support
                 </option>
 
-                <option value="other">
+                <option value="other" data-department="support">
                   Something Else
                 </option>
-
               </select>
-
             </div>
 
 
@@ -463,6 +493,43 @@
     document.getElementById("submit-btn").disabled = true;
   }
 
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const departmentSelect = document.getElementById("enquiry_department");
+    const enquiryTypeWrapper = document.getElementById("enquiry-type-wrapper");
+    const enquiryTypeSelect = document.getElementById("enquiry_type");
+
+    function updateEnquiryTypes() {
+      const department = departmentSelect.value;
+
+      enquiryTypeSelect.value = "";
+
+      if (!department) {
+        enquiryTypeWrapper.style.display = "none";
+        enquiryTypeSelect.disabled = true;
+        return;
+      }
+
+      enquiryTypeWrapper.style.display = "block";
+      enquiryTypeSelect.disabled = false;
+
+      Array.from(enquiryTypeSelect.options).forEach(function (option) {
+        if (!option.value) {
+          option.hidden = false;
+          return;
+        }
+
+        option.hidden = option.dataset.department !== department;
+      });
+    }
+
+    departmentSelect.addEventListener("change", updateEnquiryTypes);
+
+    updateEnquiryTypes();
+  });
 </script>
 
 

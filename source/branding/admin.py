@@ -47,6 +47,9 @@ class BrandingAdmin(SingletonAdmin):
         ("Company Information", {
             "fields": ("company_name", "company_email", "company_phone", "company_address", "working_hours", "top_bar")
         }),
+        ("Support", {
+            "fields": ("remote_support_installer",)
+        }),
         ("Social Media", {
             "fields": ("facebook_url", "twitter_url", "linkedin_url", "instagram_url")
         }),

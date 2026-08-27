@@ -13,10 +13,10 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('branding.urls')),
     path('', include('home.urls')),
     path('', include('about.urls')),
     path("partners/", include('partners.urls')),
-    path('', include('oursolutions.urls')),
     path('', include('contact.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),

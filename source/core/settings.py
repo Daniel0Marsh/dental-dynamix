@@ -42,6 +42,8 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = config("EMAIL_HOST_USER")
+SALES_EMAIL = config("SALES_EMAIL")
+SUPPORT_EMAIL = config("SUPPORT_EMAIL")
 
 SITE_URL = "http://localhost:8000" if DEBUG else config("SITE_URL")
 
@@ -82,7 +84,6 @@ INSTALLED_APPS = [
     "home",
     "about",
     "partners",
-    "oursolutions",
     "contact",
     "errors",
     "seo",

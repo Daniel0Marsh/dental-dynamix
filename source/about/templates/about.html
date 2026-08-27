@@ -35,7 +35,7 @@
         </p>
 
         <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-4">
-            <a href="{% url 'oursolutions' %}" class="btn btn-secondary">
+            <a href="{% url 'partners:products' %}" class="btn btn-secondary">
                 Explore Our Solutions
             </a>
 
@@ -130,11 +130,11 @@
 <!-- =========================================================
      Capabilities Section
 ========================================================= -->
-<section class="py-5 my-5">
+<section class="py-5 my-5 bg-dark text-light">
   <div class="container">
 
     <div class="text-center mb-5">
-      <h2 class="fw-bold display-4 text-secondary mb-3">
+      <h2 class="fw-bold display-4 text-light mb-3">
         Technology for the Modern Dental Practice
       </h2>
 
@@ -150,13 +150,13 @@
 
       <!-- IT Support -->
       <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 bg-dark text-light">
 
           <div class="mb-3">
             <i class="bi bi-pc-display fs-1 text-primary"></i>
           </div>
 
-          <h3 class="h4 fw-bold text-secondary">
+          <h3 class="h4 fw-bold text-light">
             IT Support
           </h3>
 
@@ -172,13 +172,13 @@
 
       <!-- 2D Imaging -->
       <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 bg-dark text-light">
 
           <div class="mb-3">
             <i class="bi bi-camera fs-1 text-primary"></i>
           </div>
 
-          <h3 class="h4 fw-bold text-secondary">
+          <h3 class="h4 fw-bold text-light">
             2D Imaging
           </h3>
 
@@ -193,13 +193,13 @@
 
       <!-- 3D Imaging -->
       <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 bg-dark text-light">
 
           <div class="mb-3">
             <i class="bi bi-boxes fs-1 text-primary"></i>
           </div>
 
-          <h3 class="h4 fw-bold text-secondary">
+          <h3 class="h4 fw-bold text-light">
             3D Imaging
           </h3>
 
@@ -214,13 +214,13 @@
 
       <!-- Dental Technology -->
       <div class="col-md-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 bg-dark text-light">
 
           <div class="mb-3">
             <i class="bi bi-cpu fs-1 text-primary"></i>
           </div>
 
-          <h3 class="h4 fw-bold text-secondary">
+          <h3 class="h4 fw-bold text-light">
             Dental Technology
           </h3>
 
@@ -301,43 +301,40 @@
 
     {% if partners %}
 
-      <div class="row justify-content-center align-items-stretch g-4">
+        <div class="row justify-content-center g-4">
 
-        {% for partner in partners %}
+            {% for partner in partners %}
 
-          <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
 
-            <a
-              href="{{ partner.get_absolute_url }}"
-              class="text-decoration-none"
-              aria-label="View {{ partner.name }} products and solutions"
-            >
+                    <a
+                        href="{{ partner.get_absolute_url }}"
+                        class="text-decoration-none"
+                        aria-label="View {{ partner.name }} products and solutions"
+                    >
 
-              <div
-                class="bg-white rounded shadow-sm p-4 h-100 d-flex align-items-center justify-content-center"
-                style="min-height: 140px;"
-              >
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
 
-                <img
-                  src="{{ partner.logo.url }}"
-                  alt="{{ partner.name }} logo"
-                  class="img-fluid"
-                  style="
-                    max-height: 80px;
-                    max-width: 180px;
-                    object-fit: contain;
-                  "
-                >
+                            <div class="card-body p-4 d-flex align-items-center justify-content-center">
 
-              </div>
+                                <img
+                                    src="{{ partner.logo.url }}"
+                                    alt="{{ partner.name }} logo"
+                                    class="img-fluid object-fit-contain"
+                                    style="max-height: 80px;"
+                                >
 
-            </a>
+                            </div>
 
-          </div>
+                        </div>
 
-        {% endfor %}
+                    </a>
 
-      </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
 
     {% else %}
 
@@ -351,121 +348,5 @@
 
   </div>
 </section>
-
-
-<!-- =========================================================
-     Testimonials
-========================================================= -->
-{% if testimonials %}
-<section class="position-relative mb-5">
-
-    <div class="hero-overlay d-flex align-items-center position-relative"
-         style="min-height: 500px;">
-
-        <!-- Background Image -->
-        <img
-            src="{{ home.testimonial_image.url }}"
-            alt="{{ home.testimonial_image_alt_text }}"
-            class="position-absolute top-0 start-0 w-100 h-100"
-            style="object-fit: cover; z-index: 0;"
-        >
-
-        <!-- Testimonial Content -->
-        <div class="container position-relative" style="z-index: 2;">
-
-            <div id="testimonialCarousel" class="carousel slide">
-
-                <div class="carousel-inner">
-
-                    {% for testimonial in testimonials %}
-
-                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-
-                            <div class="row justify-content-center justify-content-lg-end">
-
-                                <div class="col-12 col-md-9 col-lg-6">
-
-                                    <div class="position-relative text-center text-lg-start px-4 py-5">
-
-                                        <!-- Opening Quote -->
-                                        <i class="bi bi-quote position-absolute top-0 start-0
-                                                  display-4 text-primary"></i>
-
-                                        <!-- Testimonial -->
-                                        <p class="fs-3 text-white mb-4">
-                                            {{ testimonial.quote }}
-                                        </p>
-
-                                        <!-- Author -->
-                                        <h5 class="fs-4 text-primary fw-bold mb-1">
-                                            {{ testimonial.author_name }}
-                                        </h5>
-
-                                        {% if testimonial.author_company %}
-                                            <p class="text-white">
-                                                {{ testimonial.author_company }}
-                                           </p>
-                                        {% endif %}
-                                        <!-- Closing Quote -->
-                                        <i class="bi bi-quote position-absolute bottom-0 end-0
-                                                  display-4 text-primary"
-                                          style="transform: rotate(180deg);"></i>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    {% endfor %}
-
-                </div>
-
-
-                <!-- Previous -->
-                <button
-                    class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#testimonialCarousel"
-                    data-bs-slide="prev">
-
-                    <span class="carousel-control-prev-icon"></span>
-
-                    <span class="visually-hidden">
-                        Previous
-                    </span>
-
-                </button>
-
-
-                <!-- Next -->
-                <button
-                    class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#testimonialCarousel"
-                    data-bs-slide="next">
-
-                    <span class="carousel-control-next-icon"></span>
-
-                    <span class="visually-hidden">
-                        Next
-                    </span>
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-{% endif %}
-
-
-
 
 {% endblock %}

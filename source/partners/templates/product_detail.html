@@ -1,0 +1,600 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+
+{# Page-specific CSS can be added here later if required. #}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ========================================================= -->
+<!-- PRODUCT HERO -->
+<!-- ========================================================= -->
+
+<section
+    id="hero-section"
+    class="hero-overlay d-flex align-items-center text-light position-relative"
+    style="min-height: 85vh;"
+>
+
+    <img
+        src="{{ product.image.url }}"
+        alt="{{ product.name }}"
+        class="w-100 h-100 position-absolute top-0 start-0"
+        style="object-fit: cover; z-index: 1;"
+    >
+
+    <div
+        class="container position-relative h-100 d-flex align-items-center"
+        style="z-index: 3;"
+    >
+
+        <div class="row w-100">
+
+            <div class="col-lg-8 col-xl-7">
+
+
+                <!-- Breadcrumb -->
+
+                <nav
+                    aria-label="breadcrumb"
+                    class="my-5"
+                >
+
+                    <ol class="breadcrumb mb-0">
+
+                        <li class="breadcrumb-item">
+
+                            <a
+                                href="{% url 'partners:products' %}"
+                                class="text-white-50 text-decoration-none"
+                            >
+                                Products
+                            </a>
+
+                        </li>
+
+                        <li class="breadcrumb-item">
+
+                            <a
+                                href="{{ product.partner.get_absolute_url }}"
+                                class="text-white-50 text-decoration-none"
+                            >
+                                {{ product.partner.name }}
+                            </a>
+
+                        </li>
+
+                        <li
+                            class="breadcrumb-item active text-white"
+                            aria-current="page"
+                        >
+                            {{ product.name }}
+                        </li>
+
+                    </ol>
+
+                </nav>
+
+
+                <!-- Category -->
+
+                <div class="mb-3">
+
+                    <span class="text-primary fw-bold text-uppercase small">
+                        {{ product.category.name }}
+                    </span>
+
+                </div>
+
+
+                <!-- Product Name -->
+
+                <h1 class="display-2 fw-bold lh-1 mb-4">
+                    {{ product.name }}
+                </h1>
+
+
+                <!-- Description -->
+
+                {% if product.description %}
+
+                    <p class="fs-4 text-white-50 lh-base mb-5">
+                        {{ product.description }}
+                    </p>
+
+                {% endif %}
+
+
+                <!-- Manufacturer -->
+
+                <p class="mb-4 text-white-50">
+
+                    By
+
+                    <strong class="text-white">
+                        {{ product.partner.name }}
+                    </strong>
+
+                </p>
+
+
+                <!-- Actions -->
+
+                <div
+                    class="d-flex flex-column flex-sm-row gap-3"
+                >
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="btn btn-lg btn-primary"
+                >
+                    Contact Our Team
+                </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- PRODUCT INTRODUCTION -->
+<!-- ========================================================= -->
+
+{% if product.detailed_description %}
+
+<section id="product-introduction" class="py-5">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-9 text-center">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    Product Overview
+                </span>
+
+                <h2 class="display-5 fw-bold text-secondary mt-3 mb-4">
+                    Designed to support modern dental practices
+                </h2>
+
+                <div class="fs-5 text-muted lh-lg">
+
+                    {{ product.detailed_description|linebreaks }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- FEATURES + PRODUCT IMAGE -->
+<!-- ========================================================= -->
+
+{% if product.features %}
+
+<section
+    id="product-features"
+    class="py-5 bg-light"
+>
+
+    <div class="container py-5">
+
+        <div class="row align-items-center g-5">
+
+
+            <!-- Features -->
+
+            <div class="col-lg-6">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    Key Features
+                </span>
+
+                <h2 class="display-5 fw-bold text-secondary mt-3 mb-4">
+                    Everything you need from one solution
+                </h2>
+
+                <div class="row g-3">
+
+                    {% for feature in product.features.splitlines %}
+
+                        {% if feature|length %}
+
+                            <div class="col-12">
+
+                                <div class="d-flex align-items-start gap-3">
+
+                                    <span
+                                        class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white flex-shrink-0"
+                                        style="width: 36px; height: 36px;"
+                                    >
+                                        <i class="bi bi-check-lg"></i>
+                                    </span>
+
+                                    <p class="fs-5 text-secondary mb-0 pt-1">
+                                        {{ feature }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- Product Image -->
+
+            <div class="col-lg-6">
+
+                {% if product.image %}
+
+                    <div class="rounded-4 overflow-hidden shadow">
+
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}"
+                            class="w-100"
+                            style="
+                                height: 520px;
+                                object-fit: cover;
+                            "
+                        >
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- IMAGE GALLERY -->
+<!-- ========================================================= -->
+
+{% if gallery_images %}
+
+<section id="product-gallery" class="py-5 bg-dark text-white">
+
+    <div class="container py-5">
+
+        <!-- Section Heading -->
+
+        <div class="row mb-5">
+
+            <div class="col-lg-8">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    Gallery
+                </span>
+
+                <h2 class="display-5 fw-bold text-light mt-3 mb-3">
+                    Explore the product
+                </h2>
+
+                <p class="fs-5 text-muted mb-0">
+                    Take a closer look at {{ product.name }}.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Gallery Grid -->
+
+        <div class="row g-4">
+
+            {% for gallery_image in gallery_images %}
+
+                <div class="col-12 col-md-6 col-lg-4">
+
+                    <div class="overflow-hidden rounded-4">
+
+                        <img
+                            src="{{ gallery_image.image.url }}"
+                            alt="{% if gallery_image.alt_text %}{{ gallery_image.alt_text }}{% else %}{{ product.name }}{% endif %}"
+                            class="w-100"
+                            style="
+                                height: 300px;
+                                object-fit: cover;
+                            "
+                        >
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+
+<!-- ========================================================= -->
+<!-- SPECIFICATIONS -->
+<!-- ========================================================= -->
+
+{% if specifications %}
+
+<section
+    id="product-specifications"
+    class="py-5 bg-light"
+>
+
+    <div class="container py-5">
+
+
+        <div class="row justify-content-center mb-5">
+
+            <div class="col-lg-8 text-center">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    Technical Details
+                </span>
+
+                <h2 class="display-5 fw-bold text-secondary mt-3 mb-3">
+                    Specifications
+                </h2>
+
+                <p class="fs-5 text-muted mb-0">
+                    Key technical information and product specifications.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="bg-white rounded-4 shadow-sm overflow-hidden">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-borderless align-middle mb-0">
+
+                            <tbody>
+
+                                {% for specification in specifications %}
+
+                                    <tr
+                                        {% if not forloop.last %}
+                                            class="border-bottom"
+                                        {% endif %}
+                                    >
+
+                                        <th
+                                            scope="row"
+                                            class="text-secondary fw-bold p-4"
+                                            style="width: 40%;"
+                                        >
+                                            {{ specification.name }}
+                                        </th>
+
+                                        <td class="text-muted fs-5 p-4">
+                                            {{ specification.value }}
+                                        </td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- DOCUMENTS -->
+<!-- ========================================================= -->
+
+{% if documents %}
+
+<section
+    id="product-documents"
+    class="py-5 bg-dark text-white"
+>
+
+    <div class="container py-5">
+
+
+        <div class="row align-items-end mb-5">
+
+            <div class="col-lg-8">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    Resources
+                </span>
+
+                <h2 class="display-5 fw-bold mt-3 mb-3">
+                    Manuals &amp; Downloads
+                </h2>
+
+                <p class="fs-5 text-white-50 mb-0">
+                    Access product documentation, manuals and
+                    technical resources.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="row g-3">
+
+            {% for document in documents %}
+
+                <div class="col-12 col-lg-6">
+
+                    <div
+                        class="
+                            d-flex
+                            align-items-center
+                            justify-content-between
+                            gap-4
+                            border
+                            border-secondary
+                            rounded-4
+                            p-4
+                            h-100
+                        "
+                    >
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div
+                                class="d-flex align-items-center justify-content-center rounded-3 bg-primary text-white"
+                                style="width: 48px; height: 48px;"
+                            >
+                                <i class="bi bi-file-earmark-text fs-4"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="text-primary fw-bold text-uppercase small">
+                                    {{ document.get_document_type_display }}
+                                </span>
+
+                                <h3 class="h5 fw-bold mt-1 mb-0">
+                                    {{ document.title }}
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ document.file.url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-outline-light flex-shrink-0"
+                        >
+                            View
+                            <i class="bi bi-arrow-up-right ms-1"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- CTA SECTION -->
+<!-- ========================================================= -->
+
+<section id="cta-section" class="py-5 mb-5 bg-body">
+
+    <div class="container py-5">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-8">
+
+                <span class="text-secondary fw-bold text-uppercase">
+                    Let's Work Together
+                </span>
+
+                <h2 class="fw-bold display-5 text-primary mt-2 mb-4">
+                    Partner with experts in
+                    dental imaging & IT.
+                </h2>
+
+                <p class="fs-4 text-muted mb-0">
+                    Dental Dynamix is the UK’s trusted partner for
+                    reliable dental IT and advanced digital imaging
+                    support, helping practices operate with confidence.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end text-center">
+
+                <a href="{% url 'contact' %}"
+                   class="btn btn-primary m-1">
+                    Contact Our Team
+                </a>
+
+                <a href="{% url 'partners:products' %}"
+                   class="btn btn-outline-secondary m-1">
+                    Explore More Products
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

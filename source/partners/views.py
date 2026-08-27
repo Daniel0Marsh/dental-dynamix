@@ -4,7 +4,6 @@ from django.shortcuts import get_object_or_404, render
 from .models import (
     Partner,
     PartnerProduct,
-    ProductCategory,
     ProductPage,
 )
 
@@ -35,10 +34,6 @@ def _get_product_catalogue(request, partner=None):
     Search and category filters are then applied.
     """
 
-    # ---------------------------------------------------------
-    # BASE PRODUCT QUERY
-    # ---------------------------------------------------------
-
     products = (
         PartnerProduct.objects
         .filter(
@@ -47,7 +42,6 @@ def _get_product_catalogue(request, partner=None):
         )
         .select_related(
             "partner",
-            "category",
         )
     )
 
@@ -56,7 +50,6 @@ def _get_product_catalogue(request, partner=None):
     # ---------------------------------------------------------
 
     if partner:
-
         products = products.filter(
             partner=partner
         )
@@ -71,7 +64,6 @@ def _get_product_catalogue(request, partner=None):
     ).strip()
 
     if query:
-
         products = products.filter(
             Q(name__icontains=query)
             | Q(description__icontains=query)
@@ -87,9 +79,8 @@ def _get_product_catalogue(request, partner=None):
     ).strip()
 
     if category_slug:
-
         products = products.filter(
-            category__slug=category_slug
+            category=category_slug
         )
 
     # ---------------------------------------------------------
@@ -97,56 +88,36 @@ def _get_product_catalogue(request, partner=None):
     # ---------------------------------------------------------
 
     products = products.order_by(
-        "category__display_order",
-        "category__name",
+        "category",
         "display_order",
         "name",
     )
 
     # ---------------------------------------------------------
-    # AVAILABLE CATEGORIES
-    #
-    # These are restricted to the currently selected partner.
+    # CATEGORY CHOICES
     # ---------------------------------------------------------
 
-    category_products = (
-        PartnerProduct.objects
+    categories = [
+        {
+            "slug": slug,
+            "name": name,
+        }
+        for slug, name in PartnerProduct.CATEGORY_CHOICES
+    ]
+
+    # ---------------------------------------------------------
+    # PARTNERS
+    # ---------------------------------------------------------
+
+    partners = (
+        Partner.objects
         .filter(
-            active=True,
-            partner__active=True,
+            active=True
         )
-    )
-
-    if partner:
-
-        category_products = category_products.filter(
-            partner=partner
-        )
-
-    categories = (
-        ProductCategory.objects
-        .filter(
-            active=True,
-            products__in=category_products,
-        )
-        .distinct()
         .order_by(
             "display_order",
             "name",
         )
-    )
-
-    # ---------------------------------------------------------
-    # PARTNERS
-    #
-    # Used by the partner selector.
-    # ---------------------------------------------------------
-
-    partners = Partner.objects.filter(
-        active=True
-    ).order_by(
-        "display_order",
-        "name",
     )
 
     return {
@@ -156,8 +127,6 @@ def _get_product_catalogue(request, partner=None):
         "query": query,
         "selected_category": category_slug,
     }
-
-
 def partner_detail(request, slug):
     """
     Display the catalogue filtered to a specific partner.
@@ -247,6 +216,77 @@ def product_list(request):
 
             "product_page": product_page,
 
+            "seo_title": seo_title,
+            "seo_description": seo_description,
+        },
+    )
+
+
+def product_detail(request, partner_slug, slug):
+    """
+    Display the detailed product page.
+    """
+
+    product = get_object_or_404(
+        PartnerProduct.objects
+        .select_related(
+            "partner",
+        )
+        .prefetch_related(
+            "gallery_images",
+            "documents",
+            "specifications",
+        ),
+        slug=slug,
+        partner__slug=partner_slug,
+        active=True,
+        partner__active=True,
+    )
+
+    gallery_images = list(
+        product.gallery_images.all()
+    )
+
+    documents = [
+        document
+        for document in product.documents.all()
+        if document.active
+    ]
+
+    specifications = list(
+        product.specifications.all()
+    )
+
+    seo_title = (
+        f"{product.name} | "
+        f"{product.partner.name} | "
+        "Dental Dynamix"
+    )
+
+    seo_description = (
+        product.description
+        or product.detailed_description
+        or (
+            f"Learn more about {product.name} from "
+            f"{product.partner.name}."
+        )
+    )
+
+    features = [
+        feature.strip()
+        for feature in product.features.splitlines()
+        if feature.strip()
+    ]
+
+    return render(
+        request,
+        "product_detail.html",
+        {
+            "product": product,
+            "gallery_images": gallery_images,
+            "documents": documents,
+            "specifications": specifications,
+            "features": features,
             "seo_title": seo_title,
             "seo_description": seo_description,
         },

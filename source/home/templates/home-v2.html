@@ -1,0 +1,782 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<!-- hero section -->
+<section
+  id="hero-section"
+  class="hero-overlay d-flex align-items-center text-light position-relative"
+  style="min-height: 85vh; position: relative;"
+>
+  <img 
+    src="{{ home.hero_image.url }}" 
+    alt="{{ home.hero_image_alt_text }}"
+    class="w-100 h-100 position-absolute top-0 start-0" 
+    style="object-fit: cover; z-index: 1;"
+  >
+
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="row">
+      <div class="col-lg-7">
+
+        <h1 class="fw-bold display-4 mb-4">
+          <span>{{ home.hero_title }}</span><br>
+        </h1>
+
+        <p class="fw-bold lead mb-4">
+          {{ home.hero_subtitle }}
+        </p>
+
+        <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-4">
+            <a href="{% url 'partners:products' %}" class="btn btn-secondary">
+                Explore Our Products
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn btn-outline-primary">
+                Get in Touch
+            </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+<section class="py-5" id="service-cards">
+
+    <div class="container py-5">
+
+        <div class="row align-items-end mb-5">
+
+            <div class="col-lg-7">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ home.services_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold text-secondary mt-2 mb-3">
+                    {{ home.services_title }}
+                </h2>
+
+            </div>
+
+            <div class="col-lg-5">
+
+                <p class="lead text-muted mb-0">
+                    {{ home.services_description }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- SERVICE CARD 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                    {% if home.service_card_1_image %}
+                        <img
+                            src="{{ home.service_card_1_image.url }}"
+                            class="card-img-top object-fit-cover"
+                            alt="{{ home.service_card_1_image_alt_text }}"
+                            style="height: 250px;"
+                        >
+                    {% endif %}
+
+                    <div class="card-body p-4 p-xl-5">
+
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ home.service_card_1_title }}
+                        </h3>
+
+                        <p class="text-muted mb-0">
+                            {{ home.service_card_1_description }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICE CARD 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                    {% if home.service_card_2_image %}
+                        <img
+                            src="{{ home.service_card_2_image.url }}"
+                            class="card-img-top object-fit-cover"
+                            alt="{{ home.service_card_2_image_alt_text }}"
+                            style="height: 250px;"
+                        >
+                    {% endif %}
+
+                    <div class="card-body p-4 p-xl-5">
+
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ home.service_card_2_title }}
+                        </h3>
+
+                        <p class="text-muted mb-0">
+                            {{ home.service_card_2_description }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICE CARD 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                    {% if home.service_card_3_image %}
+                        <img
+                            src="{{ home.service_card_3_image.url }}"
+                            class="card-img-top object-fit-cover"
+                            alt="{{ home.service_card_3_image_alt_text }}"
+                            style="height: 250px;"
+                        >
+                    {% endif %}
+
+                    <div class="card-body p-4 p-xl-5">
+
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ home.service_card_3_title }}
+                        </h3>
+
+                        <p class="text-muted mb-0">
+                            {{ home.service_card_3_description }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURED PRODUCTS
+========================================================= -->
+<section class="py-5 bg-dark text-white" id="featured-products">
+
+    <div class="container py-5">
+
+        <!-- Section Header -->
+        <div class="row align-items-end mb-5">
+
+            <div class="col-lg-8">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ home.featured_products_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold mt-2 mb-3">
+                    {{ home.featured_products_title }}
+                </h2>
+
+                <p class="lead text-white-50 mb-0">
+                    {{ home.featured_products_description }}
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+
+                <a
+                    href="{% url 'partners:products' %}"
+                    class="btn btn-outline-light"
+                >
+                    View All Products
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {% if featured_products %}
+
+            <!-- Featured Products Carousel -->
+            <div
+                id="featuredProductsCarousel"
+                class="carousel slide"
+                data-bs-ride="false"
+            >
+
+                <div class="carousel-inner">
+
+                    {% for product in featured_products %}
+
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                            <div class="row align-items-center g-5">
+
+                                <!-- Product Image -->
+                                <div class="col-lg-6">
+
+                                    <div
+                                        class="bg-white rounded-4 overflow-hidden d-flex align-items-center justify-content-center"
+                                        style="min-height: 420px;"
+                                    >
+
+                                        {% if product.image %}
+
+                                            <img
+                                                src="{{ product.image.url }}"
+                                                class="img-fluid"
+                                                alt="{{ product.name }}"
+                                                style="max-height: 420px; object-fit: contain;"
+                                            >
+
+                                        {% else %}
+
+                                            <div class="text-muted text-center py-5">
+                                                <i class="bi bi-image fs-1"></i>
+                                            </div>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Product Content -->
+                                <div class="col-lg-6">
+
+                                    <span class="text-primary fw-bold text-uppercase small">
+                                        {{ product.partner.name }}
+                                    </span>
+
+                                    <h3 class="display-6 fw-bold mt-3 mb-4">
+                                        {{ product.name }}
+                                    </h3>
+
+                                    {% if product.description %}
+
+                                        <p class="lead text-white-50 mb-4">
+                                            {{ product.description }}
+                                        </p>
+
+                                    {% endif %}
+
+                                    <a
+                                        href="{{ product.get_absolute_url }}"
+                                        class="btn btn-primary"
+                                    >
+                                        View Product
+                                        <i class="bi bi-arrow-right ms-2"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- Carousel Controls -->
+                {% if featured_products|length > 1 %}
+
+                    <div class="d-flex align-items-center justify-content-between mt-5">
+
+                        <div class="carousel-indicators position-static m-0 justify-content-start">
+
+                            {% for product in featured_products %}
+
+                                <button
+                                    type="button"
+                                    data-bs-target="#featuredProductsCarousel"
+                                    data-bs-slide-to="{{ forloop.counter0 }}"
+                                    {% if forloop.first %}class="active" aria-current="true"{% endif %}
+                                    aria-label="Show {{ product.name }}"
+                                ></button>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="d-flex gap-2">
+
+                            <button
+                                class="btn btn-outline-light rounded-circle"
+                                type="button"
+                                data-bs-target="#featuredProductsCarousel"
+                                data-bs-slide="prev"
+                                aria-label="Previous product"
+                            >
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+
+                            <button
+                                class="btn btn-outline-light rounded-circle"
+                                type="button"
+                                data-bs-target="#featuredProductsCarousel"
+                                data-bs-slide="next"
+                                aria-label="Next product"
+                            >
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        {% else %}
+
+            <div class="text-center py-5">
+                <p class="text-white-50 mb-0">
+                    {{ home.featured_products_empty_text }}
+                </p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IMAGING FEATURE
+========================================================= -->
+<section id="imaging-section" class="py-5">
+
+    <div class="container py-5">
+
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6">
+
+                {% if home.imaging_image %}
+
+                    <div class="rounded-4 overflow-hidden shadow">
+
+                        <img
+                            src="{{ home.imaging_image.url }}"
+                            alt="{{ home.imaging_image_alt_text }}"
+                            class="img-fluid w-100 object-fit-cover"
+                        >
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ home.imaging_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold text-secondary mt-2 mb-4">
+                    {{ home.imaging_title }}
+                </h2>
+
+                <div class="fs-5 text-muted mb-4">
+                    {{ home.imaging_description|safe }}
+                </div>
+
+                <a
+                    href="{% url 'partners:products' %}"
+                    class="btn btn-primary btn-lg"
+                >
+                    Explore Imaging Products
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     COMPLETE PRACTICE TECHNOLOGY
+========================================================= -->
+<section class="py-5 bg-light">
+
+    <div class="container py-5">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ home.practice_technology_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold text-secondary mt-2 mb-4">
+                    {{ home.practice_technology_title }}
+                </h2>
+
+                <p class="lead text-muted mb-4">
+                    {{ home.practice_technology_description }}
+                </p>
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="btn btn-primary btn-lg"
+                >
+                    Discuss Your Practice
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <div class="row g-3">
+
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
+                                <i class="{{ home.practice_technology_card_1_icon }} fs-2 text-primary"></i>
+                                <h3 class="h5 fw-bold text-secondary mt-3">
+                                    {{ home.practice_technology_card_1_title }}
+                                </h3>
+                                <p class="small text-muted mb-0">
+                                    {{ home.practice_technology_card_1_description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
+                                <i class="{{ home.practice_technology_card_2_icon }} fs-2 text-primary"></i>
+                                <h3 class="h5 fw-bold text-secondary mt-3">
+                                    {{ home.practice_technology_card_2_title }}
+                                </h3>
+                                <p class="small text-muted mb-0">
+                                    {{ home.practice_technology_card_2_description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
+                                <i class="{{ home.practice_technology_card_3_icon }} fs-2 text-primary"></i>
+                                <h3 class="h5 fw-bold text-secondary mt-3">
+                                    {{ home.practice_technology_card_3_title }}
+                                </h3>
+                                <p class="small text-muted mb-0">
+                                    {{ home.practice_technology_card_3_description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
+                                <i class="{{ home.practice_technology_card_4_icon }} fs-2 text-primary"></i>
+                                <h3 class="h5 fw-bold text-secondary mt-3">
+                                    {{ home.practice_technology_card_4_title }}
+                                </h3>
+                                <p class="small text-muted mb-0">
+                                    {{ home.practice_technology_card_4_description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
+                                <i class="{{ home.practice_technology_card_5_icon }} fs-2 text-primary"></i>
+                                <h3 class="h5 fw-bold text-secondary mt-3">
+                                    {{ home.practice_technology_card_5_title }}
+                                </h3>
+                                <p class="small text-muted mb-0">
+                                    {{ home.practice_technology_card_5_description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
+                                <i class="{{ home.practice_technology_card_6_icon }} fs-2 text-primary"></i>
+                                <h3 class="h5 fw-bold text-secondary mt-3">
+                                    {{ home.practice_technology_card_6_title }}
+                                </h3>
+                                <p class="small text-muted mb-0">
+                                    {{ home.practice_technology_card_6_description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     COMPLETE SOLUTION
+========================================================= -->
+<section class="py-5 bg-dark text-white">
+
+    <div class="container py-5">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ home.complete_solution_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold mt-2 mb-4">
+                    {{ home.complete_solution_title }}
+                </h2>
+
+                <p class="lead text-white-50 mb-4">
+                    {{ home.complete_solution_description }}  
+                </p>
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="btn btn-primary btn-lg"
+                >
+                    Talk to Dental Dynamix
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="row g-3">
+
+                    <div class="col-6">
+                        <div class="border rounded-4 p-4 text-center h-100">
+                            <i class="{{ home.complete_solution_card_1_icon }} fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                {{ home.complete_solution_card_1_title }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="border rounded-4 p-4 text-center h-100">
+                            <i class="{{ home.complete_solution_card_2_icon }} fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                {{ home.complete_solution_card_2_title }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="border rounded-4 p-4 text-center h-100">
+                            <i class="{{ home.complete_solution_card_3_icon }} fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                {{ home.complete_solution_card_3_title }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="border  rounded-4 p-4 text-center h-100">
+                            <i class="{{ home.complete_solution_card_4_icon }} fs-2 text-primary"></i>
+                            <div class="fw-bold mt-2">
+                                {{ home.complete_solution_card_4_title }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PARTNERS
+========================================================= -->
+<section class="py-5">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center text-center mb-5">
+
+            <div class="col-lg-8">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ home.partners_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold text-secondary mt-2 mb-3">
+                    {{ home.partners_title }}
+                </h2>
+
+                <p class="lead text-muted mb-0">
+                    {{ home.partners_description }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% if partners %}
+
+            <div class="row justify-content-center g-4">
+
+                {% for partner in partners %}
+
+                    <div class="col-6 col-md-4 col-lg-3">
+
+                        <a
+                            href="{{ partner.get_absolute_url }}"
+                            class="text-decoration-none"
+                            aria-label="View {{ partner.name }} products and solutions"
+                        >
+
+                            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                                <div class="card-body p-4 d-flex align-items-center justify-content-center">
+
+                                    <img
+                                        src="{{ partner.logo.url }}"
+                                        alt="{{ partner.name }} logo"
+                                        class="img-fluid object-fit-contain"
+                                        style="max-height: 80px;"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="text-center text-muted">
+                <p class="mb-0">
+                    {{ home.partners_empty_text }}
+                </p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+<section class="py-5">
+
+    <div class="container py-5">
+
+        <div class="bg-dark text-white rounded-4 shadow p-4 p-md-5">
+
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-8">
+
+                    <span class="text-primary text-uppercase fw-bold small">
+                        {{ home.final_cta_eyebrow }}
+                    </span>
+
+                    <h2 class="display-6 fw-bold mt-2 mb-3">
+                        {{ home.final_cta_title }}
+                    </h2>
+
+                    <p class="lead mb-0">
+                        {{ home.final_cta_description }}
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-lg-end">
+
+                    <a
+                        href="{% url 'contact' %}"
+                        class="btn btn-primary btn-lg px-4"
+                    >
+                        Get in Touch
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

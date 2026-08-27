@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from .models import AboutPage, Testimonial
+from .models import AboutPage
 from home.models import HomePage
 from partners.models import Partner
 
@@ -19,7 +19,6 @@ class AboutUsPageView(TemplateView):
         context.update({
             "home": HomePage.objects.first(),
             "about": AboutPage.objects.first(),
-            "testimonials":  Testimonial.objects.filter(is_active=True),
             "partners": Partner.objects.filter(
                 active=True
             ),

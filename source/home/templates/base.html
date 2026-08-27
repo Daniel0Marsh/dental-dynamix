@@ -120,7 +120,82 @@
             <ul class="navbar-nav gap-4 d-none d-lg-flex align-items-center ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'oursolutions' %}">Our Solutions</a></li>
+                <!-- Our Solutions -->
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                    href="{% url 'partners:products' %}"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                        Our Solutions
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}">
+                                All Solutions
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}?category=cbcts">
+                                CBCTs
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}?category=opgs">
+                                OPGs
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}?category=ios">
+                                Intraoral 3D Scanners (IOS)
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}?category=phosphor_plate_scanners">
+                                Phosphor Plate Scanners
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}?category=intraoral_2d_sensors">
+                                Intraoral 2D Sensors
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}?category=intraoral_xray_generators">
+                                Intraoral X-Ray Generators
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                            href="{% url 'partners:products' %}?category=software">
+                                Software
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
                 <!-- Our Partners -->
                 <li class="nav-item dropdown">
 
@@ -164,7 +239,74 @@
             <ul class="navbar-nav d-lg-none gap-3 w-100 position-relative">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'oursolutions' %}">Our Solutions</a></li>
+                <!-- Our Solutions -->
+                <li class="nav-item">
+
+                    <span class="nav-link fw-semibold">
+                        Our Solutions
+                    </span>
+
+                    <ul class="list-unstyled ps-3">
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}">
+                                All Solutions
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}?category=cbcts">
+                                CBCTs
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}?category=opgs">
+                                OPGs
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}?category=ios">
+                                Intraoral 3D Scanners (IOS)
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}?category=phosphor_plate_scanners">
+                                Phosphor Plate Scanners
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}?category=intraoral_2d_sensors">
+                                Intraoral 2D Sensors
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}?category=intraoral_xray_generators">
+                                Intraoral X-Ray Generators
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link"
+                            href="{% url 'partners:products' %}?category=software">
+                                Software
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
                 <!-- Our Partners -->
                 <li class="nav-item">
 
@@ -199,11 +341,27 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
             </ul>
 
-            <!-- CTA Button -->
-            <div class="d-none d-lg-flex ms-4">
+            <!-- CTA Buttons -->
+            <div class="d-none d-lg-flex ms-4 gap-2">
+
                 <a href="{% url 'contact' %}" class="btn btn-primary">
                     Get in Touch
                 </a>
+
+                <a href="{% url 'remote_support' %}" class="btn btn-outline-secondary">
+                    Get Support
+                </a>
+
+                <a
+                    href="https://wa.me/{{ branding.company_whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-success d-inline-flex align-items-center gap-2"
+                >
+                    <i class="bi bi-whatsapp"></i>
+                    Sales
+                </a>
+
             </div>
 
         </div>
@@ -302,12 +460,6 @@
                             </li>
 
                             <li>
-                                <a href="{% url 'oursolutions' %}" class="footer-link">
-                                    Our Solutions
-                                </a>
-                            </li>
-
-                            <li>
                                 <a href="{% url 'partners:products' %}" class="footer-link">
                                     Our partners
                                 </a>
@@ -318,7 +470,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://get.teamviewer.com/6wdzc77" class="footer-link" target="_blank" rel="noopener noreferrer">
+                                <a href="{% url 'remote_support' %}" class="footer-link">
                                     Remote Support
                                 </a>
                             </li>

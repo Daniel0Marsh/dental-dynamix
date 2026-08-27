@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
-from .models import AboutPage, Testimonial
+from .models import AboutPage
 
 
 class SingletonAdmin(admin.ModelAdmin):
@@ -76,18 +75,3 @@ class AboutPageAdmin(SingletonAdmin):
             },
         ),
     )
-
-
-@admin.register(Testimonial)
-class TestimonialAdmin(admin.ModelAdmin):
-    list_display = (
-        "author_name",
-        "author_company",
-        "is_active",
-        "display_order",
-        "created_at",
-    )
-    list_editable = ("is_active", "display_order")
-    list_filter = ("is_active",)
-    search_fields = ("author_name", "quote", "author_company")
-    ordering = ("display_order", "created_at")

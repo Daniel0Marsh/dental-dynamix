@@ -3,25 +3,67 @@ from django.contrib import admin
 from .models import (
     Partner,
     PartnerProduct,
-    ProductCategory,
+    PartnerProductDocument,
+    PartnerProductImage,
+    PartnerProductSpecification,
     ProductPage,
 )
 
 
-class PartnerProductInline(admin.TabularInline):
 
-    model = PartnerProduct
+class PartnerProductImageInline(admin.TabularInline):
+
+    model = PartnerProductImage
+
+    extra = 1
+
+    fields = (
+        "image",
+        "alt_text",
+        "display_order",
+    )
+
+    ordering = (
+        "display_order",
+        "id",
+    )
+
+
+class PartnerProductDocumentInline(admin.TabularInline):
+
+    model = PartnerProductDocument
+
+    extra = 1
+
+    fields = (
+        "title",
+        "document_type",
+        "file",
+        "active",
+        "display_order",
+    )
+
+    ordering = (
+        "display_order",
+        "title",
+    )
+
+
+class PartnerProductSpecificationInline(admin.TabularInline):
+
+    model = PartnerProductSpecification
 
     extra = 1
 
     fields = (
         "name",
-        "category",
-        "description",
-        "image",
-        "product_url",
-        "active",
+        "value",
         "display_order",
+    )
+
+    ordering = (
+        "display_order",
+        "name",
     )
 
 
@@ -72,6 +114,7 @@ class PartnerAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "hero_image",
+                    "hero_image_alt_text",
                     "hero_title",
                     "hero_subtitle",
                 ),
@@ -101,9 +144,6 @@ class PartnerAdmin(admin.ModelAdmin):
         ),
     )
 
-    inlines = [
-        PartnerProductInline,
-    ]
 
 @admin.register(ProductPage)
 class ProductPageAdmin(admin.ModelAdmin):
@@ -136,39 +176,10 @@ class ProductPageAdmin(admin.ModelAdmin):
     )
 
     def has_add_permission(self, request):
-
         return not ProductPage.objects.exists()
 
     def has_delete_permission(self, request, obj=None):
-
         return False
-
-@admin.register(ProductCategory)
-class ProductCategoryAdmin(admin.ModelAdmin):
-
-    list_display = (
-        "name",
-        "active",
-        "display_order",
-    )
-
-    list_filter = (
-        "active",
-    )
-
-    search_fields = (
-        "name",
-        "description",
-    )
-
-    prepopulated_fields = {
-        "slug": ("name",),
-    }
-
-    ordering = (
-        "display_order",
-        "name",
-    )
 
 
 @admin.register(PartnerProduct)
@@ -179,6 +190,8 @@ class PartnerProductAdmin(admin.ModelAdmin):
         "partner",
         "category",
         "active",
+        "show_on_homepage",
+        "homepage_order",
         "display_order",
     )
 
@@ -186,17 +199,81 @@ class PartnerProductAdmin(admin.ModelAdmin):
         "partner",
         "category",
         "active",
+        "show_on_homepage",
     )
 
     search_fields = (
         "name",
         "description",
+        "detailed_description",
         "partner__name",
     )
 
+    prepopulated_fields = {
+        "slug": ("name",),
+    }
+
+    list_editable = (
+        "active",
+        "show_on_homepage",
+        "homepage_order",
+    )
+
     ordering = (
+        "homepage_order",
         "partner",
         "category",
         "display_order",
         "name",
     )
+
+    fieldsets = (
+        (
+            "Product Information",
+            {
+                "fields": (
+                    "partner",
+                    "category",
+                    "name",
+                    "slug",
+                    "description",
+                    "detailed_description",
+                    "features",
+                    "image",
+                    "product_url",
+                ),
+                "description": (
+                    "Core product information used throughout "
+                    "the website and on the product detail page."
+                ),
+            },
+        ),
+        (
+            "Publishing",
+            {
+                "fields": (
+                    "active",
+                    "display_order",
+                ),
+            },
+        ),
+        (
+            "Homepage",
+            {
+                "fields": (
+                    "show_on_homepage",
+                    "homepage_order",
+                ),
+                "description": (
+                    "Control whether this product appears in "
+                    "the featured products section on the homepage."
+                ),
+            },
+        ),
+    )
+
+    inlines = [
+        PartnerProductImageInline,
+        PartnerProductDocumentInline,
+        PartnerProductSpecificationInline,
+    ]

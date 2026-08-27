@@ -20,6 +20,12 @@ urlpatterns = [
     ),
 
     path(
+        "products/<slug:partner_slug>/<slug:slug>/",
+        views.product_detail,
+        name="product_detail",
+    ),
+
+    path(
         "<slug:slug>/",
         views.partner_detail,
         name="detail",
