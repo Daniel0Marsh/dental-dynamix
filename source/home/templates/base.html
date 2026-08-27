@@ -352,6 +352,7 @@
                     Get Support
                 </a>
 
+                {% if branding.company_whatsapp %}
                 <a
                     href="https://wa.me/{{ branding.company_whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}"
                     target="_blank"
@@ -361,6 +362,8 @@
                     <i class="bi bi-whatsapp"></i>
                     Sales
                 </a>
+
+                {% endif%}
 
             </div>
 
