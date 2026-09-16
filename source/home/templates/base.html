@@ -4,21 +4,6 @@
 <html lang="en">
 <head>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-579400ZRXK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-579400ZRXK');
-    </script>
-
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            TeX: { equationNumbers: { autoNumber: "AMS" } }
-        });
-    </script>
 
     <!-- Organization JSON-LD (GLOBAL, NOT PAGE-LEVEL) -->
     <script type="application/ld+json">
@@ -89,6 +74,7 @@
 </head>
 
 <body>
+
 <!-- Top Bar -->
 <a class="top-bar d-flex justify-content-center align-items-center">
     <div class="top-bar-text text-center">
@@ -476,7 +462,6 @@
                                 <a href="{% url 'remote_support' %}" class="footer-link">
                                     Remote Support
                                 </a>
-                            </li>
                         </ul>
 
                     </div>
@@ -551,6 +536,382 @@
     </div>
 
 </footer>
+
+
+<!-- Analytics Cookie Consent Banner -->
+<div
+    id="cookie-consent-banner"
+    class="fixed-bottom bg-white border-top shadow-lg p-3"
+    role="region"
+    aria-labelledby="cookie-consent-title"
+    hidden
+>
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+
+            <div class="flex-grow-1">
+                <h2
+                    id="cookie-consent-title"
+                    class="h5 mb-2"
+                >
+                    Analytics cookies
+                </h2>
+
+                <p class="mb-2">
+                    We use optional Google Analytics cookies to understand how
+                    visitors use our website and help us improve it.
+                    Analytics will not be activated unless you choose to allow it.
+                </p>
+
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row gap-2 flex-shrink-0">
+
+                <button
+                    type="button"
+                    id="accept-analytics"
+                    class="btn btn-primary"
+                >
+                    Allow analytics
+                </button>
+
+                <button
+                    type="button"
+                    id="reject-analytics"
+                    class="btn btn-outline-secondary"
+                >
+                    Reject analytics
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+
+    const GTM_ID = 'GTM-K8DLBDQQ';
+
+    const CONSENT_COOKIE = 'dentaldynamix_analytics_consent';
+
+    const CONSENT_GRANTED = 'granted';
+    const CONSENT_DENIED = 'denied';
+
+    let gtmLoaded = false;
+
+
+    /*
+     * ---------------------------------------------------------
+     * COOKIE HELPERS
+     * ---------------------------------------------------------
+     */
+
+    function setConsentCookie(value) {
+
+        const maxAge = 60 * 60 * 24 * 180; // 180 days
+
+        let cookie =
+            CONSENT_COOKIE +
+            '=' +
+            encodeURIComponent(value) +
+            '; Max-Age=' +
+            maxAge +
+            '; Path=/; SameSite=Lax';
+
+        if (window.location.protocol === 'https:') {
+            cookie += '; Secure';
+        }
+
+        document.cookie = cookie;
+    }
+
+
+    function getConsentCookie() {
+
+        const cookies = document.cookie.split(';');
+
+        for (const cookie of cookies) {
+
+            const parts = cookie.trim().split('=');
+
+            if (parts[0] === CONSENT_COOKIE) {
+                return decodeURIComponent(
+                    parts.slice(1).join('=')
+                );
+            }
+        }
+
+        return null;
+    }
+
+
+    /*
+     * ---------------------------------------------------------
+     * LOAD GOOGLE TAG MANAGER
+     * ---------------------------------------------------------
+     */
+
+    function loadGoogleTagManager() {
+
+        if (gtmLoaded) {
+            return;
+        }
+
+        gtmLoaded = true;
+
+        /*
+         * Create the dataLayer locally.
+         *
+         * Nothing is sent to Google at this point.
+         */
+        window.dataLayer = window.dataLayer || [];
+
+        window.gtag = window.gtag || function () {
+            window.dataLayer.push(arguments);
+        };
+
+
+        /*
+         * Advertising stays disabled.
+         */
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+
+
+        /*
+         * The user has explicitly allowed analytics.
+         */
+        gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+
+
+        /*
+         * Standard GTM initialisation event.
+         */
+        window.dataLayer.push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+
+
+        /*
+         * Only NOW do we request anything from Google.
+         */
+        const script = document.createElement('script');
+
+        script.async = true;
+
+        script.src =
+            'https://www.googletagmanager.com/gtm.js?id=' +
+            encodeURIComponent(GTM_ID);
+
+        document.head.appendChild(script);
+    }
+
+
+    /*
+     * ---------------------------------------------------------
+     * BANNER
+     * ---------------------------------------------------------
+     */
+
+    function showConsentBanner() {
+
+        const banner =
+            document.getElementById('cookie-consent-banner');
+
+        if (banner) {
+            banner.hidden = false;
+        }
+    }
+
+
+    function hideConsentBanner() {
+
+        const banner =
+            document.getElementById('cookie-consent-banner');
+
+        if (banner) {
+            banner.hidden = true;
+        }
+    }
+
+
+    /*
+     * ---------------------------------------------------------
+     * REMOVE GOOGLE ANALYTICS COOKIES
+     * ---------------------------------------------------------
+     */
+
+    function expireCookie(name, domain) {
+
+        let cookie =
+            name +
+            '=; Max-Age=0; Path=/; SameSite=Lax';
+
+        if (domain) {
+            cookie += '; Domain=' + domain;
+        }
+
+        if (window.location.protocol === 'https:') {
+            cookie += '; Secure';
+        }
+
+        document.cookie = cookie;
+    }
+
+
+    function deleteAnalyticsCookies() {
+
+        document.cookie.split(';').forEach(function (cookie) {
+
+            const name = cookie.split('=')[0].trim();
+
+            if (
+                name === '_ga' ||
+                name === '_gid' ||
+                name === '_gat' ||
+                name.startsWith('_ga_')
+            ) {
+
+                expireCookie(name);
+
+                expireCookie(
+                    name,
+                    '.dentaldynamix.co.uk'
+                );
+            }
+
+        });
+    }
+
+
+    /*
+     * ---------------------------------------------------------
+     * USER CHOICES
+     * ---------------------------------------------------------
+     */
+
+    function acceptAnalytics() {
+
+        setConsentCookie(CONSENT_GRANTED);
+
+        hideConsentBanner();
+
+        loadGoogleTagManager();
+    }
+
+
+    function rejectAnalytics() {
+
+        const wasAlreadyLoaded = gtmLoaded;
+
+        setConsentCookie(CONSENT_DENIED);
+
+        deleteAnalyticsCookies();
+
+        hideConsentBanner();
+
+
+        /*
+         * If the user previously accepted during this page
+         * session, reload so GTM disappears completely.
+         */
+        if (wasAlreadyLoaded) {
+            window.location.reload();
+        }
+    }
+
+
+    /*
+     * Allow footer link to reopen the banner.
+     */
+    window.openCookieSettings = function () {
+        showConsentBanner();
+    };
+
+
+    /*
+     * ---------------------------------------------------------
+     * PAGE START
+     * ---------------------------------------------------------
+     */
+
+    document.addEventListener(
+        'DOMContentLoaded',
+        function () {
+
+            const consent = getConsentCookie();
+
+            const acceptButton =
+                document.getElementById('accept-analytics');
+
+            const rejectButton =
+                document.getElementById('reject-analytics');
+
+
+            if (acceptButton) {
+
+                acceptButton.addEventListener(
+                    'click',
+                    acceptAnalytics
+                );
+            }
+
+
+            if (rejectButton) {
+
+                rejectButton.addEventListener(
+                    'click',
+                    rejectAnalytics
+                );
+            }
+
+
+            /*
+             * Returning visitor who previously accepted.
+             */
+            if (consent === CONSENT_GRANTED) {
+
+                hideConsentBanner();
+
+                loadGoogleTagManager();
+
+                return;
+            }
+
+
+            /*
+             * Returning visitor who previously rejected.
+             */
+            if (consent === CONSENT_DENIED) {
+
+                hideConsentBanner();
+
+                return;
+            }
+
+
+            /*
+             * First visit.
+             */
+            showConsentBanner();
+
+        }
+    );
+
+})();
+</script>
 
 {% comment %} Testimonial Carousel {% endcomment %}
 <script>
