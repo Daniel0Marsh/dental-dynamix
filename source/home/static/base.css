@@ -2,13 +2,13 @@
     /* Colors */
     --primary: #C2A267;
     --secondary: #222222;
-    --primary-text: #7A612F;
+    --primary-text: var(--primary);
     --mute: #6B6B6B;
     --accent: #F2F2F2;
     --border: var(--primary);
     --body: #F6F1E7;
     --border-radius: 8px;
-
+    
 }
 
 /* ===============================
@@ -29,7 +29,7 @@
    =============================== */
 
 .text-primary {
-    color: var(--primary-text) !important;
+    color: var(--primary) !important;
 }
 
 .text-secondary {
