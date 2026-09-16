@@ -3,6 +3,7 @@ import requests
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
@@ -222,13 +223,15 @@ class ContactPageView(TemplateView):
             f"{message}"
         )
 
-        send_mail(
+        email_message = EmailMessage(
             subject=subject,
-            message=message_content,
+            body=message_content,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[recipient_email],
-            fail_silently=False,
+            to=[recipient_email],
+            reply_to=[email],
         )
+
+        email_message.send(fail_silently=False)
 
         # =========================================================
         # SUCCESS
@@ -244,3 +247,4 @@ class ContactPageView(TemplateView):
             self.template_name,
             self.get_context_data()
         )
+    
