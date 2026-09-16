@@ -6,7 +6,7 @@
     --mute: #6B6B6B;
     --accent: #F2F2F2;
     --border: var(--primary);
-    --body: #F6F1E7;
+    --body: #F2F2F2;
     --border-radius: 8px;
 
 }
@@ -548,7 +548,7 @@ body {
    FOOTER
    =============================== */
 .footer {
-  background-color: var(--muted);
+  background-color: var(--mute);
   color: var(--body);
 }
 
