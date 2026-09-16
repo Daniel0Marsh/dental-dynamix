@@ -2,12 +2,13 @@
     /* Colors */
     --primary: #C2A267;
     --secondary: #222222;
-    --primary-text: var(--primary);
+    --primary-text: #7A612F;
     --mute: #6B6B6B;
     --accent: #F2F2F2;
     --border: var(--primary);
-    --body: #FFFFFF;
+    --body: #F6F1E7;
     --border-radius: 8px;
+
 }
 
 /* ===============================
@@ -547,7 +548,7 @@ body {
    FOOTER
    =============================== */
 .footer {
-  background-color: var(--accent);
+  background-color: var(--muted);
   color: var(--body);
 }
 

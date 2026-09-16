@@ -20,6 +20,8 @@
     alt="{{ home.hero_image_alt_text }}"
     class="w-100 h-100 position-absolute top-0 start-0" 
     style="object-fit: cover; z-index: 1;"
+    fetchpriority="high"
+    decoding="async"
   >
 
   <div class="container position-relative" style="z-index: 2;">
@@ -126,6 +128,8 @@
                             class="card-img-top object-fit-cover"
                             alt="{{ home.service_card_2_image_alt_text }}"
                             style="height: 250px;"
+                            loading="lazy"
+                            decoding="async">
                         >
                     {% endif %}
 
@@ -157,6 +161,8 @@
                             class="card-img-top object-fit-cover"
                             alt="{{ home.service_card_3_image_alt_text }}"
                             style="height: 250px;"
+                            loading="lazy"
+                            decoding="async"
                         >
                     {% endif %}
 
@@ -256,6 +262,8 @@
                                                 class="img-fluid"
                                                 alt="{{ product.name }}"
                                                 style="max-height: 420px; object-fit: contain;"
+                                                loading="lazy"
+                                                decoding="async"
                                             >
 
                                         {% else %}
@@ -395,6 +403,8 @@
                             src="{{ home.imaging_image.url }}"
                             alt="{{ home.imaging_image_alt_text }}"
                             class="img-fluid w-100 object-fit-cover"
+                            loading="lazy"
+                            decoding="async"
                         >
 
                     </div>
@@ -703,6 +713,8 @@
                                         alt="{{ partner.name }} logo"
                                         class="img-fluid object-fit-contain"
                                         style="max-height: 80px;"
+                                        loading="lazy"
+                                        decoding="async"
                                     >
 
                                 </div>

@@ -41,13 +41,6 @@
     <!-- Required Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="true">
-
-    <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
 
     <!-- ==================== SEO (STATIC PAGES) ==================== -->
     {% include "meta.html" %}
@@ -61,14 +54,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
 
     <!-- Global JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script>Prism.highlightAll();</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 
     {% block extra_head %}{% endblock %}
 </head>
@@ -95,8 +84,15 @@
         </a>
 
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-            <span class="navbar-toggler-icon"></span>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
 
         <!-- Navigation -->
@@ -385,36 +381,40 @@
                     {% if branding.twitter_url %}
                         <a href="{{ branding.twitter_url }}"
                            target="_blank"
+                           rel="noopener noreferrer"
                            class="text-primary fs-4 text-decoration-none"
                            aria-label="Twitter">
-                            <i class="bi bi-twitter-x"></i>
+                            <i class="bi bi-twitter-x" aria-hidden="true"></i>
                         </a>
                     {% endif %}
 
                     {% if branding.linkedin_url %}
                         <a href="{{ branding.linkedin_url }}"
                            target="_blank"
+                           rel="noopener noreferrer"
                            class="text-primary fs-4 text-decoration-none"
                            aria-label="LinkedIn">
-                            <i class="bi bi-linkedin"></i>
+                            <i class="bi bi-linkedin" aria-hidden="true"></i>
                         </a>
                     {% endif %}
 
                     {% if branding.facebook_url %}
                         <a href="{{ branding.facebook_url }}"
                            target="_blank"
+                           rel="noopener noreferrer"
                            class="text-primary fs-4 text-decoration-none"
                            aria-label="Facebook">
-                            <i class="bi bi-facebook"></i>
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>
                     {% endif %}
 
                     {% if branding.instagram_url %}
                         <a href="{{ branding.instagram_url }}"
                            target="_blank"
+                           rel="noopener noreferrer"
                            class="text-primary fs-4 text-decoration-none"
                            aria-label="Instagram">
-                            <i class="bi bi-instagram"></i>
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
                         </a>
                     {% endif %}
 
@@ -431,9 +431,7 @@
                     <!-- Useful Links -->
                     <div class="col-12 col-md-4 mb-4">
 
-                        <h5 class="mb-3 fw-bold">
-                            Useful Links
-                        </h5>
+                        <h2 class="h5 mb-3 fw-bold">Useful Links</h2>
 
                         <ul class="list-unstyled">
                             <li>
@@ -462,6 +460,7 @@
                                 <a href="{% url 'remote_support' %}" class="footer-link">
                                     Remote Support
                                 </a>
+                            </li>
                         </ul>
 
                     </div>
@@ -470,9 +469,7 @@
                     <!-- Contact -->
                     <div class="col-12 col-md-4 mb-4">
 
-                        <h5 class="mb-3 fw-bold">
-                            Contact Us
-                        </h5>
+                        <h2 class="h5 mb-3 fw-bold">Contact Us</h2>
 
                         <ul class="list-unstyled">
                             <li>
@@ -500,9 +497,7 @@
                     <!-- Location -->
                     <div class="col-12 col-md-4 mb-4">
 
-                        <h5 class="mb-3 fw-bold">
-                            Our Location
-                        </h5>
+                        <h2 class="h5 mb-3 fw-bold">Our Location</h2>
 
                         <ul class="list-unstyled">
                             <li>
