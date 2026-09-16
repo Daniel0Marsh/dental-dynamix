@@ -1,14 +1,24 @@
 :root {
-    /* Colors */
+    /* Brand */
     --primary: #C2A267;
-    --secondary: #222222;
-    --primary-text: #7A612F;
-    --mute: #6B6B6B;
-    --accent: #F2F2F2;
-    --border: var(--primary);
-    --body: #F2F2F2;
-    --border-radius: 8px;
 
+    /* Main text */
+    --secondary: #222222;
+
+    /* Gold text on light backgrounds */
+    --primary-text: #7A612F;
+
+    /* Gold text on dark backgrounds */
+    --primary-text-light: #E0C98E;
+
+    --mute: #6B6B6B;
+
+    /* Warm light surfaces */
+    --body: #F7F3EA;
+    --accent: #EFE9DE;
+
+    --border: var(--primary);
+    --border-radius: 8px;
 }
 
 /* ===============================
@@ -30,6 +40,10 @@
 
 .text-primary {
     color: var(--primary-text) !important;
+}
+
+.text-primary-light {
+    color: var(--primary-text-light) !important;
 }
 
 .text-secondary {
