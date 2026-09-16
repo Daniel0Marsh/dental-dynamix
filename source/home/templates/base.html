@@ -978,30 +978,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!topBar || !navbar) return;
 
-    function handleScroll() {
+    // Invisible marker 10px from the top of the page
+    const sentinel = document.createElement("div");
 
-        if (window.scrollY > 10) {
-            // Hide top bar
-            topBar.classList.add("hidden");
+    sentinel.setAttribute("aria-hidden", "true");
 
-            // Move navbar to the top
-            navbar.classList.add("scrolled");
+    sentinel.style.cssText = `
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        pointer-events: none;
+    `;
 
-        } else {
-            // Show top bar
-            topBar.classList.remove("hidden");
+    document.body.prepend(sentinel);
 
-            // Put navbar back underneath top bar
-            navbar.classList.remove("scrolled");
-        }
-    }
+    const observer = new IntersectionObserver(([entry]) => {
 
-    window.addEventListener("scroll", handleScroll, {
-        passive: true
+        const scrolled = !entry.isIntersecting;
+
+        topBar.classList.toggle("hidden", scrolled);
+        navbar.classList.toggle("scrolled", scrolled);
+
+    }, {
+        threshold: 0
     });
 
-    // Run once when page loads
-    handleScroll();
+    observer.observe(sentinel);
 
 });
 </script>
