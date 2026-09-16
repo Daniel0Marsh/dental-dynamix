@@ -122,10 +122,14 @@
 
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{{ branding.logo.url }}" 
-                 alt="{{ branding.logo_alt_text }}" 
-                 data-geo="{{ branding.logo_geo_tag }}" 
-                 class="img-fluid" style="max-height:60px;">
+            <img
+                src="{{ branding.logo.url }}"
+                width="374"
+                height="44"
+                alt="{{ branding.logo_alt_text }}"
+                data-geo="{{ branding.logo_geo_tag }}"
+                class="img-fluid"
+                style="max-height: 60px;">
         </a>
 
         <!-- Toggler -->
@@ -416,10 +420,11 @@
                 <a href="{% url 'home' %}" class="d-block mb-2">
                     <img
                         src="{{ branding.logo.url }}"
+                        width="374"
+                        height="44"
                         alt="{{ branding.logo_alt_text }}"
                         class="img-fluid mx-auto mx-md-0"
-                        style="max-width: 300px;"
-                    >
+                        style="max-width: 300px;">
                 </a>
 
                 <!-- Social Icons -->
