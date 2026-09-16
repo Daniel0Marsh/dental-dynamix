@@ -548,7 +548,7 @@ body {
    FOOTER
    =============================== */
 .footer {
-  background-color: var(--mute);
+  background-color: var(--accent);
   color: var(--body);
 }
 
