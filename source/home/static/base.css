@@ -9,7 +9,7 @@
     --primary-text: #7A612F;
 
     /* Gold text on dark backgrounds */
-    --primary-text-light: #E0C98E;
+    --primary-text-light: #C2A267;
 
     --mute: #6B6B6B;
 
@@ -562,7 +562,7 @@ body {
    FOOTER
    =============================== */
 .footer {
-  background-color: var(--accent);
+  background-color: var(--body);
   color: var(--body);
 }
 
