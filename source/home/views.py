@@ -4,7 +4,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpRequest
 from django.template import Context
 from typing import Dict, Any
-from .models import HomePage, TermsAndConditionsPage
+from .models import HomePage, TermsAndConditionsPage, CampaignPage
 from partners.models import PartnerProduct
 from branding.models import Branding
 
@@ -62,3 +62,24 @@ class TermsAndConditionsView(TemplateView):
             'terms_and_conditions': TermsAndConditionsPage.objects.first(),
         }
         return context
+
+
+@method_decorator(never_cache, name="dispatch")
+class CampaignPageView(TemplateView):
+    """
+    View for rendering the CampaignPage page.
+    """
+
+    template_name = "campaign.html"
+
+    def get_context_data(self, **kwargs) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+
+
+        context.update({
+            "branding": Branding.objects.first(),
+            "campaign": CampaignPage.objects.first(),
+        })
+
+        return context
+    

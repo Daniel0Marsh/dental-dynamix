@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+{# Page-specific CSS or JS ONLY if required #}
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================================================
+     Hero Section
+========================================================= -->
+<section
+  id="hero-section"
+  class="hero-overlay d-flex align-items-center text-light position-relative"
+  style="min-height: 85vh;"
+>
+  <img
+    src="{{ service.hero_image.url }}"
+    alt="{{ service.hero_image_alt_text }}"
+    class="w-100 h-100 position-absolute top-0 start-0"
+    style="object-fit: cover; z-index: 1;"
+  >
+
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="row">
+      <div class="col-lg-8">
+
+        <h1 class="fw-bold display-4 mb-4">
+          {{ service.hero_title }}
+        </h1>
+
+        <p class="fw-bold lead mb-4">
+          {{ service.hero_subtitle }}
+        </p>
+
+        <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-4">
+            <a href="{% url 'partners:products' %}" class="btn btn-secondary">
+                Explore Our Solutions
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn btn-outline-primary">
+                Get in Touch
+            </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+<section class="pt-5" id="service-cards">
+    <div class="container py-5">
+
+        <div class="row g-4">
+
+            <!-- SERVICE BOX 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-3 p-xl-4 text-center">
+
+                        <div class="d-inline-flex align-items-center justify-content-center text-primary rounded-3">
+                            <i class="bi bi-calendar3 display-3" aria-hidden="true"></i>
+                        </div>
+
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ service.service_card_1_title }}
+                        </h3>
+
+                        <p class="text-muted mb-0">
+                            {{ service.service_card_1_description }}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE BOX 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-3 p-xl-4 text-center">
+
+                        <div class="d-inline-flex align-items-center justify-content-center text-primary rounded-3">
+                            <i class="bi bi-gear display-3" aria-hidden="true"></i>
+                        </div>
+
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ service.service_card_2_title }}
+                        </h3>
+
+                        <p class="text-muted mb-0">
+                            {{ service.service_card_2_description }}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE BOX 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-3 p-xl-4 text-center">
+
+                        <div class="d-inline-flex align-items-center justify-content-center text-primary rounded-3">
+                            <i class="bi bi-wrench display-3" aria-hidden="true"></i>
+                        </div>
+
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ service.service_card_3_title }}
+                        </h3>
+
+                        <p class="text-muted mb-0">
+                            {{ service.service_card_3_description }}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- YOUR EQUIPMENT -->
+<section class="py-5 bg-body-tertiary" id="your-equipment">
+    <div class="container py-lg-4">
+
+        <!-- SECTION INTRODUCTION -->
+        <div class="row align-items-end g-4 mb-5">
+            <div class="col-lg-7">
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ service.equipment_eyebrow }}
+                </span>
+
+                <h2 class="display-6 fw-bold text-secondary mt-2 mb-0">
+                    {{ service.equipment_title }}
+                </h2>
+            </div>
+
+            <div class="col-lg-5">
+                <p class="lead text-muted mb-0">
+                    {{ service.equipment_description }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- EQUIPMENT CARD 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                    {% if service.equipment_card_1_image %}
+                        <div class="ratio ratio-4x3 bg-white">
+                            <img
+                                src="{{ service.equipment_card_1_image.url }}"
+                                class="w-100 h-100 object-fit-contain p-4"
+                                alt="{{ service.equipment_card_1_image_alt_text }}"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </div>
+                    {% endif %}
+
+                    <div class="card-body d-flex flex-column p-4">
+                        <h3 class="h4 fw-bold text-secondary">
+                            {{ service.equipment_card_1_title }}
+                        </h3>
+
+                        <p class="text-muted lh-lg mb-4">
+                            {{ service.equipment_card_1_description }}
+                        </p>
+
+                        <div class="mt-auto pt-3">
+                            <a
+                                href="/contact/"
+                                class="link-primary link-offset-3 link-underline-opacity-0 link-underline-opacity-100-hover fw-semibold d-inline-flex align-items-center gap-2"
+                            >
+                                Discuss your equipment
+                                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                <span class="visually-hidden">
+                                    — {{ service.equipment_card_1_title }}
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- EQUIPMENT CARD 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                    {% if service.equipment_card_2_image %}
+                        <div class="ratio ratio-4x3 bg-white">
+                            <img
+                                src="{{ service.equipment_card_2_image.url }}"
+                                class="w-100 h-100 object-fit-contain p-4"
+                                alt="{{ service.equipment_card_2_image_alt_text }}"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </div>
+                    {% endif %}
+
+                    <div class="card-body d-flex flex-column p-4">
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ service.equipment_card_2_title }}
+                        </h3>
+
+                        <p class="text-muted lh-lg mb-4">
+                            {{ service.equipment_card_2_description }}
+                        </p>
+
+                        <div class="mt-auto pt-3">
+                            <a
+                                href="/contact/"
+                                class="link-primary link-offset-3 link-underline-opacity-0 link-underline-opacity-100-hover fw-semibold d-inline-flex align-items-center gap-2"
+                            >
+                                Discuss your equipment
+                                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                <span class="visually-hidden">
+                                    — {{ service.equipment_card_2_title }}
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- EQUIPMENT CARD 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                    {% if service.equipment_card_3_image %}
+                        <div class="ratio ratio-4x3 bg-white">
+                            <img
+                                src="{{ service.equipment_card_3_image.url }}"
+                                class="w-100 h-100 object-fit-contain p-4"
+                                alt="{{ service.equipment_card_3_image_alt_text }}"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </div>
+                    {% endif %}
+
+                    <div class="card-body d-flex flex-column p-4">
+                        <h3 class="h4 fw-bold text-secondary mb-3">
+                            {{ service.equipment_card_3_title }}
+                        </h3>
+
+                        <p class="text-muted lh-lg mb-4">
+                            {{ service.equipment_card_3_description }}
+                        </p>
+
+                        <div class="mt-auto pt-3">
+                            <a
+                                href="/contact/"
+                                class="link-primary link-offset-3 link-underline-opacity-0 link-underline-opacity-100-hover fw-semibold d-inline-flex align-items-center gap-2"
+                            >
+                                Discuss your equipment
+                                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                <span class="visually-hidden">
+                                    — {{ service.equipment_card_3_title }}
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =========================================================
+     TELL US WHAT NEEDS ATTENTION
+========================================================= -->
+<section class="pt-5 bg-light" id="service-enquiry">
+    <div class="container py-4">
+        <div class="row g-5 align-items-center">
+
+            <!-- SECTION CONTENT -->
+            <div class="col-lg-7">
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ service.service_enquiry_eyebrow }}
+                </span>
+                <h2 class="display-6 fw-bold text-secondary mb-3">
+                    {{ service.service_enquiry_title }}
+                </h2>
+
+                <p class="lead text-muted mb-4">
+                    {{ service.service_enquiry_description }}
+                </p>
+
+                <ul class="list-unstyled mb-0">
+                    <li class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-check-circle-fill text-primary fs-5"
+                           aria-hidden="true"></i>
+                        <span>{{ service.service_enquiry_item_1 }}</span>
+                    </li>
+
+                    <li class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-check-circle-fill text-primary fs-5"
+                           aria-hidden="true"></i>
+                        <span>{{ service.service_enquiry_item_2 }}</span>
+                    </li>
+
+                    <li class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-check-circle-fill text-primary fs-5"
+                           aria-hidden="true"></i>
+                        <span>{{ service.service_enquiry_item_3 }}</span>
+                    </li>
+
+                    <li class="d-flex align-items-center gap-3">
+                        <i class="bi bi-check-circle-fill text-primary fs-5"
+                           aria-hidden="true"></i>
+                        <span>{{ service.service_enquiry_item_4 }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CONTACT BOX -->
+            <div class="col-lg-5">
+                <div class="card border-0 rounded-4 shadow-sm bg-dark">
+                    <div class="card-body p-4 p-xl-5">
+                        <span class="text-primary fw-bold text-uppercase small">
+                            {{ service.service_enquiry_contact_eyebrow }}
+                        </span>
+                        <h3 class="h3 fw-bold text-light mb-3">
+                            {{ service.service_enquiry_contact_title }}
+                        </h3>
+
+                        <p class="text-light mb-4">
+                            {{ service.service_enquiry_contact_description }}
+                        </p>
+
+                        <a href="{% url 'contact' %}"
+                           class="btn btn-primary btn-lg mb-4">
+                            Send an Enquiry
+                            <i class="bi bi-arrow-right ms-2"
+                               aria-hidden="true"></i>
+                        </a>
+
+                        <div>
+                            <a href="tel:{{ branding.company_phone }}"
+                               class="d-inline-flex align-items-center gap-2 text-light fw-bold text-decoration-none">
+                                <i class="bi bi-telephone-fill text-light"
+                                   aria-hidden="true"></i>
+                                {{ branding.company_phone }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

@@ -47,23 +47,6 @@ SUPPORT_EMAIL = config("SUPPORT_EMAIL")
 
 SITE_URL = "http://localhost:8000" if DEBUG else config("SITE_URL")
 
-# ==============================================================================
-# Bitcoin Email Configuration
-# ==============================================================================
-
-BITCOIN_EMAIL_BACKEND = config("BITCOIN_EMAIL_BACKEND", default=EMAIL_BACKEND)
-BITCOIN_EMAIL_HOST = config("BITCOIN_EMAIL_HOST", default=EMAIL_HOST)
-BITCOIN_EMAIL_PORT = config("BITCOIN_EMAIL_PORT", default=EMAIL_PORT)
-BITCOIN_EMAIL_USE_TLS = config("BITCOIN_EMAIL_USE_TLS", default=EMAIL_USE_TLS)
-BITCOIN_EMAIL_HOST_USER = config("BITCOIN_EMAIL_HOST_USER", default=EMAIL_HOST_USER)
-BITCOIN_EMAIL_HOST_PASSWORD = config("BITCOIN_EMAIL_HOST_PASSWORD", default=EMAIL_HOST_PASSWORD)
-BITCOIN_FROM_EMAIL = config("BITCOIN_FROM_EMAIL", default=EMAIL_HOST_USER)
-
-# ==============================================================================
-# Bitcoin Tip Jar
-# ==============================================================================
-
-BITCOIN_TIP_ADDRESS = config("BITCOIN_TIP_ADDRESS", default="")
 
 # ==============================================================================
 # Application Definition
@@ -83,6 +66,7 @@ INSTALLED_APPS = [
     "branding",
     "home",
     "about",
+    "services",
     "partners",
     "contact",
     "errors",

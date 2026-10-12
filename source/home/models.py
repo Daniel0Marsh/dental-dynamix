@@ -555,3 +555,109 @@ class TermsAndConditionsPage(models.Model):
     class Meta:
         verbose_name = "Terms and Conditions Page"
         verbose_name_plural = "Terms and Conditions Page"     
+
+
+
+class CampaignPage(models.Model):
+    """
+    Singleton content model for the website CampaignPage.
+
+    The number and layout of CampaignPage cards are deliberately fixed.
+    This model controls content only: text, images and image alt text.
+    """
+
+    # =========================================================
+    # HERO
+    # =========================================================
+    hero_image = models.ImageField(
+        upload_to="campaigns/",
+        help_text="Upload the hero image for the campaign page.",
+        default="default/hero_image.webp",
+    )
+
+    hero_image_alt_text = models.CharField(
+        max_length=255,
+        help_text="Provide alternative text for the hero image for accessibility.",
+        default="Dental Dynamix Hero Image",
+    )
+
+    hero_title = models.TextField(
+        help_text="The main title displayed on the homepage hero section.",
+        default="Connect your practice with DTX Studio Go Sync",
+    )
+
+    hero_subtitle = models.TextField(
+        help_text="The subtitle displayed below the main title in the hero section.",
+        default="Bring patient imaging and treatment data together across your practice locations with secure, real-time cloud access.",
+    )
+
+
+    # =========================================================
+    # CAMPAIGN DETAILS SECTION
+    # =========================================================
+
+    campaign_details_eyebrow = models.CharField(
+        max_length=255,
+        help_text="Small label displayed above the campaign details heading.",
+        default="Connected patient data",
+    )
+
+    campaign_details_title = models.CharField(
+        max_length=255,
+        help_text="Main heading for the campaign details section.",
+        default="The right patient information, wherever you work",
+    )
+
+    campaign_details_description = models.TextField(
+        help_text="Introductory text for the campaign details section.",
+        default=(
+            "Designed for multi-site practices using DTX Studio Clinic, DTX Studio Go Sync helps your teams access shared patient imaging and treatment information across locations. By reducing manual data transfers and keeping information connected through the cloud, it supports a smoother workflow for everyday appointments and urgent care."
+        ),
+    )
+
+    # =========================================================
+    # FINAL CTA
+    # =========================================================
+
+    final_cta_eyebrow = models.CharField(
+        max_length=255,
+        help_text="Small label displayed above the final CTA heading.",
+        default="Early access opportunity",
+    )
+
+    final_cta_title = models.CharField(
+        max_length=255,
+        help_text="Main heading for the final CTA section.",
+        default="Explore early access for your practice",
+    )
+
+    final_cta_description = models.TextField(
+        help_text="Description displayed in the final CTA section.",
+        default=(
+            "DTX Studio Go Sync is coming soon. Practices with 2–12 locations can register their interest in the early access programme. Complete the form to join the waitlist."
+        ),
+    )
+
+    # =========================================================
+    # ADMIN / META
+    # =========================================================
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        help_text="Automatically updated whenever the campaign page content changes.",
+    )
+
+    class Meta:
+        verbose_name = "Campaign Page"
+        verbose_name_plural = "Campaign Pages"
+
+    def __str__(self):
+        return "Campaign Page"
+
+    def save(self, *args, **kwargs):
+        """
+        Ensure that only one campaign page record exists.
+        """
+        self.pk = 1
+        super().save(*args, **kwargs)
+    
