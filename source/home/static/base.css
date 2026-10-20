@@ -625,15 +625,16 @@ body {
 
 /* ===============================
    HOMEPAGE HERO OVERLAY
-   Dark on the left, clear on the right
+   Visible left side, gradual fade
 ================================ */
 .hero-overlay-home::before {
     background: linear-gradient(
         90deg,
-        rgba(20, 20, 20, 0.80) 0%,
-        rgba(20, 20, 20, 0.65) 30%,
-        rgba(20, 20, 20, 0.35) 55%,
-        rgba(20, 20, 20, 0.10) 75%,
-        rgba(20, 20, 20, 0) 100%
+        rgba(34, 34, 34, 0.65) 0%,
+        rgba(34, 34, 34, 0.60) 35%,
+        rgba(34, 34, 34, 0.50) 50%,
+        rgba(34, 34, 34, 0.35) 65%,
+        rgba(34, 34, 34, 0.15) 85%,
+        rgba(34, 34, 34, 0) 100%
     );
 }
