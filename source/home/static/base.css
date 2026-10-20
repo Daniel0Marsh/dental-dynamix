@@ -610,13 +610,30 @@ body {
 
 
 
+
 /* ===============================
-HERO OVERLAY
-=============================== */
+   DEFAULT HERO OVERLAY
+   Used on other pages
+================================ */
 .hero-overlay::before {
     content: "";
     position: absolute;
     inset: 0;
     background-color: rgba(34, 34, 34, 0.7);
     z-index: 2;
+}
+
+/* ===============================
+   HOMEPAGE HERO OVERLAY
+   Dark on the left, clear on the right
+================================ */
+.hero-overlay-home::before {
+    background: linear-gradient(
+        90deg,
+        rgba(20, 20, 20, 0.80) 0%,
+        rgba(20, 20, 20, 0.65) 30%,
+        rgba(20, 20, 20, 0.35) 55%,
+        rgba(20, 20, 20, 0.10) 75%,
+        rgba(20, 20, 20, 0) 100%
+    );
 }
