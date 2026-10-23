@@ -598,17 +598,15 @@
 
                                     <a
                                         href="{{ product.get_absolute_url }}"
-                                        class="d-block bg-light"
+                                        class="d-flex align-items-center justify-content-center bg-light p-3"
+                                        style="height: 260px;"
                                     >
 
                                         <img
                                             src="{{ product.image.url }}"
-                                            class="card-img-top"
+                                            class="img-fluid w-100 h-100 object-fit-contain"
                                             alt="{{ product.name }}"
-                                            style="
-                                                height: 240px;
-                                                object-fit: fill;
-                                            "
+                                            loading="lazy"
                                         >
 
                                     </a>
@@ -616,23 +614,11 @@
                                 {% else %}
 
                                     <div
-                                        class="
-                                            bg-light
-                                            d-flex
-                                            align-items-center
-                                            justify-content-center
-                                        "
-                                        style="height: 240px;"
+                                        class="bg-light d-flex align-items-center justify-content-center"
+                                        style="height: 260px;"
                                     >
 
-                                        <i
-                                            class="
-                                                bi
-                                                bi-image
-                                                display-4
-                                                text-muted
-                                            "
-                                        ></i>
+                                        <i class="bi bi-image display-4 text-muted"></i>
 
                                     </div>
 
