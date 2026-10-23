@@ -189,6 +189,7 @@ class PartnerProductAdmin(admin.ModelAdmin):
         "name",
         "partner",
         "category",
+        "condition",
         "active",
         "show_on_homepage",
         "homepage_order",
@@ -198,6 +199,7 @@ class PartnerProductAdmin(admin.ModelAdmin):
     list_filter = (
         "partner",
         "category",
+        "condition",
         "active",
         "show_on_homepage",
     )
@@ -234,6 +236,7 @@ class PartnerProductAdmin(admin.ModelAdmin):
                 "fields": (
                     "partner",
                     "category",
+                    "condition",
                     "name",
                     "slug",
                     "description",

@@ -23,15 +23,11 @@ def partner_list(request):
     )
 
 
+
 def _get_product_catalogue(request, partner=None):
     """
-    Build the product catalogue.
-
-    If a partner is supplied, the catalogue is restricted
-    to that partner. Otherwise, all active partner products
-    are shown.
-
-    Search and category filters are then applied.
+    Build the product catalogue with independent
+    partner, search, category and condition filters.
     """
 
     products = (
@@ -40,63 +36,51 @@ def _get_product_catalogue(request, partner=None):
             active=True,
             partner__active=True,
         )
-        .select_related(
-            "partner",
-        )
+        .select_related("partner")
     )
 
-    # ---------------------------------------------------------
     # PARTNER FILTER
-    # ---------------------------------------------------------
-
     if partner:
-        products = products.filter(
-            partner=partner
-        )
+        products = products.filter(partner=partner)
 
-    # ---------------------------------------------------------
     # SEARCH
-    # ---------------------------------------------------------
-
-    query = request.GET.get(
-        "q",
-        ""
-    ).strip()
+    query = request.GET.get("q", "").strip()
 
     if query:
         products = products.filter(
             Q(name__icontains=query)
             | Q(description__icontains=query)
+            | Q(detailed_description__icontains=query)
         )
 
-    # ---------------------------------------------------------
     # CATEGORY FILTER
-    # ---------------------------------------------------------
+    category_slug = request.GET.get("category", "").strip()
 
-    category_slug = request.GET.get(
-        "category",
-        ""
-    ).strip()
+    valid_categories = dict(PartnerProduct.CATEGORY_CHOICES)
 
-    if category_slug:
-        products = products.filter(
-            category=category_slug
-        )
+    if category_slug in valid_categories:
+        products = products.filter(category=category_slug)
+    else:
+        category_slug = ""
 
-    # ---------------------------------------------------------
+    # CONDITION FILTER
+    selected_condition = request.GET.get("condition", "").strip()
+
+    valid_conditions = dict(PartnerProduct.CONDITION_CHOICES)
+
+    if selected_condition in valid_conditions:
+        products = products.filter(condition=selected_condition)
+    else:
+        selected_condition = ""
+
     # ORDERING
-    # ---------------------------------------------------------
-
     products = products.order_by(
         "category",
         "display_order",
         "name",
     )
 
-    # ---------------------------------------------------------
-    # CATEGORY CHOICES
-    # ---------------------------------------------------------
-
+    # CATEGORY CHOICES: matches the original template
     categories = [
         {
             "slug": slug,
@@ -105,28 +89,24 @@ def _get_product_catalogue(request, partner=None):
         for slug, name in PartnerProduct.CATEGORY_CHOICES
     ]
 
-    # ---------------------------------------------------------
     # PARTNERS
-    # ---------------------------------------------------------
-
     partners = (
         Partner.objects
-        .filter(
-            active=True
-        )
-        .order_by(
-            "display_order",
-            "name",
-        )
+        .filter(active=True)
+        .order_by("display_order", "name")
     )
 
     return {
         "products": products,
         "categories": categories,
+        "product_condition_choices": PartnerProduct.CONDITION_CHOICES,
         "partners": partners,
         "query": query,
         "selected_category": category_slug,
+        "selected_condition": selected_condition,
     }
+
+
 def partner_detail(request, slug):
     """
     Display the catalogue filtered to a specific partner.

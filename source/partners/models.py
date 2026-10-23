@@ -175,6 +175,11 @@ class PartnerProduct(models.Model):
         ("software", "Software"),
     )
 
+    CONDITION_CHOICES = (
+        ("new", "New"),
+        ("used", "Used / Pre-Owned"),
+    )
+
     partner = models.ForeignKey(
         Partner,
         on_delete=models.CASCADE,
@@ -184,6 +189,13 @@ class PartnerProduct(models.Model):
     category = models.CharField(
         max_length=40,
         choices=CATEGORY_CHOICES
+    )
+
+    condition = models.CharField(
+        max_length=10,
+        choices=CONDITION_CHOICES,
+        default="new",
+        help_text="Select whether this product is new or pre-owned."
     )
 
     name = models.CharField(

@@ -129,6 +129,42 @@
     border-color: var(--secondary);
 }
 
+.link-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--primary) !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.link-primary i {
+    transition: transform 0.2s ease;
+}
+
+.link-primary:hover {
+    color: var(--secondary) !important;
+}
+
+.link-primary:hover i {
+    transform: translateX(4px);
+}
+
+.link-primary:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .link-primary,
+    .link-primary i {
+        transition: none;
+    }
+}
+
+
 .card {
     border-radius: var(--border-radius) !important;
     border: 1px solid var(--border) !important;

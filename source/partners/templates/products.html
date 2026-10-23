@@ -430,99 +430,53 @@
                                      CATEGORIES
                                 ================================== -->
 
+                                <!-- CATEGORY FILTER -->
                                 <div class="mb-4">
-
-                                    <h4 class="h6 fw-bold text-secondary mb-3">
+                                    <label for="categoryFilter" class="form-label fw-bold">
                                         Category
-                                    </h4>
+                                    </label>
 
-
-                                    <div class="list-group list-group-flush">
-
-
-                                        <!-- ALL CATEGORIES -->
-
-                                        <button
-                                            type="submit"
-                                            name="category"
-                                            value=""
-                                            class="
-                                                list-group-item
-                                                list-group-item-action
-                                                border-0
-                                                px-0
-                                                py-2
-                                                text-start
-                                                {% if not selected_category %}
-                                                    fw-bold
-                                                    text-primary
-                                                {% endif %}
-                                            "
-                                        >
-
-                                            <i
-                                                class="
-                                                    bi
-                                                    {% if not selected_category %}
-                                                        bi-check-circle-fill
-                                                    {% else %}
-                                                        bi-circle
-                                                    {% endif %}
-                                                    me-2
-                                                "
-                                            ></i>
-
-                                            All Categories
-
-                                        </button>
-
+                                    <select id="categoryFilter" name="category" class="form-select">
+                                        <option value="">All Categories</option>
 
                                         {% for category in categories %}
-
-                                            <button
-                                                type="submit"
-                                                name="category"
+                                            <option
                                                 value="{{ category.slug }}"
-                                                class="
-                                                    list-group-item
-                                                    list-group-item-action
-                                                    border-0
-                                                    px-0
-                                                    py-2
-                                                    text-start
-                                                    {% if selected_category == category.slug %}
-                                                        fw-bold
-                                                        text-primary
-                                                    {% endif %}
-                                                "
+                                                {% if selected_category == category.slug %}selected{% endif %}
                                             >
-
-                                                <i
-                                                    class="
-                                                        bi
-                                                        {% if selected_category == category.slug %}
-                                                            bi-check-circle-fill
-                                                        {% else %}
-                                                            bi-circle
-                                                        {% endif %}
-                                                        me-2
-                                                    "
-                                                ></i>
-
                                                 {{ category.name }}
-
-                                            </button>
-
+                                            </option>
                                         {% endfor %}
-
-                                    </div>
-
+                                    </select>
                                 </div>
+
+                                <!-- CONDITION FILTER -->
+                                <div class="mb-4">
+                                    <label for="conditionFilter" class="form-label fw-bold">
+                                        Condition
+                                    </label>
+
+                                    <select id="conditionFilter" name="condition" class="form-select">
+                                        <option value="">All Conditions</option>
+
+                                        {% for value, label in product_condition_choices %}
+                                            <option
+                                                value="{{ value }}"
+                                                {% if selected_condition == value %}selected{% endif %}
+                                            >
+                                                {{ label }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+
 
 
                                 <!-- =================================
                                      APPLY
                                 ================================== -->
+
 
                                 <button
                                     type="submit"
@@ -688,6 +642,15 @@
                                 <!-- PRODUCT CONTENT -->
 
                                 <div class="card-body d-flex flex-column p-4">
+
+                                    {% if product.condition == "used" %}
+                                        <div class="mb-3">
+                                            <span class="badge rounded-pill bg-warning-subtle text-dark border border-warning-subtle px-3 py-2">
+                                                <i class="bi bi-arrow-repeat me-1"></i>
+                                                Used / Pre-Owned
+                                            </span>
+                                        </div>
+                                    {% endif %}
 
 
                                     <!-- PARTNER -->

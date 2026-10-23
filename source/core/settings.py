@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "about",
     "services",
     "partners",
+    "campaign",
     "contact",
     "errors",
     "seo",

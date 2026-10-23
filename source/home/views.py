@@ -4,7 +4,8 @@ from django.utils.decorators import method_decorator
 from django.http import HttpRequest
 from django.template import Context
 from typing import Dict, Any
-from .models import HomePage, TermsAndConditionsPage, CampaignPage
+from .models import HomePage, TermsAndConditionsPage
+from campaign.models import CampaignPage
 from partners.models import PartnerProduct
 from branding.models import Branding
 
@@ -15,7 +16,7 @@ class HomePageView(TemplateView):
     View for rendering the home page.
     """
 
-    template_name = "home-v2.html"
+    template_name = "home.html"
 
     def get_context_data(self, **kwargs) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -41,6 +42,7 @@ class HomePageView(TemplateView):
             "branding": Branding.objects.first(),
             "home": home_page,
             "featured_products": featured_products,
+            "campaign": CampaignPage.objects.first(),
         })
 
         return context
@@ -61,25 +63,5 @@ class TermsAndConditionsView(TemplateView):
             "home": HomePage.objects.first(),
             'terms_and_conditions': TermsAndConditionsPage.objects.first(),
         }
-        return context
-
-
-@method_decorator(never_cache, name="dispatch")
-class CampaignPageView(TemplateView):
-    """
-    View for rendering the CampaignPage page.
-    """
-
-    template_name = "campaign.html"
-
-    def get_context_data(self, **kwargs) -> Dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-
-
-        context.update({
-            "branding": Branding.objects.first(),
-            "campaign": CampaignPage.objects.first(),
-        })
-
         return context
     

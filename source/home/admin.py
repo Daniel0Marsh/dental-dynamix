@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import CampaignPage, HomePage, TermsAndConditionsPage
+from .models import HomePage, TermsAndConditionsPage
 
 
 class SingletonAdmin(admin.ModelAdmin):
@@ -349,8 +349,3 @@ class TermsAndConditionsAdmin(SingletonAdmin):
             },
         ),
     )
-
-
-@admin.register(CampaignPage)
-class CampaignPageAdmin(SingletonAdmin):
-    pass

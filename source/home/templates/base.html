@@ -166,11 +166,21 @@
 
                         <li>
                             <a class="dropdown-item"
+                            href="{% url 'services' %}">
+                                Services
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
                             href="{% url 'partners:products' %}">
                                 All Solutions
                             </a>
                         </li>
-
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -280,7 +290,18 @@
                     <ul class="list-unstyled ps-3">
 
                         <li>
-                            <a class="nav-link"
+                            <a class="dropdown-item"
+                            href="{% url 'services' %}">
+                                Services
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
                             href="{% url 'partners:products' %}">
                                 All Solutions
                             </a>
@@ -495,6 +516,12 @@
                             <li>
                                 <a href="{% url 'about' %}" class="footer-link">
                                     About
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'services' %}" class="footer-link">
+                                    Services
                                 </a>
                             </li>
 

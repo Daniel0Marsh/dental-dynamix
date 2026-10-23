@@ -163,43 +163,57 @@ class HomePage(models.Model):
         default="Our featured products will be displayed here.",
     )
 
+
     # =========================================================
-    # IMAGING FEATURE
+    # DIGITAL DENTISTRY & AI SOFTWARE FEATURE
     # =========================================================
 
     imaging_eyebrow = models.CharField(
         max_length=255,
-        help_text="Small label displayed above the imaging heading.",
-        default="Digital dentistry",
+        help_text="Small label displayed above the digital dentistry heading.",
+        default="AI-powered dental software",
     )
 
     imaging_title = models.CharField(
         max_length=255,
-        help_text="Main heading for the digital dentistry section.",
-        default="Digital imaging solutions for modern dental practices",
+        help_text="Main promotional heading for digital dentistry software.",
+        default="See beyond the scan with intelligent dental imaging",
     )
 
     imaging_description = models.TextField(
-        help_text="Introductory text for the digital dentistry section.",
+        help_text="Promotional introduction highlighting digital imaging, "
+                "AI-assisted analysis and clinical workflow benefits.",
         default=(
-            "Dental Dynamix works with leading dental technology manufacturers "
-            "to supply and support imaging systems that integrate into modern "
-            "clinical workflows."
+            "Discover the next generation of digital dentistry with "
+            "Dental Dynamix. We supply and support advanced dental imaging "
+            "and software solutions, including DEXIS DTX Studio Clinic, "
+            "designed to help clinicians turn complex imaging data into "
+            "clearer clinical insights. Explore CBCT-driven 3D visualisation, "
+            "AI-assisted root canal segmentation and automated endodontic "
+            "mapping to support case assessment, treatment planning and "
+            "patient communication. With the right technology and expert "
+            "support, your practice can work more efficiently and approach "
+            "complex cases with greater confidence."
         ),
     )
 
     imaging_image = models.ImageField(
         upload_to="home/",
-        help_text="Image displayed in the digital dentistry section.",
-        default="default/imaging_image.webp",
+        help_text="Promotional image showing dental imaging software, "
+                "3D CBCT visualisation or the DTX Studio Clinic Endo workflow.",
+        default="default/dtx-monitor.webp",
         blank=True,
     )
 
     imaging_image_alt_text = models.CharField(
         max_length=255,
-        help_text="Alternative text for the digital dentistry image.",
-        default="Dental digital imaging technology",
+        help_text="Descriptive alternative text for the digital dentistry image.",
+        default=(
+            "DEXIS DTX Studio Clinic dental imaging software displaying "
+            "3D root canal anatomy and AI-assisted endodontic analysis"
+        ),
     )
+
 
 
     # =========================================================
@@ -555,109 +569,3 @@ class TermsAndConditionsPage(models.Model):
     class Meta:
         verbose_name = "Terms and Conditions Page"
         verbose_name_plural = "Terms and Conditions Page"     
-
-
-
-class CampaignPage(models.Model):
-    """
-    Singleton content model for the website CampaignPage.
-
-    The number and layout of CampaignPage cards are deliberately fixed.
-    This model controls content only: text, images and image alt text.
-    """
-
-    # =========================================================
-    # HERO
-    # =========================================================
-    hero_image = models.ImageField(
-        upload_to="campaigns/",
-        help_text="Upload the hero image for the campaign page.",
-        default="default/hero_image.webp",
-    )
-
-    hero_image_alt_text = models.CharField(
-        max_length=255,
-        help_text="Provide alternative text for the hero image for accessibility.",
-        default="Dental Dynamix Hero Image",
-    )
-
-    hero_title = models.TextField(
-        help_text="The main title displayed on the homepage hero section.",
-        default="Connect your practice with DTX Studio Go Sync",
-    )
-
-    hero_subtitle = models.TextField(
-        help_text="The subtitle displayed below the main title in the hero section.",
-        default="Bring patient imaging and treatment data together across your practice locations with secure, real-time cloud access.",
-    )
-
-
-    # =========================================================
-    # CAMPAIGN DETAILS SECTION
-    # =========================================================
-
-    campaign_details_eyebrow = models.CharField(
-        max_length=255,
-        help_text="Small label displayed above the campaign details heading.",
-        default="Connected patient data",
-    )
-
-    campaign_details_title = models.CharField(
-        max_length=255,
-        help_text="Main heading for the campaign details section.",
-        default="The right patient information, wherever you work",
-    )
-
-    campaign_details_description = models.TextField(
-        help_text="Introductory text for the campaign details section.",
-        default=(
-            "Designed for multi-site practices using DTX Studio Clinic, DTX Studio Go Sync helps your teams access shared patient imaging and treatment information across locations. By reducing manual data transfers and keeping information connected through the cloud, it supports a smoother workflow for everyday appointments and urgent care."
-        ),
-    )
-
-    # =========================================================
-    # FINAL CTA
-    # =========================================================
-
-    final_cta_eyebrow = models.CharField(
-        max_length=255,
-        help_text="Small label displayed above the final CTA heading.",
-        default="Early access opportunity",
-    )
-
-    final_cta_title = models.CharField(
-        max_length=255,
-        help_text="Main heading for the final CTA section.",
-        default="Explore early access for your practice",
-    )
-
-    final_cta_description = models.TextField(
-        help_text="Description displayed in the final CTA section.",
-        default=(
-            "DTX Studio Go Sync is coming soon. Practices with 2–12 locations can register their interest in the early access programme. Complete the form to join the waitlist."
-        ),
-    )
-
-    # =========================================================
-    # ADMIN / META
-    # =========================================================
-
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        help_text="Automatically updated whenever the campaign page content changes.",
-    )
-
-    class Meta:
-        verbose_name = "Campaign Page"
-        verbose_name_plural = "Campaign Pages"
-
-    def __str__(self):
-        return "Campaign Page"
-
-    def save(self, *args, **kwargs):
-        """
-        Ensure that only one campaign page record exists.
-        """
-        self.pk = 1
-        super().save(*args, **kwargs)
-    

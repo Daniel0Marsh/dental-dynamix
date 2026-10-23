@@ -1,272 +1,479 @@
+
 from django.db import models
-from django_ckeditor_5.fields import CKEditor5Field
 
 
 class ServicePage(models.Model):
     """
-    Singleton model for the Service page content.
+    Singleton model for the Services page.
+    All page copy, image selections and image alt text are editable
+    through the Django admin.
     """
 
     # =========================================================
-    # Hero Section
+    # HERO SECTION
     # =========================================================
 
     hero_image = models.ImageField(
         upload_to="services/",
         default="default/hero_image.webp",
-        blank=True,
-        help_text=(
-            "Main hero image displayed at the top of the Service page."
-        ),
+        help_text="Hero background image.",
     )
-
     hero_image_alt_text = models.CharField(
         max_length=255,
         default=(
-            "Dental X-Ray Servicing & Repair - Dental Dynamix provides dental practices with the technology, equipment, imaging solutions and technical support they need to work smarter and deliver exceptional patient care."
-        ),
-        help_text=(
-            "Alternative text for the hero image for SEO "
-            "and accessibility."
+            "Professional equipment servicing, repairs and technical support"
         ),
     )
-
     hero_title = models.CharField(
-        max_length=200,
-        default="Dental X-Ray Servicing & Repair",
-        blank=True,
-        help_text=(
-            "Primary headline shown in the hero section."
-        ),
+        max_length=255,
+        default="Reliable Servicing, Repairs & Equipment Support",
     )
-
-    hero_subtitle = models.CharField(
-        max_length=300,
+    hero_subtitle = models.TextField(
         default=(
-            "Support for the imaging equipment your practice relies on."
+            "From routine maintenance and fault-finding to equipment "
+            "repairs, inspections and critical examinations for X-ray "
+            "equipment, we help you keep your equipment safe, reliable "
+            "and ready for use."
         ),
-        blank=True,
-        help_text=(
-            "Short supporting text displayed beneath the hero title."
-        ),
     )
-
-
-
-
-    # =========================================================
-    # SERVICES SECTION
-    # =========================================================
-
-    services_eyebrow = models.CharField(
-        max_length=255,
-        help_text="Small label displayed above the services heading.",
-        default="IMAGING EQUIPMENT SUPPORT",
-    )
-
-    services_title = models.CharField(
-        max_length=255,
-        help_text="Main heading for the services section.",
-        default="Keep your imaging equipment working reliably",
-    )
-
-    services_description = models.TextField(
-        help_text="Introductory text displayed beside the services heading.",
-        default="Talk to our team about planned servicing, fault diagnosis, and repair of your dental imaging equipment.",
-    )
-
-    #========================================================
-    service_card_1_title = models.CharField(
-        max_length=255,
-        help_text="Title for service card one.",
-        default="Planned Servicing",
-    )
-
-    service_card_1_description = models.TextField(
-        help_text="Description for service card one.",
-        default="Keep your imaging equipment working reliably and reduce the risk of unexpected downtime.",
-    )
-
-    #========================================================
-
-    service_card_2_title = models.CharField(
-        max_length=255,
-        help_text="Title for service card two.",
-        default="Fault Diagnosis",
-    )
-
-    service_card_2_description = models.TextField(
-        help_text="Description for service card two.",
-        default="Accurate fault diagnosis to help identify the cause of issues with your equipment.",
-    )
-
-    #========================================================
-
-    service_card_3_title = models.CharField(
-        max_length=255,
-        help_text="Title for service card three.",
-        default="Repair support",
-    )
-
-    service_card_3_description = models.TextField(
-        help_text="Description for service card three.",
-        default="Support with repairs, including sourcing parts and getting your equipment back up and running.",
-    )
-
-
-
-
-
-    # =========================================================
-    # EQUIPMENT SECTION
-    # =========================================================
-
-    equipment_eyebrow = models.CharField(
-        max_length=255,
-        help_text="Small label displayed above the equipment heading.",
-        default="your EQUIPMENT, OUR SUPPORT",
-    )
-
-    equipment_title = models.CharField(
-        max_length=255,
-        help_text="Main heading for the equipment section.",
-        default="Support for your imaging systems",
-    )
-
-    equipment_description = models.TextField(
-        help_text="Introductory text displayed beside the equipment heading.",
-        default="",
-        blank=True,
-    )
-
-    #========================================================
-    equipment_card_1_title = models.CharField(
-        max_length=255,
-        help_text="Title for equipment card one.",
-        default="Intraoral X-Ray",
-    )
-
-    equipment_card_1_description = models.TextField(
-        help_text="Description for equipment card one.",
-        default="Support for your wall and mobile X-ray systems used in general practice.",
-    )
-
-    equipment_card_1_image = models.ImageField(
-        upload_to="home/",
-        help_text="Image displayed in equipment card one.",
-        default="default/equipment_card_1_image.webp"
-    )
-
-    equipment_card_1_image_alt_text = models.CharField(
-        max_length=255,
-        help_text="Alternative text for equipment card one image.",
-        default="Dental intraoral X-ray technology services, support and repair",
-    )
-
-    #========================================================
-
-    equipment_card_2_title = models.CharField(
-        max_length=255,
-        help_text="Title for equipment card two.",
-        default="OPG & Panaramic",
-    )
-
-    equipment_card_2_description = models.TextField(
-        help_text="Description for equipment card two.",
-        default="Serviceing and repair support for your OPG and panoramic imaging systems.",
-    )
-
-    equipment_card_2_image = models.ImageField(
-        upload_to="home/",
-        help_text="Image displayed in equipment card two.",
-        default="default/equipment_card_2_image.webp"
-    )
-
-    equipment_card_2_image_alt_text = models.CharField(
-        max_length=255,
-        help_text="Alternative text for equipment card two image.",
-        default="Dental OPG and panoramic imaging technology services, support and repair",
-    )
-
-    #========================================================
-
-    equipment_card_3_title = models.CharField(
-        max_length=255,
-        help_text="Title for equipment card three.",
-        default="CBCT & 3D Imaging",
-    )
-
-    equipment_card_3_description = models.TextField(
-        help_text="Description for equipment card three.",
-        default="Support for CBCT and 3D imaging systems used in dental practices.",
-    )
-
-    equipment_card_3_image = models.ImageField(
-        upload_to="home/",
-        help_text="Image displayed in equipment card three.",
-        default="default/equipment_card_3_image.webp"
-    )
-
-    equipment_card_3_image_alt_text = models.CharField(
-        max_length=255,
-        help_text="Alternative text for equipment card three image.",
-        default="Dental CBCT and 3D imaging technology services, support and repair",
+    hero_primary_button_text = models.CharField(
+        max_length=100,
+        default="Enquire About Our Services",
     )
 
 
     # =========================================================
-    # SERVICE ENQUIRY SECTION
+    # Trust Strip
     # =========================================================
 
-    service_enquiry_eyebrow = models.CharField(
+    # Trust Strip - Item 1
+    trust_1_title = models.CharField(
+        max_length=100,
+        default="Equipment Servicing",
+    )
+    trust_1_description = models.CharField(
         max_length=255,
-        help_text="Small label displayed above the equipment heading.",
-        default="Tell us what needs attention",
+        default="Planned maintenance and equipment care",
+    )
+    trust_1_icon = models.CharField(
+        max_length=100,
+        default="bi bi-gear",
     )
 
-    service_enquiry_title = models.CharField(
+    # Trust Strip - Item 2
+    trust_2_title = models.CharField(
+        max_length=100,
+        default="Repairs & Fault-Finding",
+    )
+    trust_2_description = models.CharField(
+        max_length=255,
+        default="Investigating faults and equipment breakdowns",
+    )
+    trust_2_icon = models.CharField(
+        max_length=100,
+        default="bi bi-tools",
+    )
+
+    # Trust Strip - Item 3
+    trust_3_title = models.CharField(
+        max_length=100,
+        default="Critical Examinations",
+    )
+    trust_3_description = models.CharField(
+        max_length=255,
+        default="Enquiries about examinations for X-ray equipment",
+    )
+    trust_3_icon = models.CharField(
+        max_length=100,
+        default="bi bi-clipboard2-check",
+    )
+
+    # Trust Strip - Item 4
+    trust_4_title = models.CharField(
+        max_length=100,
+        default="Technical Support",
+    )
+    trust_4_description = models.CharField(
+        max_length=255,
+        default="Practical advice and service guidance",
+    )
+    trust_4_icon = models.CharField(
+        max_length=100,
+        default="bi bi-wrench-adjustable",
+    )
+
+
+    # =========================================================
+    # Services Overview
+    # =========================================================
+
+    # Services Overview - Section Heading
+    overview_eyebrow = models.CharField(
+        max_length=100,
+        default="How We Can Help",
+    )
+    overview_heading = models.CharField(
         max_length=200,
-        default="Tell us what needs attention",
+        default="Equipment services to keep you moving",
     )
-
-    service_enquiry_description = models.TextField(
+    overview_description = models.TextField(
         default=(
-            "To help us understand how we can support you, please provide "
-            "your equipment make, model and a brief description of the fault or issue you are experiencing."
+            "Whether you need routine maintenance, help diagnosing "
+            "a fault or technical assistance, we can discuss your "
+            "equipment and the most appropriate next step."
         ),
     )
 
-    service_enquiry_item_1 = models.CharField(
-        max_length=200,
-        default="Image quality concerns",
+    # Service Card 1 - Equipment Servicing
+    overview_1_title = models.CharField(
+        max_length=150,
+        default="Equipment Servicing",
     )
-
-    service_enquiry_item_2 = models.CharField(
-        max_length=200,
-        default="Intermittent faults",
+    overview_1_image = models.ImageField(
+        upload_to="services/",
+        default="default/hero_image.webp",
     )
-
-    service_enquiry_item_3 = models.CharField(
-        max_length=200,
-        default="Error messages",
-    )
-
-    service_enquiry_item_4 = models.CharField(
-        max_length=200,
-        default="Routine service enquiries",
-    )
-
-    service_enquiry_contact_eyebrow = models.CharField(
+    overview_1_image_alt = models.CharField(
         max_length=255,
-        help_text="Small label displayed above the equipment heading.",
-        default="Speak to our team",
+        default="Equipment undergoing routine servicing",
+    )
+    overview_1_icon = models.CharField(
+        max_length=100,
+        default="bi bi-gear",
+    )
+    overview_1_description = models.TextField(
+        default=(
+            "Planned servicing and preventative maintenance to help "
+            "maintain equipment condition, support reliable operation "
+            "and identify developing issues."
+        ),
+    )
+    overview_1_link_text = models.CharField(
+        max_length=100,
+        default="Discuss servicing",
     )
 
-    service_enquiry_contact_title = models.CharField(
+    # Service Card 2 - Repairs and Fault-Finding
+    overview_2_title = models.CharField(
+        max_length=150,
+        default="Repairs & Fault-Finding",
+    )
+    overview_2_image = models.ImageField(
+        upload_to="services/",
+        default="default/hero_image.webp",
+    )
+    overview_2_image_alt = models.CharField(
+        max_length=255,
+        default="Technical equipment inspection and fault diagnosis",
+    )
+    overview_2_icon = models.CharField(
+        max_length=100,
+        default="bi bi-tools",
+    )
+    overview_2_description = models.TextField(
+        default=(
+            "Assistance with equipment breakdowns, unexpected faults "
+            "and performance issues to help establish the cause "
+            "and appropriate corrective work."
+        ),
+    )
+    overview_2_link_text = models.CharField(
+        max_length=100,
+        default="Discuss a repair",
+    )
+
+    # Service Card 3 - Inspections and Technical Support
+    overview_3_title = models.CharField(
+        max_length=150,
+        default="Inspections & Technical Support",
+    )
+    overview_3_image = models.ImageField(
+        upload_to="services/",
+        default="default/hero_image.webp",
+    )
+    overview_3_image_alt = models.CharField(
+        max_length=255,
+        default="Technical equipment inspection and assessment",
+    )
+    overview_3_icon = models.CharField(
+        max_length=100,
+        default="bi bi-clipboard2-check",
+    )
+    overview_3_description = models.TextField(
+        default=(
+            "Discuss equipment checks, applicable testing and "
+            "technical concerns to understand the work required "
+            "and determine the next steps."
+        ),
+    )
+    overview_3_link_text = models.CharField(
+        max_length=100,
+        default="Discuss your requirements",
+    )
+
+
+    # =========================================================
+    # CRITICAL EXAMINATIONS FEATURE
+    # =========================================================
+
+    critical_eyebrow = models.CharField(
+        max_length=255,
+        default="Specialist Service",
+    )
+    critical_title = models.CharField(
+        max_length=255,
+        default="Critical examinations for X-ray equipment",
+    )
+    critical_description = models.TextField(
+        default=(
+            "Where equipment requires a critical examination, it is "
+            "important to understand what is required, which system "
+            "is involved and what arrangements need to be made."
+        ),
+    )
+    critical_secondary_description = models.TextField(
+        default=(
+            "We provide a point of contact for enquiries about critical "
+            "examinations for X-ray equipment. Contact us with the "
+            "equipment details and your requirements so we can discuss "
+            "the appropriate examination, scope of work and arrangements."
+        ),
+    )
+
+    critical_bullet_1 = models.CharField(
+        max_length=255,
+        default="Enquiries about critical examinations for X-ray equipment.",
+    )
+    critical_bullet_2 = models.CharField(
+        max_length=255,
+        default=(
+            "Discussion of the equipment, examination requirements "
+            "and relevant circumstances."
+        ),
+    )
+    critical_bullet_3 = models.CharField(
+        max_length=255,
+        default=(
+            "Clear communication about the proposed scope of work "
+            "and next steps."
+        ),
+    )
+
+    critical_card_icon = models.CharField(
+        max_length=100,
+        default="bi bi-clipboard2-pulse",
+    )
+    critical_card_title = models.CharField(
+        max_length=255,
+        default="Arrange an Examination Enquiry",
+    )
+    critical_card_description = models.TextField(
+        default=(
+            "Tell us about the X-ray system, its location and the "
+            "examination or service you require. We can then discuss "
+            "the appropriate next step."
+        ),
+    )
+    critical_button_text = models.CharField(
+        max_length=150,
+        default="Enquire About Critical Examinations",
+    )
+    critical_card_note = models.TextField(
+        default=(
+            "The applicable examination requirements, scope and "
+            "arrangements will be confirmed for the equipment concerned."
+        ),
+    )
+
+
+    # =========================================================
+    # OUR APPROACH / PROCESS
+    # =========================================================
+
+    approach_eyebrow = models.CharField(
+        max_length=255,
+        default="The Process",
+    )
+    approach_title = models.CharField(
+        max_length=255,
+        default="From enquiry to next steps",
+    )
+    approach_description = models.TextField(
+        default=(
+            "A straightforward process to help establish what your "
+            "equipment needs and how best to proceed."
+        ),
+    )
+
+    approach_step_1_number = models.CharField(
+        max_length=10,
+        default="01",
+    )
+    approach_step_1_title = models.CharField(
+        max_length=255,
+        default="Tell Us About Your Equipment",
+    )
+    approach_step_1_description = models.TextField(
+        default=(
+            "Describe the equipment, any problems you have encountered "
+            "and the service you require."
+        ),
+    )
+
+    approach_step_2_number = models.CharField(
+        max_length=10,
+        default="02",
+    )
+    approach_step_2_title = models.CharField(
+        max_length=255,
+        default="Discuss the Requirements",
+    )
+    approach_step_2_description = models.TextField(
+        default=(
+            "We can clarify the equipment details, the issue "
+            "and the work or examination involved."
+        ),
+    )
+
+    approach_step_3_number = models.CharField(
+        max_length=10,
+        default="03",
+    )
+    approach_step_3_title = models.CharField(
+        max_length=255,
+        default="Establish the Next Steps",
+    )
+    approach_step_3_description = models.TextField(
+        default=(
+            "Discuss the proposed scope of work and any practical "
+            "arrangements before proceeding."
+        ),
+    )
+
+
+
+    # =========================================================
+    # Preparing Your Enquiry
+    # =========================================================
+
+    # Preparing Your Enquiry - Section Heading
+    enquiry_eyebrow = models.CharField(
+        max_length=100,
+        default="Before You Contact Us",
+    )
+    enquiry_heading = models.CharField(
         max_length=200,
-        default="Need help with your X-ray equipment?",
+        default="A few details can make all the difference",
+    )
+    enquiry_description = models.TextField(
+        default=(
+            "Providing some background helps us understand your "
+            "requirements. Share whatever information you have "
+            "available — you do not need to know the exact "
+            "technical solution."
+        ),
     )
 
-    service_enquiry_contact_description = models.TextField(
-        default="Tell us the make, model and issues so we can advice on the next steps.",
+    # Enquiry Detail 1 - Equipment Information
+    enquiry_1_title = models.CharField(
+        max_length=150,
+        default="Equipment information",
     )
+    enquiry_1_icon = models.CharField(
+        max_length=100,
+        default="bi bi-cpu",
+    )
+    enquiry_1_description = models.TextField(
+        default=(
+            "Machine type, manufacturer, model and serial number, "
+            "if available."
+        ),
+    )
+
+    # Enquiry Detail 2 - Service Required
+    enquiry_2_title = models.CharField(
+        max_length=150,
+        default="The issue or service required",
+    )
+    enquiry_2_icon = models.CharField(
+        max_length=100,
+        default="bi bi-clipboard2-pulse",
+    )
+    enquiry_2_description = models.TextField(
+        default=(
+            "Fault symptoms, service history, error messages or "
+            "details of the examination needed."
+        ),
+    )
+
+    # Enquiry Detail 3 - Location and Timing
+    enquiry_3_title = models.CharField(
+        max_length=150,
+        default="Location and timing",
+    )
+    enquiry_3_icon = models.CharField(
+        max_length=100,
+        default="bi bi-geo-alt",
+    )
+    enquiry_3_description = models.TextField(
+        default=(
+            "Where the equipment is installed and any deadlines "
+            "or scheduling requirements."
+        ),
+    )
+
+    # Enquiry Image
+    enquiry_image = models.ImageField(
+        upload_to="services/",
+        default="default/hero_image.webp",
+    )
+    enquiry_image_alt = models.CharField(
+        max_length=255,
+        default="Technical specialist examining equipment",
+    )
+
+
+    # =========================================================
+    # FINAL CALL TO ACTION
+    # =========================================================
+
+    final_cta_eyebrow = models.CharField(
+        max_length=255,
+        default="Get in Touch",
+    )
+    final_cta_title = models.CharField(
+        max_length=255,
+        default="Let's discuss your service requirements",
+    )
+    final_cta_description = models.TextField(
+        default=(
+            "From routine equipment servicing to repairs, technical "
+            "support and critical examinations, contact us to discuss "
+            "what you need."
+        ),
+    )
+    final_cta_button_text = models.CharField(
+        max_length=100,
+        default="Get in Touch",
+    )
+
+    # =========================================================
+    # ADMIN / META
+    # =========================================================
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        help_text="Automatically updated when the service page changes.",
+    )
+
+    class Meta:
+        verbose_name = "Service Page"
+        verbose_name_plural = "Service Page"
+
+    def __str__(self):
+        return "Service Page"
+
+    def save(self, *args, **kwargs):
+        """Ensure that only one ServicePage record exists."""
+        self.pk = 1
+        super().save(*args, **kwargs)

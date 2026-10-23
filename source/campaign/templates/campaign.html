@@ -1,0 +1,555 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block extra_head %}
+<script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer
+></script>
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section
+    id="hero-section"
+    class="bg-dark text-light d-flex align-items-center overflow-hidden"
+    style="min-height: 85vh;"
+>
+    <div class="container py-5">
+        <div class="row align-items-center g-4 g-lg-5 pt-5 mt-5">
+
+            <!-- Hero content -->
+            <div class="col-lg-6">
+
+                <h1 class="display-3 fw-bold text-light lh-1 mb-4">
+                    {{ campaign.hero_title }}
+                    <span class="text-primary d-block">
+                        {{ campaign.hero_title_highlight }}
+                    </span>
+                </h1>
+
+                <h2 class="h3 fw-bold text-white mb-4">
+                    {{ campaign.hero_subtitle }}
+                </h2>
+
+                <p class="fs-5 text-white-50 mb-4">
+                    {{ campaign.hero_description }}
+                </p>
+
+                <div class="d-flex flex-column flex-sm-row flex-wrap gap-3 mb-4">
+
+                    <a
+                        href="#early-access"
+                        class="btn btn-primary btn-lg px-4"
+                    >
+                        {{ campaign.hero_primary_button_text }}
+                        <i class="bi bi-arrow-down ms-2"></i>
+                    </a>
+
+                    <a
+                        href="#how-it-works"
+                        class="btn btn-outline-light btn-lg px-4"
+                    >
+                        {{ campaign.hero_secondary_button_text }}
+                    </a>
+
+                </div>
+
+                <div class="d-flex align-items-start gap-2 text-white-50 small">
+                    <i class="bi bi-people-fill text-primary fs-5"></i>
+
+                    <span>
+                        {{ campaign.hero_eligibility_text }}
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Hero image and supporting message -->
+            <div class="col-lg-6">
+
+                {% if campaign.hero_image %}
+                    <img
+                        src="{{ campaign.hero_image.url }}"
+                        alt="{{ campaign.hero_image_alt_text }}"
+                        class="img-fluid rounded-4 shadow-lg w-100"
+                        fetchpriority="high"
+                        decoding="async"
+                    >
+                {% endif %}
+
+                <div class="d-flex align-items-center gap-3 bg-secondary bg-opacity-25 rounded-3 p-3 mt-3">
+
+                    <div class="bg-primary bg-opacity-10 rounded-3 p-3 flex-shrink-0">
+                        <i class="bi bi-cloud-check text-primary fs-2"></i>
+                    </div>
+
+                    <div>
+                        <h3 class="h6 fw-bold text-white mb-1">
+                            {{ campaign.hero_support_title }}
+                        </h3>
+
+                        <p class="small text-white-50 mb-0">
+                            {{ campaign.hero_support_description }}
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     CAMPAIGN BENEFITS
+========================================================= -->
+<section class=" border-top border-bottom">
+    <div class="container py-4">
+        <div class="row g-4 text-center">
+
+            <div class="col-6 col-lg-3">
+                <i class="bi {{ campaign.benefit_1_icon }} text-primary fs-2 d-block mb-2"></i>
+                <h3 class="h6 fw-bold text-dark mb-1">
+                    {{ campaign.benefit_1_title }}
+                </h3>
+                <p class="small text-secondary mb-0">
+                    {{ campaign.benefit_1_description }}
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <i class="bi {{ campaign.benefit_2_icon }} text-primary fs-2 d-block mb-2"></i>
+                <h3 class="h6 fw-bold text-dark mb-1">
+                    {{ campaign.benefit_2_title }}
+                </h3>
+                <p class="small text-secondary mb-0">
+                    {{ campaign.benefit_2_description }}
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <i class="bi {{ campaign.benefit_3_icon }} text-primary fs-2 d-block mb-2"></i>
+                <h3 class="h6 fw-bold text-dark mb-1">
+                    {{ campaign.benefit_3_title }}
+                </h3>
+                <p class="small text-secondary mb-0">
+                    {{ campaign.benefit_3_description }}
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <i class="bi {{ campaign.benefit_4_icon }} text-primary fs-2 d-block mb-2"></i>
+                <h3 class="h6 fw-bold text-dark mb-1">
+                    {{ campaign.benefit_4_title }}
+                </h3>
+                <p class="small text-secondary mb-0">
+                    {{ campaign.benefit_4_description }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+<section id="how-it-works">
+    <div class="container py-5 py-lg-6">
+
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-9">
+
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ campaign.how_it_works_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold text-dark mt-3 mb-4">
+                    {{ campaign.how_it_works_title }}
+                </h2>
+
+                <p class="lead text-secondary mb-0">
+                    {{ campaign.how_it_works_description }}
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row align-items-stretch g-5">
+
+            <!-- Connected practice image -->
+            <div class="col-lg-6 d-flex">
+
+                    <img
+                        src="{{ campaign.how_it_works_image.url }}"
+                        alt="{{ campaign.how_it_works_image_alt_text }}"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+            </div>
+
+            <!-- Product benefits -->
+            <div class="col-lg-6">
+
+                <div class="d-flex gap-3 mb-4">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3">
+                            <i class="bi {{ campaign.feature_1_icon }} text-primary fs-3"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="h5 fw-bold text-dark mb-2">
+                            {{ campaign.feature_1_title }}
+                        </h3>
+                        <p class="text-secondary mb-0">
+                            {{ campaign.feature_1_description }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 mb-4">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3">
+                            <i class="bi {{ campaign.feature_2_icon }} text-primary fs-3"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="h5 fw-bold text-dark mb-2">
+                            {{ campaign.feature_2_title }}
+                        </h3>
+                        <p class="text-secondary mb-0">
+                            {{ campaign.feature_2_description }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 mb-4">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3">
+                            <i class="bi {{ campaign.feature_3_icon }} text-primary fs-3"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="h5 fw-bold text-dark mb-2">
+                            {{ campaign.feature_3_title }}
+                        </h3>
+                        <p class="text-secondary mb-0">
+                            {{ campaign.feature_3_description }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3">
+                            <i class="bi {{ campaign.feature_4_icon }} text-primary fs-3"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="h5 fw-bold text-dark mb-2">
+                            {{ campaign.feature_4_title }}
+                        </h3>
+                        <p class="text-secondary mb-0">
+                            {{ campaign.feature_4_description }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-2">
+                    <a
+                        href="#early-access"
+                        class="btn btn-primary btn-lg px-4"
+                    >
+                        {{ campaign.how_it_works_button_text }}
+                        <i class="bi bi-arrow-down ms-2"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     EARLY ACCESS REGISTRATION
+========================================================= -->
+<section id="early-access" class="">
+    <div class="container py-5 py-lg-6">
+
+        <div class="row justify-content-center">
+            <div class="col-xl-12">
+
+                <div class="row g-0 overflow-hidden rounded-4 shadow-lg">
+
+                    <!-- Registration introduction -->
+                    <div class="col-lg-5 bg-dark text-light">
+                        <div class="p-4 p-md-5 h-100">
+
+                            <span class="text-primary fw-bold text-uppercase small">
+                                {{ campaign.registration_eyebrow }}
+                            </span>
+
+                            <h2 class="display-5 fw-bold mt-3 mb-4">
+                                {{ campaign.registration_title }}
+                            </h2>
+
+                            <p class="text-white-50 mb-4">
+                                {{ campaign.registration_description }}
+                            </p>
+
+                            <div class="d-flex gap-3 mb-4">
+
+                                <i class="bi {{ campaign.registration_step_1_icon }} text-primary fs-4"></i>
+
+                                <div>
+                                    <h3 class="h6 fw-bold">
+                                        {{ campaign.registration_step_1_title }}
+                                    </h3>
+
+                                    <p class="small text-white-50 mb-0">
+                                        {{ campaign.registration_step_1_description }}
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex gap-3 mb-4">
+
+                                <i class="bi {{ campaign.registration_step_2_icon }} text-primary fs-4"></i>
+
+                                <div>
+                                    <h3 class="h6 fw-bold">
+                                        {{ campaign.registration_step_2_title }}
+                                    </h3>
+
+                                    <p class="small text-white-50 mb-0">
+                                        {{ campaign.registration_step_2_description }}
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="border-top border-secondary pt-4 mt-4">
+
+                                <p class="small text-white-50 mb-1">
+                                    {{ campaign.registration_partner_label }}
+                                </p>
+
+                                <p class="fw-bold mb-0">
+                                    {{ campaign.registration_partner_name }}
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Registration form -->
+                    <div class="col-lg-7 bg-white text-dark">
+                        <div class="p-4 p-md-5">
+
+                            <h3 class="h3 fw-bold mb-2">
+                                {{ campaign.registration_form_title }}
+                            </h3>
+
+                            <p class="text-secondary mb-4">
+                                {{ campaign.registration_form_description }}
+                            </p>
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div
+                                        class="alert alert-{{ message.tags|default:'info' }} mb-4"
+                                        role="alert"
+                                    >
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form method="post" action="#early-access">
+                                {% csrf_token %}
+
+                                <input
+                                    type="hidden"
+                                    name="form_type"
+                                    value="early_access"
+                                >
+
+                                <div class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <label
+                                            for="first_name"
+                                            class="form-label fw-semibold"
+                                        >
+                                            {{ campaign.form_first_name_label }}
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="first_name"
+                                            name="first_name"
+                                            autocomplete="given-name"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label
+                                            for="last_name"
+                                            class="form-label fw-semibold"
+                                        >
+                                            {{ campaign.form_last_name_label }}
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="last_name"
+                                            name="last_name"
+                                            autocomplete="family-name"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label
+                                            for="email"
+                                            class="form-label fw-semibold"
+                                        >
+                                            {{ campaign.form_email_label }}
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            class="form-control"
+                                            id="email"
+                                            name="email"
+                                            autocomplete="email"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label
+                                            for="phone"
+                                            class="form-label fw-semibold"
+                                        >
+                                            {{ campaign.form_phone_label }}
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            class="form-control"
+                                            id="phone"
+                                            name="phone"
+                                            autocomplete="tel"
+                                        >
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label
+                                            for="practice_name"
+                                            class="form-label fw-semibold"
+                                        >
+                                            {{ campaign.form_practice_name_label }}
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="practice_name"
+                                            name="practice_name"
+                                            autocomplete="organization"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label
+                                            for="locations"
+                                            class="form-label fw-semibold"
+                                        >
+                                            {{ campaign.form_locations_label }}
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            id="locations"
+                                            name="locations"
+                                            min="1"
+                                            max="100"
+                                            step="1"
+                                            placeholder="{{ campaign.form_locations_placeholder }}"
+                                            inputmode="numeric"
+                                            required
+                                        >
+
+                                        <div class="form-text">
+                                            {{ campaign.form_locations_help_text }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 mt-4">
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary btn-lg w-100"
+                                        >
+                                            {{ campaign.form_submit_button_text }}
+                                            <i class="bi bi-arrow-right ms-2"></i>
+                                        </button>
+
+                                        <!-- Cloudflare Turnstile -->
+                                        <div class="text-center my-4">
+
+                                        <div
+                                            class="cf-turnstile"
+                                            data-sitekey="{{ CLOUDFLARE_TURNSTILE_SITE_KEY }}"
+                                            data-theme="light"
+                                            data-callback="enableSubmit"
+                                            data-expired-callback="disableSubmit"
+                                            data-error-callback="disableSubmit"
+                                        ></div>
+
+                                        </div>
+
+                                        <p class="small text-secondary mt-3 mb-0 text-center">
+                                            {{ campaign.form_privacy_note }}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
