@@ -131,7 +131,7 @@ class ServicePage(models.Model):
     )
     overview_1_image = models.ImageField(
         upload_to="services/",
-        default="default/hero_image.webp",
+        default="default/equipment-servicing.webp",
     )
     overview_1_image_alt = models.CharField(
         max_length=255,
@@ -160,7 +160,7 @@ class ServicePage(models.Model):
     )
     overview_2_image = models.ImageField(
         upload_to="services/",
-        default="default/hero_image.webp",
+        default="default/repairs-and-fault-finding.webp",
     )
     overview_2_image_alt = models.CharField(
         max_length=255,
@@ -189,7 +189,7 @@ class ServicePage(models.Model):
     )
     overview_3_image = models.ImageField(
         upload_to="services/",
-        default="default/hero_image.webp",
+        default="default/inspections-and-technical-support.webp",
     )
     overview_3_image_alt = models.CharField(
         max_length=255,
@@ -425,7 +425,7 @@ class ServicePage(models.Model):
     # Enquiry Image
     enquiry_image = models.ImageField(
         upload_to="services/",
-        default="default/hero_image.webp",
+        default="default/enquiry_image.webp",
     )
     enquiry_image_alt = models.CharField(
         max_length=255,

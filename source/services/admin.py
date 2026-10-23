@@ -188,7 +188,3 @@ class ServicePageAdmin(SingletonAdmin):
             },
         ),
     )
-
-    def has_delete_permission(self, request, obj=None):
-        """Prevent deletion of the singleton page."""
-        return False
