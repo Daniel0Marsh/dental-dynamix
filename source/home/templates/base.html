@@ -395,33 +395,34 @@
                     <span class="fs-5 text-primary fw-bold">Contact</span>
 
                     <ul class="list-unstyled ps-3">
+
                         <li>
                             <a class="nav-link" href="{% url 'contact' %}">
                                 Get in Touch
                             </a>
                         </li>
+
+                        <!-- Support -->
+                        <li>
+                            <a href="{% url 'remote_support' %}"
+                            class="nav-link d-inline-flex align-items-center">
+                                Get Support
+                            </a>
+                        </li>
+                        <!-- Sales -->
+                        {% if branding.company_whatsapp %}
+                        <li>
+                            <a href="https://wa.me/{{ branding.company_whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="nav-link d-inline-flex align-items-center gap-2">
+                                <i class="bi bi-whatsapp"></i>
+                                Sales
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </li>
-
-                <!-- Support and Sales -->
-                <li class="nav-item">
-                    <a href="{% url 'remote_support' %}"
-                    class="nav-link d-inline-flex align-items-center">
-                        Get Support
-                    </a>
-                </li>
-
-                {% if branding.company_whatsapp %}
-                <li class="nav-item">
-                    <a href="https://wa.me/{{ branding.company_whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="nav-link d-inline-flex align-items-center gap-2">
-                        <i class="bi bi-whatsapp"></i>
-                        Sales
-                    </a>
-                </li>
-                {% endif %}
             </ul>
 
             <!-- CTA Buttons -->
