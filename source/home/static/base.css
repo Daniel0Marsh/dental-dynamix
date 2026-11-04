@@ -386,8 +386,9 @@ body {
     color: var(--body);
 }
 
+
 /* ===============================
-   MOBILE NAVBAR & TOPBAR - FULL SCREEN
+   MOBILE NAVBAR & TOPBAR - SMOOTH FULL SCREEN MENU
    =============================== */
 @media (max-width: 991.98px) {
 
@@ -396,170 +397,21 @@ body {
         display: none !important;
     }
 
-    /* Navbar fixed, white, smaller, always visible */
+    /* Fixed mobile navbar */
     .navbar {
         position: fixed !important;
         top: 0 !important;
         left: 0;
         width: 100%;
         height: 60px !important;
-        background-color: var(--body) !important; /* solid white */
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        z-index: 1050;
-        padding: 0 1rem;
-        transition: all 0.3s ease;
-    }
-
-    /* Navbar container smaller */
-    .navbar .container {
-        height: 60px !important;
-        padding: 0 1rem;
-    }
-
-    /* Brand image smaller */
-    .navbar .navbar-brand img {
-        max-height: 40px !important;
-    }
-
-    /* Ensure page content is not hidden behind navbar */
-    body {
-        padding-top: 60px; /* same as navbar height */
-    }
-
-    /* Fullscreen mobile menu */
-    .navbar .collapse.show {
-        position: fixed;
-        top: 60px; /* below navbar */
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 60px);
-        background-color: var(--body);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 20px 0;
-        overflow-y: auto;
-        z-index: 1050;
-        transition: all 0.3s ease;
-    }
-
-    /* Remove overlay pseudo-element if any */
-    .navbar .collapse.show::before {
-        display: none;
-    }
-
-    /* Logo at top of menu */
-    .navbar .collapse.show .navbar-brand {
-        margin-bottom: 20px;
-    }
-
-    /* Close button styling */
-    .navbar .collapse.show .mobile-menu-close {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        z-index: 1060;
-    }
-    .navbar .collapse.show .mobile-menu-close .btn-close {
-        width: 28px;
-        height: 28px;
-        background-color: var(--primary);
-        border-radius: 50%;
-        opacity: 1;
-    }
-
-    /* Mobile nav links container */
-    .navbar-nav.d-lg-none {
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        text-align: center;
-        gap: 12px;
-        padding: 0 1rem;
-    }
-
-    /* Mobile nav links styling */
-    .navbar-nav.d-lg-none .nav-link {
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--mute);
-        padding: 12px 0;
-        width: 100%;
-        transition: all 0.2s ease;
-        text-transform: uppercase;
-    }
-    .navbar-nav.d-lg-none .nav-link:hover {
-        color: var(--primary);
-        transform: scale(1.03);
-    }
-
-    /* Nested mobile submenus */
-    .navbar-nav.d-lg-none ul {
-        padding-left: 15px;
-        margin-top: 8px;
-        width: 100%;
-    }
-    .navbar-nav.d-lg-none ul li .nav-link {
-        font-size: 18px;
-        padding: 6px 0;
-        color: var(--mute);
-    }
-    .navbar-nav.d-lg-none ul li .nav-link:hover {
-        color: var(--primary);
-        transform: scale(1.02);
-    }
-
-    /* Add dropdown indicators */
-    .navbar-nav.d-lg-none .dropdown-toggle::after {
-        content: "▼";
-        color: var(--mute);
-        display: inline-block;
-        margin-left: 6px;
-        font-size: 12px;
-        transition: transform 0.3s ease;
-    }
-    .navbar-nav.d-lg-none .dropdown.show > .nav-link.dropdown-toggle::after {
-        transform: rotate(180deg);
-    }
-
-    /* Mobile CTA button at bottom */
-    .navbar-nav.d-lg-none .btn {
-        font-size: 18px;
-        padding: 10px 20px;
-        border-radius: 8px;
-        margin-top: 20px;
-        width: 80%;
-        text-align: center;
-    }
-
-    /* Optional: add subtle dividers between top-level links */
-    .navbar-nav.d-lg-none .nav-item + .nav-item {
-        border-top: 1px solid rgba(0,0,0,0.1);
-        width: 80%;
-        margin: 0 auto;
-    }
-}
-
-/* ===============================
-   MOBILE MENU OPEN - FORCE WHITE
-   =============================== */
-@media (max-width: 991.98px) {
-
-    .navbar {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0;
-        width: 100%;
-        height: 60px !important;
-        padding: 0 1rem;
         background-color: var(--body) !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         z-index: 1050;
+        padding: 0 1rem;
+        transition: background-color 0.2s ease;
     }
 
-    /* Keep logo and toggler on the same row */
+    /* Navbar container */
     .navbar > .container {
         height: 60px !important;
         width: 100%;
@@ -597,13 +449,159 @@ body {
         z-index: 1060;
     }
 
-    /* Don't allow the collapsed menu to affect the navbar row */
-    .navbar .navbar-collapse {
-        flex-basis: 100%;
-    }
-
+    /* Keep page content below fixed navbar */
     body {
         padding-top: 60px;
+    }
+
+    /* ===============================
+       MOBILE MENU - CLOSED STATE
+       =============================== */
+
+    .navbar .navbar-collapse {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        height: calc(100dvh - 60px);
+        background-color: var(--body);
+        padding: 20px 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 1040;
+
+        display: block;
+        flex-basis: auto;
+
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0s linear 0.25s;
+    }
+
+    /* ===============================
+       MOBILE MENU - OPEN STATE
+       =============================== */
+
+    .navbar .navbar-collapse.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0s;
+    }
+
+    /* Remove overlay pseudo-element if any */
+    .navbar .navbar-collapse::before {
+        display: none;
+    }
+
+    /* Logo inside menu, if present */
+    .navbar .navbar-collapse .navbar-brand {
+        margin-bottom: 20px;
+    }
+
+    /* Close button */
+    .navbar .navbar-collapse .mobile-menu-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 1060;
+    }
+
+    .navbar .navbar-collapse .mobile-menu-close .btn-close {
+        width: 28px;
+        height: 28px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        opacity: 1;
+    }
+
+    /* Mobile navigation links container */
+    .navbar-nav.d-lg-none {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        gap: 12px;
+        padding: 0 1rem;
+    }
+
+    /* Mobile navigation links */
+    .navbar-nav.d-lg-none .nav-link {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--mute);
+        padding: 12px 0;
+        width: 100%;
+        text-transform: uppercase;
+        transform: none;
+        transition: color 0.2s ease;
+    }
+
+    .navbar-nav.d-lg-none .nav-link:hover {
+        color: var(--primary);
+        transform: none;
+    }
+
+    /* Nested mobile submenus */
+    .navbar-nav.d-lg-none ul {
+        padding-left: 15px;
+        margin-top: 8px;
+        width: 100%;
+    }
+
+    .navbar-nav.d-lg-none ul li .nav-link {
+        font-size: 18px;
+        padding: 6px 0;
+        color: var(--mute);
+    }
+
+    .navbar-nav.d-lg-none ul li .nav-link:hover {
+        color: var(--primary);
+        transform: none;
+    }
+
+    /* Dropdown indicators */
+    .navbar-nav.d-lg-none .dropdown-toggle::after {
+        content: "▼";
+        color: var(--mute);
+        display: inline-block;
+        margin-left: 6px;
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-nav.d-lg-none .dropdown.show > .nav-link.dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
+
+    /* Mobile CTA button */
+    .navbar-nav.d-lg-none .btn {
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        width: 80%;
+        text-align: center;
+    }
+
+    /* Dividers between top-level links */
+    .navbar-nav.d-lg-none .nav-item + .nav-item {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        width: 80%;
+        margin: 0 auto;
     }
 }
 
