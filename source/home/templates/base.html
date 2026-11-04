@@ -412,7 +412,7 @@
                         <!-- Sales -->
                         {% if branding.company_whatsapp %}
                         <li>
-                            <a href="https://wa.me/{{ branding.company_whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}"
+                            <a href="https://wa.me/{{ branding.company_whatsapp|cut:' '|cut:'-'|cut:'('|cut:')'|cut:'+' }}"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="nav-link">
