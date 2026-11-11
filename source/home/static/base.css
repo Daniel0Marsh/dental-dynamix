@@ -106,11 +106,11 @@
 }
 
 .btn-outline-primary {
-    color: var(--primary);
-    border-color: var(--primary);
+    color: var(--primary-text);
+    border-color: var(--primary-text);
     font-weight: 600;
-    
 }
+
 .btn-outline-primary:hover {
     background-color: var(--primary);
     color: var(--secondary);
@@ -133,7 +133,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    color: var(--primary) !important;
+    outline: 2px solid var(--primary-text);
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s ease;
@@ -152,7 +152,7 @@
 }
 
 .link-primary:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--primary-text);
     outline-offset: 4px;
     border-radius: 2px;
 }
@@ -346,7 +346,7 @@ body {
 }
 
 .navbar .nav-link:hover {
-    color: var(--primary);
+    color: var(--primary-text);
 }
 
 
@@ -365,7 +365,7 @@ body {
 }
 
 .navbar .dropdown-menu .dropdown-item:hover {
-    color: var(--primary);
+    color: var(--primary-text);
     background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -569,7 +569,7 @@ body {
     }
 
     .navbar-nav.d-lg-none ul li .nav-link:hover {
-        color: var(--primary);
+        color: var(--primary-text);
         transform: none;
     }
 
@@ -612,8 +612,8 @@ body {
    FOOTER
    =============================== */
 .footer {
-  background-color: var(--body);
-  color: var(--body);
+    background-color: var(--body);
+    color: var(--secondary);
 }
 
 .footer-link {
@@ -633,7 +633,7 @@ body {
 }
 
 .footer h5 {
-  color: var(--primary);
+  color: var(--primary-text);
 }
 
 @media (max-width: 767.98px) {
