@@ -109,8 +109,15 @@ CSRF_TRUSTED_ORIGINS = [
 # ==============================================================================
 
 if not DEBUG:
-    MIDDLEWARE.append("django.middleware.cache.UpdateCacheMiddleware")
-    MIDDLEWARE.append("django.middleware.cache.FetchFromCacheMiddleware")
+    MIDDLEWARE.insert(
+        0,
+        "django.middleware.cache.UpdateCacheMiddleware",
+    )
+    MIDDLEWARE.append(
+        "django.middleware.cache.FetchFromCacheMiddleware",
+    )
+
+CACHE_MIDDLEWARE_SECONDS = 300
 
 CACHES = {
     "default": {

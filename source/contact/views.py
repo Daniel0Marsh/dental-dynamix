@@ -6,10 +6,13 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
+
 from branding.models import Branding
 from home.models import HomePage
 
-
+@method_decorator(never_cache, name="dispatch")
 class ContactPageView(TemplateView):
     """
     View for rendering and handling the contact page.

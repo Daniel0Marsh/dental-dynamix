@@ -1,6 +1,5 @@
 
 import requests
-
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
