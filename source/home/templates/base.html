@@ -560,6 +560,34 @@
 
                 </div>
 
+                <!-- Legal links -->
+                <ul class="list-unstyled small mt-3 mb-0">
+                    <li class="mb-1">
+                        <a href="{% url 'terms_and_conditions' %}" class="footer-link">
+                            Terms and Conditions
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="{% url 'privacy_policy' %}" class="footer-link">
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="{% url 'cookie_policy' %}" class="footer-link">
+                            Cookie Policy
+                        </a>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="footer-link border-0 bg-transparent p-0"
+                            onclick="openCookieSettings()"
+                        >
+                            Cookie settings
+                        </button>
+                    </li>
+                </ul>
+
             </div>
 
 
@@ -603,30 +631,7 @@
                                     Our partners
                                 </a>
                             </li>
-                            <li>
-                                <a href="{% url 'terms_and_conditions' %}" class="footer-link">
-                                    Terms and Conditions
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'privacy_policy' %}" class="footer-link">
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'cookie_policy' %}" class="footer-link">
-                                    Cookie Policy
-                                </a>
-                            </li>
-                            <li>
-                                <button
-                                    type="button"
-                                    class="footer-link border-0 bg-transparent p-0"
-                                    onclick="openCookieSettings()"
-                                >
-                                    Cookie settings
-                                </button>
-                            </li>
+
                             <li>
                                 <a href="{% url 'remote_support' %}" class="footer-link">
                                     Remote Support
