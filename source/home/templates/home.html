@@ -103,7 +103,12 @@
                     <div class="card-body p-4 p-xl-5">
 
                         <h3 class="h4 fw-bold text-secondary mb-3">
-                            {{ home.service_card_1_title }}
+                            <a
+                                href="{% url 'partners:products' %}?category=cbcts"
+                                class="stretched-link text-reset text-decoration-none"
+                            >
+                                {{ home.service_card_1_title }}
+                            </a>
                         </h3>
 
                         <p class="text-muted mb-0">
@@ -136,7 +141,12 @@
                     <div class="card-body p-4 p-xl-5">
 
                         <h3 class="h4 fw-bold text-secondary mb-3">
-                            {{ home.service_card_2_title }}
+                            <a
+                                href="{% url 'partners:products' %}?category=opgs"
+                                class="stretched-link text-reset text-decoration-none"
+                            >
+                                {{ home.service_card_2_title }}
+                            </a>
                         </h3>
 
                         <p class="text-muted mb-0">
@@ -169,7 +179,12 @@
                     <div class="card-body p-4 p-xl-5">
 
                         <h3 class="h4 fw-bold text-secondary mb-3">
-                            {{ home.service_card_3_title }}
+                            <a
+                                href="{% url 'it_support' %}"
+                                class="stretched-link text-reset text-decoration-none"
+                            >
+                                {{ home.service_card_3_title }}
+                            </a>
                         </h3>
 
                         <p class="text-muted mb-0">
