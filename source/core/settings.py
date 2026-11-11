@@ -95,8 +95,8 @@ SECURE_HSTS_SECONDS = 31526000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
-SESSION_COOKIE_SECURE = False  # handled by Cloudflare
-CSRF_COOKIE_SECURE = False  # handled by Cloudflare
+SESSION_COOKIE_SECURE = not DEBUG  # handled by Cloudflare
+CSRF_COOKIE_SECURE = not DEBUG  # handled by Cloudflare
 USE_X_FORWARDED_HOST = True
 
 CSRF_TRUSTED_ORIGINS = [
