@@ -20,10 +20,16 @@ class PageSEO(models.Model):
     STATIC_PAGE_CHOICES = [
         ("/", "Home"),
         ("/about/", "About"),
-        ("/oursolutions/", "Our Solutions"),
+        ("/services/", "Equipment Servicing"),
+        ("/it-support/", "IT Support"),
         ("/partners/", "Partners"),
         ("/partners/products/", "Partner Products"),
         ("/contact/", "Contact"),
+        ("/campaign/", "Campaign"),
+        ("/remote-support/", "Remote Support"),
+        ("/terms-and-conditions/", "Terms and Conditions"),
+        ("/privacy-policy/", "Privacy Policy"),
+        ("/cookie-policy/", "Cookie Policy"),
     ]
 
     url_path = models.CharField(

@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
+from seo.utils import build_meta
 
 from .models import (
     Partner,
@@ -138,11 +139,10 @@ def partner_detail(request, slug):
         "products.html",
         {
             **catalogue,
-
             "partner": partner,
-
             "seo_title": seo_title,
             "seo_description": seo_description,
+            "meta": build_meta(request, seo_title, seo_description),
         },
     )
 
@@ -191,13 +191,11 @@ def product_list(request):
         "products.html",
         {
             **catalogue,
-
             "partner": None,
-
             "product_page": product_page,
-
             "seo_title": seo_title,
             "seo_description": seo_description,
+            "meta": build_meta(request, seo_title, seo_description),
         },
     )
 
@@ -269,5 +267,6 @@ def product_detail(request, partner_slug, slug):
             "features": features,
             "seo_title": seo_title,
             "seo_description": seo_description,
+            "meta": build_meta(request, seo_title, seo_description),
         },
     )
