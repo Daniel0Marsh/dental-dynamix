@@ -22,7 +22,7 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "{{ branding.company_name|escapejs }}",
-    "url": "{{ request.build_absolute_uri|slice:":-1"|escapejs }}",
+    "url": "https://dentaldynamix.co.uk/",
     "logo": "{{ branding.logo.url|escapejs }}",
     "description": "{{ branding.site_map_description|escapejs }}",
     "email": "{{ branding.company_email|escapejs }}",
@@ -31,7 +31,8 @@
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "{{ branding.company_address|escapejs }}",
-        "addressLocality": "Kent",
+        "addressLocality": "Gillingham",
+        "addressRegion": "Kent",
         "addressCountry": "GB"
     },
 
