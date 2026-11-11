@@ -32,9 +32,6 @@ class ITSupportPageAdmin(SingletonAdmin):
     readonly_fields = ("updated_at",)
 
     fieldsets = (
-        ("Publication", {
-            "fields": ("is_published",),
-        }),
         ("Hero Section", {
             "fields": (
                 "hero_image",
@@ -105,3 +102,4 @@ class ITSupportPageAdmin(SingletonAdmin):
                 )
             )
         return super().changelist_view(request, extra_context)
+    

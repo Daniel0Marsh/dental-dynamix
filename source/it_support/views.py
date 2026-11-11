@@ -12,7 +12,6 @@ class ITSupportPageView(TemplateView):
         page = get_object_or_404(
             ITSupportPage,
             pk=1,
-            is_published=True,
         )
 
         context["page"] = page

@@ -3,15 +3,6 @@ from django.urls import reverse
 
 
 class ITSupportPage(models.Model):
-    # Publication
-    is_published = models.BooleanField(
-        default=False,
-        help_text=(
-            "Enable to make /it-support/ publicly available. "
-            "The initial wording is provisional and can be revised "
-            "with Dmitry before publication."
-        ),
-    )
 
     # Hero
     hero_image = models.ImageField(

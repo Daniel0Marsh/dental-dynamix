@@ -12,6 +12,7 @@ class StaticViewSitemap(Sitemap):
             "home",
             "about",
             "services",
+            "it_support",
             "contact",
             "campaign",
             "terms_and_conditions",
