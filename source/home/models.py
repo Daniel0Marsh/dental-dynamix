@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django_ckeditor_5.fields import CKEditor5Field
 
 
@@ -537,35 +538,45 @@ class HomePage(models.Model):
         super().save(*args, **kwargs)
 
 
-class TermsAndConditionsPage(models.Model):
-    """
-    Model representing the terms and conditions page.
-    """
 
-    title = models.CharField(
-        max_length=200,
-        default="Terms and Conditions",
+
+class LegalPage(models.Model):
+    PAGE_TYPES = [
+        ("terms", "Terms and Conditions"),
+        ("privacy", "Privacy Policy"),
+        ("cookies", "Cookie Policy"),
+    ]
+
+    page_type = models.CharField(
+        max_length=20,
+        choices=PAGE_TYPES,
+        unique=True,
+        default="terms",
     )
 
+    title = models.CharField(max_length=200)
+
     content = CKEditor5Field(
-        config_name='default',
-        default=(
-            "Please view or download our Terms and Conditions below. "
-            "This document contains the terms and conditions that apply "
-            "to our services."
-        ),
+        config_name="default",
         blank=True,
     )
 
     pdf = models.FileField(
-        upload_to='terms-and-conditions/',
-        help_text="Upload the PDF file for the terms and conditions.",
-        default="default/Dental_Dynamix_Terms_and_Conditions.pdf",
+        upload_to="legal/",
+        blank=True,
+        help_text="Upload the approved PDF for this page.",
     )
 
-    def __str__(self) -> str:
-        return self.title
+    def __str__(self):
+        return self.get_page_type_display()
 
     class Meta:
-        verbose_name = "Terms and Conditions Page"
-        verbose_name_plural = "Terms and Conditions Page"     
+        verbose_name = "Legal Page"
+        verbose_name_plural = "Legal Pages"
+
+    def get_absolute_url(self):
+        return reverse({
+            "terms": "terms_and_conditions",
+            "privacy": "privacy_policy",
+            "cookies": "cookie_policy",
+        }[self.page_type])

@@ -2,9 +2,11 @@ from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.http import HttpRequest
+from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.template import Context
 from typing import Dict, Any
-from .models import HomePage, TermsAndConditionsPage
+from .models import HomePage, LegalPage
 from campaign.models import CampaignPage
 from partners.models import PartnerProduct
 from branding.models import Branding
@@ -48,20 +50,22 @@ class HomePageView(TemplateView):
         return context
 
 
-class TermsAndConditionsView(TemplateView):
-    """
-    View for displaying terms and conditions.
-    """
-    template_name = 'terms_and_conditions.html'
+class LegalPageView(TemplateView):
+    template_name = "policy_page.html"
+    page_type = None
 
     def get_context_data(self, **kwargs):
-        """
-        Get context data for the template.
-        """
+        context = super().get_context_data(**kwargs)
+        policy = get_object_or_404(
+            LegalPage,
+            page_type=self.page_type,
+        )
 
-        context = {
+        if not policy.pdf:
+            raise Http404("Policy document is not available.")
+
+        context.update({
             "home": HomePage.objects.first(),
-            'terms_and_conditions': TermsAndConditionsPage.objects.first(),
-        }
+            "policy": policy,
+        })
         return context
-    

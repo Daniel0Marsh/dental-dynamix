@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from .models import HomePage, TermsAndConditionsPage
+from .models import LegalPage
 
 
 class SingletonAdmin(admin.ModelAdmin):
@@ -334,18 +335,7 @@ class HomePageAdmin(SingletonAdmin):
     )
 
 
-@admin.register(TermsAndConditionsPage)
-class TermsAndConditionsAdmin(SingletonAdmin):
-
-    fieldsets = (
-        (
-            "Page Content",
-            {
-                "fields": (
-                    "title",
-                    "content",
-                    "pdf",
-                ),
-            },
-        ),
-    )
+@admin.register(LegalPage)
+class LegalPageAdmin(admin.ModelAdmin):
+    list_display = ("title", "page_type")
+    fields = ("page_type", "title", "content", "pdf")
