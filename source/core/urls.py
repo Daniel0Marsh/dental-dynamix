@@ -3,14 +3,21 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
-from core.sitemaps import StaticViewSitemap
 
 # Sitemap configuration
-sitemaps = {
-    'static': StaticViewSitemap,
+from core.sitemaps import (
+    StaticViewSitemap,
+    PartnerSitemap,
+    ProductSitemap,
+)
 
+sitemaps = {
+    "static": StaticViewSitemap,
+    "partners": PartnerSitemap,
+    "products": ProductSitemap,
 }
 
+# URL Configuration
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('branding.urls')),

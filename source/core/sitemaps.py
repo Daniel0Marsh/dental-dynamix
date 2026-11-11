@@ -1,12 +1,46 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
+from partners.models import Partner, PartnerProduct
+
+
 class StaticViewSitemap(Sitemap):
-    priority = 0.8
-    changefreq = 'monthly'
+    protocol = "https"
 
     def items(self):
-        return ['home', 'about', 'testimonials', 'contact', 'privacy_policy']
+        return [
+            "home",
+            "about",
+            "services",
+            "contact",
+            "campaign",
+            "terms_and_conditions",
+            "partners:list",
+            "partners:products",
+        ]
 
     def location(self, item):
         return reverse(item)
+
+
+class PartnerSitemap(Sitemap):
+    protocol = "https"
+
+    def items(self):
+        return Partner.objects.filter(active=True)
+
+    def lastmod(self, obj):
+        return obj.updated_at
+
+
+class ProductSitemap(Sitemap):
+    protocol = "https"
+
+    def items(self):
+        return (
+            PartnerProduct.objects
+            .filter(active=True, partner__active=True)
+            .exclude(slug__isnull=True)
+            .exclude(slug="")
+            .select_related("partner")
+        )
