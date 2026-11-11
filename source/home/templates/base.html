@@ -215,54 +215,16 @@
                             <hr class="dropdown-divider">
                         </li>
 
-                        <li>
-                            <a class="dropdown-item"
-                            href="{% url 'partners:products' %}?category=cbcts">
-                                CBCTs
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{% url 'partners:products' %}?category=opgs">
-                                OPGs
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{% url 'partners:products' %}?category=ios">
-                                Intraoral 3D Scanners (IOS)
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{% url 'partners:products' %}?category=phosphor_plate_scanners">
-                                Phosphor Plate Scanners
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{% url 'partners:products' %}?category=intraoral_2d_sensors">
-                                Intraoral 2D Sensors
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{% url 'partners:products' %}?category=intraoral_xray_generators">
-                                Intraoral X-Ray Generators
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{% url 'partners:products' %}?category=software">
-                                Software
-                            </a>
-                        </li>
+                        {% for category in nav_categories %}
+                            <li>
+                                <a
+                                    class="dropdown-item"
+                                    href="{% url 'partners:products' %}?category={{ category.slug|urlencode }}"
+                                >
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
 
                     </ul>
 
@@ -343,54 +305,16 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a class="nav-link"
-                            href="{% url 'partners:products' %}?category=cbcts">
-                                CBCTs
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link"
-                            href="{% url 'partners:products' %}?category=opgs">
-                                OPGs
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link"
-                            href="{% url 'partners:products' %}?category=ios">
-                                Intraoral 3D Scanners (IOS)
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link"
-                            href="{% url 'partners:products' %}?category=phosphor_plate_scanners">
-                                Phosphor Plate Scanners
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link"
-                            href="{% url 'partners:products' %}?category=intraoral_2d_sensors">
-                                Intraoral 2D Sensors
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link"
-                            href="{% url 'partners:products' %}?category=intraoral_xray_generators">
-                                Intraoral X-Ray Generators
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link"
-                            href="{% url 'partners:products' %}?category=software">
-                                Software
-                            </a>
-                        </li>
+                        {% for category in nav_categories %}
+                            <li>
+                                <a
+                                    class="nav-link"
+                                    href="{% url 'partners:products' %}?category={{ category.slug|urlencode }}"
+                                >
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
 
                     </ul>
 
