@@ -9,7 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- SEO -->
-    {% include "meta.html" %}
+    {% if status_code %}
+        <title>Error {{ status_code }} | Dental Dynamix</title>
+        <meta name="robots" content="noindex, follow">
+    {% else %}
+        {% include "meta.html" %}
+    {% endif %}
 
     <!-- Organization JSON-LD -->
     <script type="application/ld+json">
