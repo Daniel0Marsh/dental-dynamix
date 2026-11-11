@@ -239,6 +239,29 @@
 
             </div>
 
+            <!-- Practice name -->
+            <div class="mb-3">
+                <label for="practice_name" class="form-label fw-bold">
+                    Practice Name (optional)
+                </label>
+
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text">
+                        <i class="bi bi-building text-primary" aria-hidden="true"></i>
+                    </span>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="practice_name"
+                        name="practice_name"
+                        autocomplete="organization"
+                        maxlength="200"
+                        placeholder="Your practice name"
+                        value="{{ request.POST.practice_name }}"
+                    >
+                </div>
+            </div>
 
             <!-- Phone -->
             <div class="mb-3">

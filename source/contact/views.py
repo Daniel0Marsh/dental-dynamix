@@ -2,7 +2,6 @@ import requests
 
 from django.conf import settings
 from django.contrib import messages
-from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -54,6 +53,7 @@ class ContactPageView(TemplateView):
 
     def post(self, request):
         name = request.POST.get("name", "").strip()
+        practice_name = request.POST.get("practice_name", "").strip()[:200]
         phone = request.POST.get("phone", "").strip()
         email = request.POST.get("email", "").strip()
         message = request.POST.get("message", "").strip()
@@ -82,7 +82,7 @@ class ContactPageView(TemplateView):
         ]):
             messages.error(
                 request,
-                "Please fill in all the fields."
+                "Please fill in all required fields."
             )
 
             return render(
@@ -216,6 +216,7 @@ class ContactPageView(TemplateView):
             f"Enquiry Type: {enquiry_type_display}\n"
             f"\n"
             f"Sender's Name: {name}\n"
+            f"Practice Name: {practice_name or 'Not provided'}\n"
             f"Sender's Phone: {phone}\n"
             f"Sender's Email: {email}\n"
             f"\n"
