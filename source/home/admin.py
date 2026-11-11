@@ -3,8 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import HomePage, TermsAndConditionsPage
-from .models import LegalPage
+from .models import HomePage, LegalPage
 
 
 class SingletonAdmin(admin.ModelAdmin):
