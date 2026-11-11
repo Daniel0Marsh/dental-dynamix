@@ -2,11 +2,32 @@
 
 {% load static %}
 
+
 {% block extra_head %}
-
-{# Page-specific CSS can be added here later if required. #}
-
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://dentaldynamix.co.uk{{ product.get_absolute_url|escapejs }}#product",
+    "name": "{{ product.name|escapejs }}",
+    "url": "https://dentaldynamix.co.uk{{ product.get_absolute_url|escapejs }}",
+    "category": "{{ product.get_category_display|escapejs }}",
+    {% if product.description %}
+    "description": "{{ product.description|striptags|escapejs }}",
+    {% elif product.detailed_description %}
+    "description": "{{ product.detailed_description|striptags|escapejs }}",
+    {% endif %}
+    {% if product.image %}
+    "image": "{{ request.scheme|escapejs }}://{{ request.get_host|escapejs }}{{ product.image.url|escapejs }}",
+    {% endif %}
+    "brand": {
+        "@type": "Brand",
+        "name": "{{ product.partner.name|escapejs }}"
+    }
+}
+</script>
 {% endblock %}
+
 
 
 {% block content %}
