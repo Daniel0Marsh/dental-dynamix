@@ -95,13 +95,12 @@
                     {% if branding.remote_support_installer %}
 
                         <h2 class="h4 fw-bold mb-3">
-                            Your remote support download is starting
+                            Download Remote Support for Windows
                         </h2>
 
                         <p class="text-secondary fs-5 lh-lg mb-4">
-                            Your download should start automatically.
-                            Please check your browser's Downloads folder
-                            if you don't see it appear.
+                            Contact our support team first. When your technician asks you to,
+                            use the button below to download the remote support application.
                         </p>
 
                         <p class="small text-secondary mb-3">
@@ -319,28 +318,5 @@
     </div>
 
 </section>
-
-
-{% if branding.remote_support_installer %}
-
-<script>
-    window.addEventListener("load", function () {
-
-        const downloadLink = document.createElement("a");
-
-        downloadLink.href = "{{ branding.remote_support_installer.url }}";
-        downloadLink.download = "";
-        downloadLink.style.display = "none";
-
-        document.body.appendChild(downloadLink);
-
-        downloadLink.click();
-
-        downloadLink.remove();
-
-    });
-</script>
-
-{% endif %}
 
 {% endblock %}
