@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     "home",
     "about",
     "services",
+    "it_support",
     "partners",
     "campaign",
     "contact",

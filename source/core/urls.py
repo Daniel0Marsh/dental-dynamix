@@ -41,6 +41,7 @@ urlpatterns = [
     path('', include('about.urls')),
     path('', include('campaign.urls')),
     path('', include('services.urls')),
+    path("", include("it_support.urls")),
     path('', include('seo.urls')),
     path("partners/", include('partners.urls')),
     path('', include('contact.urls')),

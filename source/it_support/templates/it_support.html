@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section
+    id="hero-section"
+    class="hero-overlay hero-overlay-home bg-dark d-flex align-items-center text-light position-relative"
+    style="min-height: 85vh;"
+>
+    {% if page.hero_image %}
+        <img
+            src="{{ page.hero_image.url }}"
+            alt="{{ page.hero_image_alt_text }}"
+            class="w-100 h-100 position-absolute top-0 start-0"
+            style="object-fit: cover; z-index: 1;"
+            fetchpriority="high"
+            decoding="async"
+        >
+    {% endif %}
+
+    <div class="container position-relative py-5" style="z-index: 2;">
+        <div class="row">
+            <div class="col-lg-7">
+                <h1 class="fw-bold display-4 mb-4">
+                    {{ page.hero_title }}
+                </h1>
+
+                <p class="fw-bold lead mb-4">
+                    {{ page.hero_subtitle }}
+                </p>
+
+                <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-4">
+                    <a href="{% url 'contact' %}" class="btn btn-primary">
+                        {{ page.hero_primary_button_text }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="it-support-overview" class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8">
+                <span class="text-primary fw-bold text-uppercase small">
+                    {{ page.overview_eyebrow }}
+                </span>
+
+                <h2 class="display-5 fw-bold mt-2 mb-3 text-dark">
+                    {{ page.overview_heading }}
+                </h2>
+
+                <p class="lead text-secondary mb-0">
+                    {{ page.overview_description }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for offering in offerings %}
+                <div class="col-md-6 col-lg-4">
+                    <article class="card border-0 shadow-sm h-100">
+                        {% if offering.image %}
+                            <div class="ratio ratio-16x9">
+                                <img
+                                    src="{{ offering.image.url }}"
+                                    alt="{{ offering.image_alt }}"
+                                    class="w-100 h-100 object-fit-cover"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+                        {% endif %}
+
+                        <div class="card-body p-4">
+                            <div class="text-primary mb-3">
+                                <i
+                                    class="bi {{ offering.icon }} fs-3"
+                                    aria-hidden="true"
+                                ></i>
+                            </div>
+
+                            <h3 class="h4 fw-bold mb-3">
+                                {{ offering.title }}
+                            </h3>
+
+                            <div class="text-secondary">
+                                {{ offering.description|linebreaks }}
+                            </div>
+                        </div>
+
+                        <div class="card-footer border-0 px-4 pb-4">
+                            <a
+                                href="{% url 'contact' %}"
+                                class="text-dark text-decoration-underline fw-semibold"
+                            >
+                                {{ page.card_link_text }}
+                                <span class="visually-hidden">
+                                    about {{ offering.title }}
+                                </span>
+                                <i
+                                    class="bi bi-arrow-right ms-1"
+                                    aria-hidden="true"
+                                ></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container py-5">
+        <div class="bg-dark text-white rounded-4 shadow p-4 p-md-5">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="text-primary-light text-uppercase fw-bold small">
+                        {{ page.final_cta_eyebrow }}
+                    </span>
+
+                    <h2 class="display-6 fw-bold mt-2 mb-3">
+                        {{ page.final_cta_title }}
+                    </h2>
+
+                    <p class="lead mb-0">
+                        {{ page.final_cta_description }}
+                    </p>
+                </div>
+
+                <div class="col-lg-4 text-lg-end">
+                    <a
+                        href="{% url 'contact' %}"
+                        class="btn btn-primary btn-lg px-4"
+                    >
+                        {{ page.final_cta_button_text }}
+                        <i
+                            class="bi bi-arrow-right ms-2"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
