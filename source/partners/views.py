@@ -140,6 +140,7 @@ def partner_detail(request, slug):
         {
             **catalogue,
             "partner": partner,
+            "partner_has_products": partner.products.filter(active=True).exists(),
             "seo_title": seo_title,
             "seo_description": seo_description,
             "meta": build_meta(request, seo_title, seo_description),
