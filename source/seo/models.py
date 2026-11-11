@@ -4,13 +4,15 @@ import json
 
 
 def default_json_ld():
-    # Generic WebSite schema
     data = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "dentaldynamix.co.uk",
-        "url": "https://dentaldynamix.co.uk",
-        "description": "Welcome to dental dynamix.co.uk. Explore our quality content, services, and resources."
+        "name": "Dental Dynamix",
+        "url": "https://dentaldynamix.co.uk/",
+        "description": (
+            "Dental imaging, equipment, software, IT support "
+            "and equipment servicing for dental practices."
+        ),
     }
     return json.dumps(data, ensure_ascii=False)
 
