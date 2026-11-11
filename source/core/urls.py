@@ -35,7 +35,7 @@ urlpatterns = [
             permanent=True,
         ),
     ),
-    path('admin/', admin.site.urls),
+    path('dentaldynamix-admin/', admin.site.urls),
     path('', include('branding.urls')),
     path('', include('home.urls')),
     path('', include('about.urls')),
