@@ -573,6 +573,25 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{% url 'privacy_policy' %}" class="footer-link">
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'cookie_policy' %}" class="footer-link">
+                                    Cookie Policy
+                                </a>
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    class="footer-link border-0 bg-transparent p-0"
+                                    onclick="openCookieSettings()"
+                                >
+                                    Cookie settings
+                                </button>
+                            </li>
+                            <li>
                                 <a href="{% url 'remote_support' %}" class="footer-link">
                                     Remote Support
                                 </a>
@@ -672,6 +691,16 @@
                     We use optional Google Analytics cookies to understand how
                     visitors use our website and help us improve it.
                     Analytics will not be activated unless you choose to allow it.
+                </p>
+                <p class="small mb-0">
+                    Read our
+                    <a href="{% url 'privacy_policy' %}" class="text-dark text-decoration-underline">
+                        Privacy Policy
+                    </a>
+                    and
+                    <a href="{% url 'cookie_policy' %}" class="text-dark text-decoration-underline">
+                        Cookie Policy
+                    </a>.
                 </p>
 
             </div>
