@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
+from django.views.generic import RedirectView
 
 # Sitemap configuration
 from core.sitemaps import (
@@ -19,6 +20,21 @@ sitemaps = {
 
 # URL Configuration
 urlpatterns = [
+    path(
+        "about.html",
+        RedirectView.as_view(
+            url="/about/",
+            permanent=True,
+            query_string=True,
+        ),
+    ),
+    path(
+        "cbct-imaging.html",
+        RedirectView.as_view(
+            url="/partners/products/?category=cbcts",
+            permanent=True,
+        ),
+    ),
     path('admin/', admin.site.urls),
     path('', include('branding.urls')),
     path('', include('home.urls')),
