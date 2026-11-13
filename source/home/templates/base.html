@@ -174,7 +174,28 @@
             <!-- Desktop Navigation -->
             <ul class="navbar-nav gap-4 d-none d-lg-flex align-items-center ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                    href="{% url 'about' %}"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                        About
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'about' %}">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'blog' %}">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- Our Solutions -->
                 <li class="nav-item dropdown">
 
@@ -272,6 +293,7 @@
             <ul class="navbar-nav d-lg-none gap-3 w-100 position-relative">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
                 <!-- Our Solutions -->
                 <li class="nav-item">
 
@@ -536,6 +558,12 @@
                             <li>
                                 <a href="{% url 'about' %}" class="footer-link">
                                     About
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'blog' %}" class="footer-link">
+                                    Blog
                                 </a>
                             </li>
 
