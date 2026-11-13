@@ -6,27 +6,49 @@
 {% endblock %}
 
 {% block content %}
-<section class="py-5">
+<section
+  id="hero-section"
+  class="hero-overlay hero-overlay-home bg-dark d-flex align-items-center text-light position-relative"
+  style="min-height: 85vh;"
+>
+    <img
+      src="{{ page.hero_image.url }}"
+      alt="{{ page.hero_image_alt_text }}"
+      class="w-100 h-100 position-absolute top-0 start-0"
+      style="object-fit: cover; z-index: 1;"
+      fetchpriority="high"
+      decoding="async"
+    >
+
+  <div class="container position-relative py-5" style="z-index: 2;">
+    <div class="row">
+      <div class="col-lg-7">
+        <h1 class="fw-bold display-4 mb-4">
+          {{ page.hero_title }}
+        </h1>
+
+        <p class="fw-bold lead mb-4">
+          {{ page.hero_subtitle }}
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" aria-label="Blog posts">
   <div class="container">
-
-    <header class="text-center mb-5">
-      <h1 class="mb-3">Dental Dynamix Blog</h1>
-      <p class="lead">
-        News, updates and insights from the Dental Dynamix team.
-      </p>
-    </header>
-
     <div class="row g-4">
       {% for blog in blogs %}
         <div class="col-md-6 col-lg-4">
           <article class="card h-100">
-
             {% if blog.picture %}
               <img
                 src="{{ blog.picture.url }}"
                 alt="{{ blog.picture_alt_text }}"
                 class="card-img-top blog-card-image"
                 loading="lazy"
+                decoding="async"
               >
             {% endif %}
 
@@ -47,7 +69,6 @@
                 {{ blog.description|truncatewords:30 }}
               </p>
             </div>
-
           </article>
         </div>
       {% empty %}
@@ -56,7 +77,6 @@
         </div>
       {% endfor %}
     </div>
-
   </div>
 </section>
 {% endblock %}

@@ -4,11 +4,11 @@ from django.views.generic import TemplateView
 
 from branding.models import Branding
 from home.views import HomePage
-from .models import BlogPost
+from .models import BlogPage, BlogPost
 
 
 class BlogPageView(TemplateView):
-    """Display published blog posts, newest first."""
+    """Display the blog hero and published posts."""
 
     template_name = 'blog.html'
 
@@ -17,7 +17,7 @@ class BlogPageView(TemplateView):
 
         context.update({
             'branding': Branding.objects.first(),
-            'home': HomePage.objects.first(),
+            'page': BlogPage.objects.first(),
             'blogs': BlogPost.objects.filter(
                 published=True,
             ).order_by('-created_at'),

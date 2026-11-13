@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.db import models
 
-from .models import BlogPost
+from .models import BlogPage, BlogPost
 
 
 @admin.register(BlogPost)
@@ -64,4 +64,23 @@ class BlogPostAdmin(admin.ModelAdmin):
             ),
         }),
     )
-    
+
+
+@admin.register(BlogPage)
+class BlogPageAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Hero', {
+            'fields': (
+                'hero_title',
+                'hero_subtitle',
+                'hero_image',
+                'hero_image_alt_text',
+            ),
+        }),
+    )
+
+    def has_add_permission(self, request):
+        return (
+            super().has_add_permission(request)
+            and not BlogPage.objects.exists()
+        )

@@ -147,4 +147,29 @@ class BlogPost(models.Model):
                 kwargs['update_fields'] = set(kwargs['update_fields']) | {'slug'}
 
         super().save(*args, **kwargs)
-        
+
+
+class BlogPage(models.Model):
+    hero_title = models.CharField(
+        max_length=255,
+        default="Dental Dynamix Blog",
+    )
+    hero_subtitle = models.TextField(
+        default="News, updates and insights from the Dental Dynamix team.",
+    )
+    hero_image = models.ImageField(
+        upload_to='blog/hero/',
+        blank=True,
+        default="default/hero_image.webp"
+    )
+    hero_image_alt_text = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    def __str__(self):
+        return "Blog Page"
+
+    class Meta:
+        verbose_name = "Blog Page"
+        verbose_name_plural = "Blog Page"
