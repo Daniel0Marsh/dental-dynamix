@@ -22,6 +22,7 @@ class PageSEO(models.Model):
     STATIC_PAGE_CHOICES = [
         ("/", "Home"),
         ("/about/", "About"),
+        ("/blog/", "Blog"),
         ("/services/", "Equipment Servicing"),
         ("/it-support/", "IT Support"),
         ("/partners/", "Partners"),

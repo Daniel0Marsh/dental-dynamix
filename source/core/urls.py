@@ -10,12 +10,14 @@ from core.sitemaps import (
     StaticViewSitemap,
     PartnerSitemap,
     ProductSitemap,
+    BlogPostSitemap,
 )
 
 sitemaps = {
     "static": StaticViewSitemap,
     "partners": PartnerSitemap,
     "products": ProductSitemap,
+    "blog": BlogPostSitemap,
 }
 
 # URL Configuration
@@ -39,6 +41,7 @@ urlpatterns = [
     path('', include('branding.urls')),
     path('', include('home.urls')),
     path('', include('about.urls')),
+    path('', include('blog.urls')),
     path('', include('campaign.urls')),
     path('', include('services.urls')),
     path("", include("it_support.urls")),

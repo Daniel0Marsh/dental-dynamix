@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'blog_details.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        <nav class="mb-4" aria-label="Blog navigation">
+          <a href="{% url 'blog' %}">&larr; Back to blog</a>
+        </nav>
+
+        <article>
+          <header class="mb-4">
+            <h1 class="mb-3">{{ blog.title }}</h1>
+
+            <p class="text-muted">
+              By {{ blog.author }}
+              &middot;
+              <time datetime="{{ blog.created_at|date:'c' }}">
+                {{ blog.created_at|date:"j F Y" }}
+              </time>
+            </p>
+
+            <p class="lead">{{ blog.description }}</p>
+          </header>
+
+          {% if blog.picture %}
+            <img
+              src="{{ blog.picture.url }}"
+              alt="{{ blog.picture_alt_text }}"
+              class="img-fluid rounded mb-4"
+            >
+          {% endif %}
+
+          <div class="blog-content ck-content">
+            {{ blog.content|safe }}
+          </div>
+        </article>
+
+        {% if recent_posts %}
+          <aside class="border-top mt-5 pt-4" aria-labelledby="recent-posts-heading">
+            <h2 id="recent-posts-heading" class="h4 mb-3">
+              Recent posts
+            </h2>
+
+            <ul class="list-unstyled">
+              {% for recent_post in recent_posts %}
+                <li class="mb-2">
+                  <a href="{{ recent_post.get_absolute_url }}">
+                    {{ recent_post.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </aside>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

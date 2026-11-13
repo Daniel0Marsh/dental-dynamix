@@ -12,6 +12,11 @@ PAGE_DEFAULTS = {
         "Find out about Dental Dynamix and our work supporting "
         "dental practices with imaging, equipment and technology.",
     ),
+    "/blog/": (
+        "Dental Dynamix Blog | News & Insights",
+        "Read the latest news, updates and insights on dental imaging, "
+        "equipment, software and IT support from Dental Dynamix.",
+    ),
     "/services/": (
         "Equipment Servicing & Repairs | Dental Dynamix",
         "Discuss dental equipment servicing, repairs, fault-finding "

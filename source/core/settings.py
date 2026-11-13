@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "branding",
     "home",
     "about",
+    "blog",
     "services",
     "it_support",
     "partners",
@@ -190,41 +191,48 @@ AUTH_PASSWORD_VALIDATORS = [
 CKEDITOR_5_CONFIGS = {
     "default": {
         "toolbar": [
-            "heading", "|", "bold", "italic", "underline", "strikethrough", "highlight", "|",
-            "alignment", "|", "link", "removeFormat", "|",
+            "heading", "|",
+            "bold", "italic", "|",
+            "link", "|",
             "bulletedList", "numberedList", "|",
-            "blockQuote", "Dental Dynamix", "|",
-            "fontColor", "fontSize", "|",
-            "insertTable", "|",
-            "sourceEditing", "fullscreen",
+            "uploadImage", "insertTable", "blockQuote", "|",
+            "undo", "redo",
         ],
+        "heading": {
+            "options": [
+                {
+                    "model": "paragraph",
+                    "title": "Paragraph",
+                    "class": "ck-heading_paragraph",
+                },
+                {
+                    "model": "heading2",
+                    "view": "h2",
+                    "title": "Heading 2",
+                    "class": "ck-heading_heading2",
+                },
+                {
+                    "model": "heading3",
+                    "view": "h3",
+                    "title": "Heading 3",
+                    "class": "ck-heading_heading3",
+                },
+            ],
+        },
         "image": {
             "toolbar": [
-                "imageStyle:inline",
-                "imageStyle:block",
-                "imageStyle:side",
-                "|",
                 "toggleImageCaption",
                 "imageTextAlternative",
                 "|",
-                "linkImage",
+                "imageStyle:block",
+                "imageStyle:side",
             ],
-            "resizeOptions": [
-                {"name": "imageResize:original", "value": "original", "label": "Original"},
-                {"name": "imageResize:25", "value": "25", "label": "25%"},
-                {"name": "imageResize:50", "value": "50", "label": "50%"},
-                {"name": "imageResize:75", "value": "75", "label": "75%"},
-            ],
-            "resizeUnit": "%",
         },
-        "codeBlock": {
-            "languages": [
-                {"language": "javascript", "label": "JavaScript"},
-                {"language": "python", "label": "Python"},
-                {"language": "bash", "label": "Bash"},
-                {"language": "nginx", "label": "Nginx"},
-                {"language": "html", "label": "HTML"},
-                {"language": "css", "label": "CSS"},
+        "table": {
+            "contentToolbar": [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
             ],
         },
     },

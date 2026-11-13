@@ -1,6 +1,7 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
+from blog.models import BlogPost
 from partners.models import Partner, PartnerProduct
 
 
@@ -18,10 +19,21 @@ class StaticViewSitemap(Sitemap):
             "terms_and_conditions",
             "partners:list",
             "partners:products",
+            "blog",
         ]
 
     def location(self, item):
         return reverse(item)
+
+
+class BlogPostSitemap(Sitemap):
+    protocol = "https"
+
+    def items(self):
+        return BlogPost.objects.filter(published=True)
+
+    def lastmod(self, obj):
+        return obj.updated_at
 
 
 class PartnerSitemap(Sitemap):

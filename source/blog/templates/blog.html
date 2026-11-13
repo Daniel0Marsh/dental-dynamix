@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+
+    <header class="text-center mb-5">
+      <h1 class="mb-3">Dental Dynamix Blog</h1>
+      <p class="lead">
+        News, updates and insights from the Dental Dynamix team.
+      </p>
+    </header>
+
+    <div class="row g-4">
+      {% for blog in blogs %}
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100">
+
+            {% if blog.picture %}
+              <img
+                src="{{ blog.picture.url }}"
+                alt="{{ blog.picture_alt_text }}"
+                class="card-img-top blog-card-image"
+                loading="lazy"
+              >
+            {% endif %}
+
+            <div class="card-body d-flex flex-column">
+              <p class="small text-muted mb-2">
+                <time datetime="{{ blog.created_at|date:'c' }}">
+                  {{ blog.created_at|date:"j F Y" }}
+                </time>
+              </p>
+
+              <h2 class="h4 card-title">
+                <a href="{{ blog.get_absolute_url }}">
+                  {{ blog.title }}
+                </a>
+              </h2>
+
+              <p class="card-text">
+                {{ blog.description|truncatewords:30 }}
+              </p>
+            </div>
+
+          </article>
+        </div>
+      {% empty %}
+        <div class="col-12 text-center">
+          <p>No blog posts yet. Please check back soon.</p>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}
